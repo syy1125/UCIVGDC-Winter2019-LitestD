@@ -1,18 +1,33 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class BuildingHealth : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public TileBase EmptyGroundTile;
+	public int MaxHealth = 10;
+	private int _health;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private Tilemap _groundTilemap;
+
+	private void Start()
+	{
+		Debug.Log("Building Health Script Start " + GetHashCode().ToString("X") + " position " + transform.position);
+		_health = MaxHealth;
+		_groundTilemap = GameObject.FindWithTag("GroundTilemap").GetComponent<Tilemap>();
+	}
+
+	public void Damage(int amount)
+	{
+		_health -= amount;
+
+		if (_health <= 0)
+		{
+			_groundTilemap.SetTile(_groundTilemap.WorldToCell(transform.position), EmptyGroundTile);
+		}
+	}
+
+	private void OnDestroy()
+	{
+		Debug.Log("Building Health Script Destroy");
+	}
 }
