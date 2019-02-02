@@ -307,7 +307,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -435,9 +435,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Map: {fileID: 1951453539}
-  HousingTile: {fileID: 11400000, guid: 23f1e81022ba0fc4aaf09a0aa390200c, type: 2}
-  HousingPrefab: {fileID: 2708933932313829711, guid: ca7a091c54900d145a7136f280551c2e,
-    type: 3}
 --- !u!1 &1951453536
 GameObject:
   m_ObjectHideFlags: 0
