@@ -262,6 +262,7 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   turnCountRef: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
+  updateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
 --- !u!1 &1039809065
 GameObject:
   m_ObjectHideFlags: 0
@@ -848,7 +849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9aa728d4a9be4c541bd3242551d729c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 18d324d38ca2cb548a300be0bc0075bb, type: 2}
+  gameEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
