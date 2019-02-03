@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TurnCountManager : GameEventListener
+public class TurnCountListener : GameEventListener
 {
     public IntReference turnCountRef;
-    public GameEvent updateUIEvent;
 
     private void Start()
     {
@@ -15,12 +14,11 @@ public class TurnCountManager : GameEventListener
     private void LoadTurnCount()
     {
         turnCountRef.value = 1;
-        updateUIEvent.Raise();
+        // Could later add logic to load in the turn count from a save file
     }
 
     public void IncrementTurnCount()
     {
         turnCountRef.value++;
-        updateUIEvent.Raise();
     }
 }
