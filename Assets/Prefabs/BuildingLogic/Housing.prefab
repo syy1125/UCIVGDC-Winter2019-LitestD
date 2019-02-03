@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2708933932313829712}
   - component: {fileID: 2708933932313829713}
+  - component: {fileID: 8758748543006644747}
   m_Layer: 0
   m_Name: Housing
   m_TagString: Untagged
@@ -45,3 +46,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EmptyGroundTile: {fileID: 11400000, guid: 66c938bd799f3e4438abfe6114fc6758, type: 2}
   MaxHealth: 10
+--- !u!114 &8758748543006644747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2708933932313829711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e07b0273e59d0e74d862775360689644, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  HousingCapacity: {fileID: 11400000, guid: 3791be4d0c671834a9da6e6e30dbfc19, type: 2}
+  Capacity: 3
