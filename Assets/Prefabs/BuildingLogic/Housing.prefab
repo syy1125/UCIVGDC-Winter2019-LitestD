@@ -58,5 +58,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e07b0273e59d0e74d862775360689644, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HousingCapacity: {fileID: 11400000, guid: 3791be4d0c671834a9da6e6e30dbfc19, type: 2}
-  Capacity: 3
+  CapacityRef: {fileID: 11400000, guid: 3791be4d0c671834a9da6e6e30dbfc19, type: 2}
+  CapacityDelta: 3
