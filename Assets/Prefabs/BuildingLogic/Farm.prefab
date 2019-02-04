@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2708933932313829712}
   - component: {fileID: 2708933932313829713}
   - component: {fileID: 8758748543006644747}
+  - component: {fileID: 8802189557406503502}
   m_Layer: 0
   m_Name: Farm
   m_TagString: Untagged
@@ -60,3 +61,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CapacityRef: {fileID: 11400000, guid: 8eaa17df851b7a047b839c0e40d570bb, type: 2}
   CapacityDelta: 1
+--- !u!114 &8802189557406503502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2708933932313829711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3a8ef95d6cc45524aa8432981e46d6e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PowerConsumptionRef: {fileID: 11400000, guid: 1d60d5cb511771640a063cabb875ef07,
+    type: 2}
+  PowerDraw: 1

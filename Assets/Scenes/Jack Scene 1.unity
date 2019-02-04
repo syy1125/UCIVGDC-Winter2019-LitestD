@@ -1943,6 +1943,7 @@ MonoBehaviour:
   HousingCapacity: {fileID: 11400000, guid: 3791be4d0c671834a9da6e6e30dbfc19, type: 2}
   GeneratorCapacity: {fileID: 11400000, guid: f9aea34743f90404a86940b37494c431, type: 2}
   FarmCapacity: {fileID: 11400000, guid: 8eaa17df851b7a047b839c0e40d570bb, type: 2}
+  PowerConsumption: {fileID: 11400000, guid: 1d60d5cb511771640a063cabb875ef07, type: 2}
   PowerPerTechnician: 3
   FoodPerFarmer: 3
   Population: 0

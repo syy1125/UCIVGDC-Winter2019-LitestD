@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class ResourceManager : MonoBehaviour
 {
-	[Header("Capacity References")]
+	[Header("References")]
 	public IntReference HousingCapacity;
 	public IntReference GeneratorCapacity;
 	public IntReference FarmCapacity;
+
+	[Space]
+	public IntReference PowerConsumption; 
 
 	[Header("Balancing")]
 	public int PowerPerTechnician = 3;
@@ -19,5 +22,4 @@ public class ResourceManager : MonoBehaviour
 	public int GeneratorWorkerCount;
 	[HideInInspector]
 	public int FarmWorkerCount;
-
 }

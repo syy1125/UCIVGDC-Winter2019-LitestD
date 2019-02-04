@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class PowerConsumer : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+	public IntReference PowerConsumptionRef;
+	public int PowerDraw;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+	private void OnEnable()
+	{
+		PowerConsumptionRef.value += PowerDraw;
+	}
+
+	private void OnDisable()
+	{
+		PowerConsumptionRef.value -= PowerDraw;
+	}
 }
