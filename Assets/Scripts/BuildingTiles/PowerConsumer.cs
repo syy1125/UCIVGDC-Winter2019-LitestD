@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class PowerConsumer : MonoBehaviour
 {
-	public IntReference PowerConsumptionRef;
 	public int PowerDraw;
 
 	private void OnEnable()
 	{
-		PowerConsumptionRef.value += PowerDraw;
+		GameManager.Instance.GetComponent<ResourceManager>().PowerConsumers.Add(this);
 	}
 
 	private void OnDisable()
 	{
-		PowerConsumptionRef.value -= PowerDraw;
+		GameManager.Instance.GetComponent<ResourceManager>().PowerConsumers.Remove(this);
 	}
 }

@@ -10,7 +10,8 @@ public class ResourceManager : MonoBehaviour
 	public IntReference FarmCapacity;
 
 	[Space]
-	public IntReference PowerConsumption; 
+	public IntReference PowerConsumption;
+	public HashSet<PowerConsumer> PowerConsumers;
 
 	[Header("Balancing")]
 	public int PowerPerTechnician = 3;
