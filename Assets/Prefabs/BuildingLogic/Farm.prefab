@@ -59,4 +59,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CapacityRef: {fileID: 11400000, guid: 8eaa17df851b7a047b839c0e40d570bb, type: 2}
-  CapacityDelta: 3
+  CapacityDelta: 1
