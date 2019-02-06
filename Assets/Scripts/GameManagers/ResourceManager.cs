@@ -9,8 +9,7 @@ public class ResourceManager : MonoBehaviour
 	public IntReference GeneratorCapacity;
 	public IntReference FarmCapacity;
 
-	[Space]
-	public IntReference PowerConsumption;
+	[HideInInspector]
 	public HashSet<PowerConsumer> PowerConsumers;
 
 	[Header("Balancing")]
