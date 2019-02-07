@@ -2032,6 +2032,7 @@ MonoBehaviour:
   Map: {fileID: 1951453539}
   SelectBuildTileEvent: {fileID: 11400000, guid: ab192d5a7ccda3e4aaab79ba8c3185ec,
     type: 2}
+  UpdateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
 --- !u!222 &1690299057
 CanvasRenderer:
   m_ObjectHideFlags: 0

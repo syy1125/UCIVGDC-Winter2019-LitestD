@@ -6,6 +6,7 @@ public class BuildOnTile : MonoBehaviour
 {
 	public Tilemap Map;
 	public GameEvent SelectBuildTileEvent;
+	public GameEvent UpdateUIEvent;
 
 	private Camera _mainCamera;
 	private static Plane _zPlane = new Plane(Vector3.forward, 0);
@@ -33,6 +34,7 @@ public class BuildOnTile : MonoBehaviour
 			if (Map.HasTile(tilePosition))
 			{
 				Map.SetTile(tilePosition, SelectedTile);
+				UpdateUIEvent.Raise();
 			}
 		}
 	}
