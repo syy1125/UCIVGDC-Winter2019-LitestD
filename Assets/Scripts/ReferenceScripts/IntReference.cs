@@ -6,4 +6,9 @@ using UnityEngine;
 public class IntReference : ScriptableObject
 {
     public int value;
+
+    public static implicit operator int(IntReference ir)
+    {
+        return ir.value;
+    }
 }
