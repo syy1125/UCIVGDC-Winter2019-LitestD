@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -10,5 +11,10 @@ public class IntReference : ScriptableObject
     public static implicit operator int(IntReference ir)
     {
         return ir.value;
+    }
+
+    public override string ToString()
+    {
+        return value.ToString();
     }
 }
