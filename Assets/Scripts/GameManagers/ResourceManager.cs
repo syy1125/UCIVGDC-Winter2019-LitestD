@@ -32,21 +32,46 @@ public class ResourceManager : MonoBehaviour
 	public Button UnassignGeneratorButton;
 	public Button AssignFarmButton;
 	public Button UnassignFarmButton;
-	
+
+	private void Awake()
+	{
+		PowerConsumers = new HashSet<PowerConsumer>();
+	}
+
+	public void DebugAddPop()
+	{
+		Population.value = Mathf.Clamp(Population + 1, 0, HousingCapacity);
+		UpdateUIEvent.Raise();
+	}
+
+	public void ChangeGeneratorWorkforce(int delta)
+	{
+		GeneratorWorkerCount.value = Mathf.Clamp(GeneratorWorkerCount + delta, 0, GeneratorCapacity);
+		UpdateUIEvent.Raise();
+	}
+
+	public void ChangeFarmWorkforce(int delta)
+	{
+		FarmWorkerCount.value = Mathf.Clamp(FarmWorkerCount + delta, 0, FarmCapacity);
+		UpdateUIEvent.Raise();
+	}
+
 	public void Display()
 	{
+		int unassignedPopulation = Population - GeneratorWorkerCount - FarmWorkerCount;
+
 		HousingDisplay.text =
 			$"Housing {Population} / {HousingCapacity} ({HousingCapacity - Population} free)";
 		FreeWorkforceDisplay.text =
-			$"Unassigned: {Population - GeneratorWorkerCount - FarmWorkerCount}";
+			$"Unassigned: {unassignedPopulation}";
 		GeneratorDisplay.text =
 			$"Generator: {GeneratorWorkerCount} / {GeneratorCapacity} (+{PowerPerTechnician * GeneratorWorkerCount} power)";
 		FarmDisplay.text =
 			$"Farm: {FarmWorkerCount} / {FarmCapacity.value} (+{FoodPerFarmer * FarmWorkerCount} food)";
 
-		AssignGeneratorButton.interactable = GeneratorWorkerCount < GeneratorCapacity;
+		AssignGeneratorButton.interactable = GeneratorWorkerCount < GeneratorCapacity && unassignedPopulation > 0;
 		UnassignGeneratorButton.interactable = GeneratorWorkerCount > 0;
-		AssignFarmButton.interactable = FarmWorkerCount < FarmCapacity;
+		AssignFarmButton.interactable = FarmWorkerCount < FarmCapacity && unassignedPopulation > 0;
 		UnassignFarmButton.interactable = FarmWorkerCount > 0;
 	}
 }
