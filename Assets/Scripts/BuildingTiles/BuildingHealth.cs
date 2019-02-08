@@ -11,7 +11,6 @@ public class BuildingHealth : MonoBehaviour
 
 	private void Start()
 	{
-		Debug.Log("Building Health Script Start " + GetHashCode().ToString("X") + " position " + transform.position);
 		_health = MaxHealth;
 		_groundTilemap = GameObject.FindWithTag("GroundTilemap").GetComponent<Tilemap>();
 	}
