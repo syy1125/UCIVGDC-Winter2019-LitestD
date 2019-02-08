@@ -2,11 +2,17 @@
 
 public class DisplayIntReference : GameEventListener
 {
-    public string label;
-    public IntReference intRef;
+    private string template;
+    public IntReference[] refs;
+
+    private void Start()
+    {
+        template = GetComponent<TextMeshProUGUI>().text;
+        Display();
+    }
 
     public void Display()
     {
-        GetComponent<TextMeshProUGUI>().text = label + " " + intRef.value;
+        GetComponent<TextMeshProUGUI>().text = string.Format(template, refs);
     }
 }
