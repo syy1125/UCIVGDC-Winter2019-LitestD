@@ -74,4 +74,11 @@ public class ResourceManager : MonoBehaviour
 		AssignFarmButton.interactable = FarmWorkerCount < FarmCapacity && unassignedPopulation > 0;
 		UnassignFarmButton.interactable = FarmWorkerCount > 0;
 	}
+
+	private void OnDestroy()
+	{
+		Population.value = 0;
+		GeneratorWorkerCount.value = 0;
+		FarmWorkerCount.value = 0;
+	}
 }
