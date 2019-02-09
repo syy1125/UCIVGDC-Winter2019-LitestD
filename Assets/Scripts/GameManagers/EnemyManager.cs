@@ -48,9 +48,5 @@ public class EnemyManager : MonoBehaviour
 
 	public void DebugRunPathfinding()
 	{
-		foreach (Transform child in EnemyMap.transform)
-		{
-			Debug.Log(child.GetComponent<EnemyLogic>().CalculateMove());
-		}
 	}
 }
