@@ -27,11 +27,11 @@ public class EnemyLogic : MonoBehaviour
 	private void Start()
 	{
 		_groundMap = GetComponentInParent<TilemapRegistry>().Ground;
-		_outerEdgeMap = GetComponent<TilemapRegistry>().OuterEdge;
+		_outerEdgeMap = GetComponentInParent<TilemapRegistry>().OuterEdge;
 		_enemyMap = GetComponentInParent<Tilemap>();
 	}
 
-	private Vector2 CalculateMove()
+	public Vector2 CalculateMove()
 	{
 		DateTime startTime = DateTime.Now;
 
