@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 public class BuildOnTile : MonoBehaviour
 {
-	public Tilemap Map;
+	public Tilemap GroundMap;
+	public Tilemap BuildingMap;
 	public GameEvent SelectBuildTileEvent;
 	public GameEvent UpdateUIEvent;
 
@@ -29,11 +31,11 @@ public class BuildOnTile : MonoBehaviour
 				return;
 			}
 
-			Vector3Int tilePosition = Map.WorldToCell(mouseRay.GetPoint(distance));
+			Vector3Int tilePosition = GroundMap.WorldToCell(mouseRay.GetPoint(distance));
 			// TODO Implement better placement logic
-			if (Map.HasTile(tilePosition))
+			if (GroundMap.HasTile(tilePosition))
 			{
-				Map.SetTile(tilePosition, SelectedTile);
+				BuildingMap.SetTile(tilePosition, SelectedTile);
 				UpdateUIEvent.Raise();
 			}
 		}
