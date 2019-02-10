@@ -6,18 +6,22 @@ using TMPro;
 
 public class DisplayPopup : MonoBehaviour
 {
+    [Header("Popup Components")]
     public TextMeshProUGUI titleField;
     public TextMeshProUGUI textField;
     public Button continueButton;
 
+    [Header("Items to Disable")]
+    public Button endTurnButton;
+
     private Queue<Message> messages = new Queue<Message>();
     private Animator anim;
-    private string visible = "Visible"; // So I don't mess up spelling in multiple places
+    private string visible = "Visible";
 
     private void Awake()
     {
         anim = GetComponent<Animator>();    
-        continueButton.onClick.AddListener(ShowNextMessage); // Would it be better to do this in the Unity Editor?
+        continueButton.onClick.AddListener(Continue);
     }
 
     public void EnqueueMessage(Message message)
@@ -26,22 +30,34 @@ public class DisplayPopup : MonoBehaviour
 
         if (messages.Count == 1 && !anim.GetBool(visible))
         {
-            ShowNextMessage();
+            Continue();
         }
     }
 
-    private void ShowNextMessage()
+    private void Continue()
     {
         if (messages.Count == 0)
         {
-            anim.SetBool(visible, false);
+            HidePopup();
         }
         else
         {
-            Message message = messages.Dequeue();
-            titleField.text = message.title;
-            textField.text = message.text;
-            anim.SetBool(visible, true); // Maybe I should check if it equals false first
+            ShowPopup();
         }
+    }
+
+    private void ShowPopup()
+    {
+        Message message = messages.Dequeue();
+        titleField.text = message.title;
+        textField.text = message.text;
+        anim.SetBool(visible, true);
+        endTurnButton.interactable = false;
+    }
+
+    private void HidePopup()
+    {
+        anim.SetBool(visible, false);
+        endTurnButton.interactable = true;
     }
 }
