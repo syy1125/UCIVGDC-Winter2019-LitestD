@@ -1,0 +1,19 @@
+{"popups": [
+	{
+		"turn": 1,
+		"lines": [
+			{
+				"title": "John Smith",
+				"text": "Welcome to our shelter. The recent apocalypse has left many displaced people in desperate need of shelter and food."
+			},
+			{
+				"title": "John Smith",
+				"text": "We need to get them settled in quickly!"
+			},
+			{
+				"title": "John Smith",
+				"text": "Luckily there seems to be a house already. However, we will need more if we want to house everyone."
+			}
+		]
+	}
+]}
