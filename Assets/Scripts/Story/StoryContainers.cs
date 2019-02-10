@@ -3,23 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [System.Serializable]
-public class Line
+public class Message
 {
     public string title;
     public string text;
 }
 
 [System.Serializable]
-public class Popup
+public class MessageSequence
 {
     public int turn;
-    public List<Line> lines;
+    public List<Message> messages;
 }
 
 [System.Serializable]
 public class Story
 {
-    public List<Popup> popups;
+    public List<MessageSequence> allMessageSequences;
 
     public static Story CreateFromJson(string jsonString)
     {

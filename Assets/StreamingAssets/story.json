@@ -1,7 +1,7 @@
-{"popups": [
+{"allMessageSequences": [
 	{
 		"turn": 1,
-		"lines": [
+		"messages": [
 			{
 				"title": "John Smith",
 				"text": "Welcome to our shelter. The recent apocalypse has left many displaced people in desperate need of shelter and food."

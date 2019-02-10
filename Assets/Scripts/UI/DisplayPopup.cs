@@ -6,10 +6,11 @@ using TMPro;
 
 public class DisplayPopup : MonoBehaviour
 {
+    public TextMeshProUGUI titleField;
     public TextMeshProUGUI textField;
     public Button continueButton;
 
-    private Queue<string> messages = new Queue<string>();
+    private Queue<Message> messages = new Queue<Message>();
     private Animator anim;
     private string visible = "Visible"; // So I don't mess up spelling in multiple places
 
@@ -19,7 +20,7 @@ public class DisplayPopup : MonoBehaviour
         continueButton.onClick.AddListener(ShowNextMessage); // Would it be better to do this in the Unity Editor?
     }
 
-    public void EnqueueMessage(string message)
+    public void EnqueueMessage(Message message)
     {
         messages.Enqueue(message);
 
@@ -37,7 +38,9 @@ public class DisplayPopup : MonoBehaviour
         }
         else
         {
-            textField.text = messages.Dequeue();
+            Message message = messages.Dequeue();
+            titleField.text = message.title;
+            textField.text = message.text;
             anim.SetBool(visible, true); // Maybe I should check if it equals false first
         }
     }

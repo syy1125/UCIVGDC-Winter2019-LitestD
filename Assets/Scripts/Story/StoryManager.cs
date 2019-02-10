@@ -28,34 +28,36 @@ public class StoryManager : GameEventListener
 
     private void Start()
     {
-        Popup firstPopup = FindLinesToPopup(1);
-        EnqueueLines(firstPopup);
+        // It would probably be better if an UpdateUIEvent was just called at the beginning of the game.
+        // There could potentially be a problem where the first turn is enqueued twice.
+        MessageSequence firstMessageSequence = FindMessagesToShow(1);
+        EnqueueMessages(firstMessageSequence);
     }
 
     public void DisplayStory()
     {
-        EnqueueLines(FindLinesToPopup(turnCount));
+        EnqueueMessages(FindMessagesToShow(turnCount));
     }
 
-    private Popup FindLinesToPopup(int turn)
+    private MessageSequence FindMessagesToShow(int turn)
     {
-        foreach (Popup popup in story.popups)
+        foreach (MessageSequence messageSequence in story.allMessageSequences)
         {
-            if (popup.turn == turn)
+            if (messageSequence.turn == turn)
             {
-                return popup;
+                return messageSequence;
             }
         }
         return null;
     }
 
-    private void EnqueueLines(Popup popup)
+    private void EnqueueMessages(MessageSequence messageSequence)
     {
-        if (popup != null)
+        if (messageSequence != null)
         {
-            foreach(Line line in popup.lines)
+            foreach(Message message in messageSequence.messages)
             {
-                displayPopup.EnqueueMessage(line.text);
+                displayPopup.EnqueueMessage(message);
             }
         }
     }
