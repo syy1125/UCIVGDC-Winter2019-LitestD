@@ -42,7 +42,11 @@ public class EnemyPathfinding : ScriptableObject
 
 				int distance = Mathf.Abs(buildingPosition.x - targetPosition.x)
 				               + Mathf.Abs(buildingPosition.y - targetPosition.y);
-				float weightedBuildingAttraction = tileAttractionValues[buildingTile]
+				float baseAttraction;
+				baseAttraction = tileAttractionValues.TryGetValue(buildingTile, out baseAttraction)
+					? baseAttraction
+					: 0;
+				float weightedBuildingAttraction = baseAttraction
 				                                   * FalloffCurve.Evaluate((float) distance / MaxRadius);
 				attraction += weightedBuildingAttraction;
 			}

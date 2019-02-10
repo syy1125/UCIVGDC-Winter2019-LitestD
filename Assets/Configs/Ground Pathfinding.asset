@@ -12,29 +12,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9fa5c7562af9494d82e12f6390bb5dd, type: 3}
   m_Name: Ground Pathfinding
   m_EditorClassIdentifier: 
-  TileAttractions: []
+  TileAttractions:
+  - Tile: {fileID: 11400000, guid: 23f1e81022ba0fc4aaf09a0aa390200c, type: 2}
+    Attraction: 5
+  - Tile: {fileID: 11400000, guid: b32e3afed0cbca14db53bce4f6a73bff, type: 2}
+    Attraction: 3
+  - Tile: {fileID: 11400000, guid: b32e3afed0cbca14db53bce4f6a73bff, type: 2}
+    Attraction: 3
+  - Tile: {fileID: 11400000, guid: 88fb53e136ebe8046b15694defbd2630, type: 2}
+    Attraction: 1
+  - Tile: {fileID: 11400000, guid: fe9a665b1a73c7f4180159854af3bde0, type: 2}
+    Attraction: 2
   FalloffCurve:
     serializedVersion: 2
     m_Curve:
     - serializedVersion: 3
       time: 0
       value: 1
-      inSlope: -0.17499982
-      outSlope: -0.17499982
+      inSlope: -0.6374998
+      outSlope: -0.6374998
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0.071428575
+      outWeight: 0.068627454
     - serializedVersion: 3
       time: 1
       value: 0
-      inSlope: -1.5469996
-      outSlope: -1.5469996
+      inSlope: -0.079687506
+      outSlope: -0.079687506
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.10504204
+      inWeight: 0.07843137
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  MaxRadius: 0
+  MaxRadius: 16

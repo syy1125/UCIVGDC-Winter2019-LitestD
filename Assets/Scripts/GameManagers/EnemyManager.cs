@@ -1,22 +1,32 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class EnemyManager : MonoBehaviour
 {
-	public Tilemap OuterEdgeMap;
-	public Tilemap EnemyMap;
+	[Header("Game Objects")]
+	public TilemapRegistry Tilemaps;
 	public TileBase EnemyTile;
 
 	private List<Vector3Int> _validSpawnPositions;
+
+	[Header("Enemy Logic")]
+	public TileBase GroundEnemyTile;
+	public EnemyPathfinding GroundEnemyPathfinding;
+
+	[Header("Debug")]
+	public GameObject DebugParent;
+	public GameObject TextPrefab;
 
 	private void Start()
 	{
 		_validSpawnPositions = new List<Vector3Int>();
 
-		foreach (Vector3Int position in OuterEdgeMap.cellBounds.allPositionsWithin)
+		foreach (Vector3Int position in Tilemaps.OuterEdge.cellBounds.allPositionsWithin)
 		{
-			if (OuterEdgeMap.HasTile(position))
+			if (Tilemaps.OuterEdge.HasTile(position))
 			{
 				_validSpawnPositions.Add(position);
 			}
@@ -36,17 +46,49 @@ public class EnemyManager : MonoBehaviour
 
 		foreach (Vector3Int position in attemptOrder)
 		{
-			if (EnemyMap.HasTile(position)) continue;
+			if (Tilemaps.Enemies.HasTile(position)) continue;
 
-			EnemyMap.SetTile(position, EnemyTile);
-			
+			Tilemaps.Enemies.SetTile(position, EnemyTile);
+
 			return;
 		}
-		
+
 		Debug.LogWarning("Failed to spawn enemy! Is the outer edge saturated?");
 	}
 
 	public void DebugRunPathfinding()
 	{
+		if (DebugParent.transform.childCount > 0)
+		{
+			foreach (Transform child in DebugParent.transform)
+			{
+				Destroy(child.gameObject);
+			}
+		}
+		else
+		{
+			var pathfindPositions = new Queue<Vector3Int>();
+			Camera mainCamera = Camera.main;
+			foreach (Vector3Int position in Tilemaps.OuterEdge.cellBounds.allPositionsWithin)
+			{
+				if (Tilemaps.OuterEdge.HasTile(position)) pathfindPositions.Enqueue(position);
+			}
+
+			foreach (Vector3Int position in Tilemaps.Ground.cellBounds.allPositionsWithin)
+			{
+				if (Tilemaps.Ground.HasTile(position)) pathfindPositions.Enqueue(position);
+			}
+
+			Dictionary<Vector3Int, float> attractionMap =
+				GroundEnemyPathfinding.MakeAttractionMap(Tilemaps.Buildings, pathfindPositions);
+
+			foreach (KeyValuePair<Vector3Int, float> pair in attractionMap)
+			{
+				GameObject textInstance = Instantiate(TextPrefab, DebugParent.transform);
+				textInstance.transform.position =
+					mainCamera.WorldToScreenPoint(Tilemaps.Buildings.GetCellCenterWorld(pair.Key));
+				textInstance.GetComponent<Text>().text = pair.Value.ToString(CultureInfo.InvariantCulture);
+			}
+		}
 	}
 }
