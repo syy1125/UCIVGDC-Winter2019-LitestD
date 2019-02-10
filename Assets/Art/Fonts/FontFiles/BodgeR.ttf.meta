@@ -1,0 +1,24 @@
+fileFormatVersion: 2
+guid: b597e3cce3d5e364aa2b8c8e60f3f351
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Bodge
+  fontNames:
+  - Bodge
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 84b37603237ad864ba180c49c2ff1846, type: 3}
+  - {fileID: 12800000, guid: 53fb5fa8b403cc34ba0ed8cf37c1caa9, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
