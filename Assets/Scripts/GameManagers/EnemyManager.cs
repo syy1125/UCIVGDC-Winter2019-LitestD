@@ -1,8 +1,11 @@
+﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using UnityEditor.Experimental.UIElements;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -30,7 +33,7 @@ public class EnemyManager : MonoBehaviour
 		foreach (Vector3Int position in Tilemaps.OuterEdge.cellBounds.allPositionsWithin)
 		{
 			if (!Tilemaps.OuterEdge.HasTile(position)) continue;
-			
+
 			_validSpawnPositions.Add(position);
 			_pathfindPositions.Add(position);
 		}
@@ -38,7 +41,7 @@ public class EnemyManager : MonoBehaviour
 		foreach (Vector3Int position in Tilemaps.Ground.cellBounds.allPositionsWithin)
 		{
 			if (!Tilemaps.Ground.HasTile(position)) continue;
-			
+
 			_pathfindPositions.Add(position);
 		}
 	}
@@ -78,7 +81,7 @@ public class EnemyManager : MonoBehaviour
 		else
 		{
 			Camera mainCamera = Camera.main;
-			
+
 			Dictionary<Vector3Int, float> attractionMap =
 				GroundEnemyPathfinding.MakeAttractionMap(Tilemaps.Buildings, _pathfindPositions);
 
@@ -88,6 +91,52 @@ public class EnemyManager : MonoBehaviour
 				textInstance.transform.position =
 					mainCamera.WorldToScreenPoint(Tilemaps.Buildings.GetCellCenterWorld(pair.Key));
 				textInstance.GetComponent<Text>().text = pair.Value.ToString(CultureInfo.InvariantCulture);
+			}
+		}
+	}
+
+	public void ExecuteGroundEnemyActions()
+	{
+		Dictionary<Vector3Int, float> attractionMap =
+			GroundEnemyPathfinding.MakeAttractionMap(Tilemaps.Buildings, _pathfindPositions);
+
+		// It is necessary to first store all the children so that moving children in the loop
+		// doesn't cause re-instantiated enemies to get another action.
+		var children = new Queue<Transform>();
+		foreach (Transform child in Tilemaps.Enemies.transform)
+		{
+			children.Enqueue(child);
+		}
+
+		foreach (Transform child in children)
+		{
+			Vector3Int tilePosition = Tilemaps.Enemies.WorldToCell(child.position);
+			TileBase enemyTile = Tilemaps.Enemies.GetTile(tilePosition);
+
+			float maxAttraction = float.MinValue;
+			Vector3Int bestTarget = tilePosition;
+			foreach (Vector3Int direction in new[] {Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right,})
+			{
+				Vector3Int target = tilePosition + direction;
+				if (Tilemaps.Enemies.HasTile(target)) continue;
+				if (!attractionMap.ContainsKey(target)) continue;
+
+				float tileAttraction = attractionMap[target];
+				if (tileAttraction <= maxAttraction) continue;
+
+				maxAttraction = tileAttraction;
+				bestTarget = target;
+			}
+
+			if (Tilemaps.Buildings.HasTile(bestTarget))
+			{
+				// Pretend attacks for now, implement logic later.
+				Debug.Log($"Enemy at {tilePosition} attacks building at {bestTarget}.");
+			}
+			else
+			{
+				Tilemaps.Enemies.SetTile(tilePosition, null);
+				Tilemaps.Enemies.SetTile(bestTarget, enemyTile);
 			}
 		}
 	}

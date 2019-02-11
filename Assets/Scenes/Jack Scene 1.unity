@@ -363,7 +363,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Debu Pathfinding
+  m_Text: Debug Pathfinding
 --- !u!222 &191841108
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4431,8 +4431,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1671584265}
   - component: {fileID: 1671584267}
+  - component: {fileID: 1671584270}
   - component: {fileID: 1671584264}
   - component: {fileID: 1671584266}
+  - component: {fileID: 1671584269}
   - component: {fileID: 1671584268}
   m_Layer: 0
   m_Name: GameManager
@@ -4546,6 +4548,69 @@ MonoBehaviour:
   DebugParent: {fileID: 859325716}
   TextPrefab: {fileID: 218482175293547138, guid: ddb65b8c2ee5cc34596a7ca96b5e502a,
     type: 3}
+--- !u!114 &1671584269
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671584263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f79151e02691024e8b1e1257c3baee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: fd23dbcbf852cba4ca3a3329ddf44d3b, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1671584268}
+        m_MethodName: ExecuteGroundEnemyActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &1671584270
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671584263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 11dbc507c6dd1ac46a8aae83258fc21e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 812d6b39235e804449ce497ca8c51d9c, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1671584270}
+        m_MethodName: ExecutePhases
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  updateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
+  phases:
+  - {fileID: 11400000, guid: dc6ceac355280c14fb879cfa8dee2e5d, type: 2}
+  - {fileID: 11400000, guid: fd23dbcbf852cba4ca3a3329ddf44d3b, type: 2}
+  - {fileID: 11400000, guid: a01f6341bb39f434f84db876f1d86a1e, type: 2}
 --- !u!1 &1690244778
 GameObject:
   m_ObjectHideFlags: 0
