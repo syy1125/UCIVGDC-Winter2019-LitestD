@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -16,6 +16,8 @@ public class EnemyManager : MonoBehaviour
 	public TileBase GroundEnemyTile;
 	public EnemyPathfinding GroundEnemyPathfinding;
 
+	private List<Vector3Int> _pathfindPositions;
+
 	[Header("Debug")]
 	public GameObject DebugParent;
 	public GameObject TextPrefab;
@@ -23,13 +25,21 @@ public class EnemyManager : MonoBehaviour
 	private void Start()
 	{
 		_validSpawnPositions = new List<Vector3Int>();
+		_pathfindPositions = new List<Vector3Int>();
 
 		foreach (Vector3Int position in Tilemaps.OuterEdge.cellBounds.allPositionsWithin)
 		{
-			if (Tilemaps.OuterEdge.HasTile(position))
-			{
-				_validSpawnPositions.Add(position);
-			}
+			if (!Tilemaps.OuterEdge.HasTile(position)) continue;
+			
+			_validSpawnPositions.Add(position);
+			_pathfindPositions.Add(position);
+		}
+
+		foreach (Vector3Int position in Tilemaps.Ground.cellBounds.allPositionsWithin)
+		{
+			if (!Tilemaps.Ground.HasTile(position)) continue;
+			
+			_pathfindPositions.Add(position);
 		}
 	}
 
@@ -67,20 +77,10 @@ public class EnemyManager : MonoBehaviour
 		}
 		else
 		{
-			var pathfindPositions = new Queue<Vector3Int>();
 			Camera mainCamera = Camera.main;
-			foreach (Vector3Int position in Tilemaps.OuterEdge.cellBounds.allPositionsWithin)
-			{
-				if (Tilemaps.OuterEdge.HasTile(position)) pathfindPositions.Enqueue(position);
-			}
-
-			foreach (Vector3Int position in Tilemaps.Ground.cellBounds.allPositionsWithin)
-			{
-				if (Tilemaps.Ground.HasTile(position)) pathfindPositions.Enqueue(position);
-			}
-
+			
 			Dictionary<Vector3Int, float> attractionMap =
-				GroundEnemyPathfinding.MakeAttractionMap(Tilemaps.Buildings, pathfindPositions);
+				GroundEnemyPathfinding.MakeAttractionMap(Tilemaps.Buildings, _pathfindPositions);
 
 			foreach (KeyValuePair<Vector3Int, float> pair in attractionMap)
 			{
