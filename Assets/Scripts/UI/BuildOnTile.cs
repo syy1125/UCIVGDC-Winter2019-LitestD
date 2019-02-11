@@ -22,7 +22,7 @@ public class BuildOnTile : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetMouseButtonDown(0) && SelectedTile)
+		if (Input.GetMouseButtonDown(0))
 		{
 			Ray mouseRay = _mainCamera.ScreenPointToRay(Input.mousePosition);
 			if (!_zPlane.Raycast(mouseRay, out float distance))
