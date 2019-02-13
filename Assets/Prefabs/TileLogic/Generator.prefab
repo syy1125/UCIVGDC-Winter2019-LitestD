@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2708933932313829712}
   - component: {fileID: 2708933932313829713}
   - component: {fileID: 8758748543006644747}
+  - component: {fileID: 6132563802706737936}
   m_Layer: 0
   m_Name: Generator
   m_TagString: Untagged
@@ -60,3 +61,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CapacityRef: {fileID: 11400000, guid: f9aea34743f90404a86940b37494c431, type: 2}
   CapacityDelta: 1
+--- !u!114 &6132563802706737936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2708933932313829711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d9d98cb291c4e479ee2355c873738d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Generators
+  FlavourText: Though this area is run-down, surprisingly enough these generators
+    still work.
