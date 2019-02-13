@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
+using UnityEngine.UI;
 
 public class BuildOnTile : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class BuildOnTile : MonoBehaviour
 	private static Plane _zPlane = new Plane(Vector3.forward, 0);
 
 	public TileBase SelectedTile { get; private set; }
+	public GameObject ButtonGrid;
 	public TileBase BulldozeTile;
 
 	private List<Tuple<Vector3Int, TileBase>> _buildingQueue;
@@ -23,6 +25,14 @@ public class BuildOnTile : MonoBehaviour
 	{
 		_mainCamera = Camera.main;
 		_buildingQueue = new List<Tuple<Vector3Int, TileBase>>();
+	}
+
+	private void OnEnable()
+	{
+		foreach (Transform button in ButtonGrid.transform)
+		{
+			button.GetComponent<Button>().interactable = true;
+		}
 	}
 
 	private void Update()
@@ -45,9 +55,18 @@ public class BuildOnTile : MonoBehaviour
 		Debug.Log($"Building queue has {_buildingQueue.Count} members.");
 	}
 
+	private void OnDisable()
+	{
+		foreach (Transform button in ButtonGrid.transform)
+		{
+			button.GetComponent<Button>().interactable = false;
+		}
+	}
+
 	public void SelectBuildTile(TileBase tile)
 	{
 		SelectedTile = tile;
+		GameManager.Instance.DisableOtherManagers(this);
 		SelectBuildTileEvent.Raise();
 	}
 
