@@ -15,6 +15,7 @@ public class BuildOnTile : MonoBehaviour
 	private static Plane _zPlane = new Plane(Vector3.forward, 0);
 
 	public TileBase SelectedTile { get; private set; }
+	public TileBase BulldozeTile;
 
 	private List<Tuple<Vector3Int, TileBase>> _buildingQueue;
 
@@ -27,7 +28,7 @@ public class BuildOnTile : MonoBehaviour
 	private void Update()
 	{
 		if (!Input.GetMouseButtonDown(0)) return;
-		
+
 		Ray mouseRay = _mainCamera.ScreenPointToRay(Input.mousePosition);
 		if (!_zPlane.Raycast(mouseRay, out float distance))
 		{
@@ -37,8 +38,10 @@ public class BuildOnTile : MonoBehaviour
 
 		Vector3Int tilePosition = GroundMap.WorldToCell(mouseRay.GetPoint(distance));
 		if (!GroundMap.HasTile(tilePosition)) return;
-			
-		_buildingQueue.Add(new Tuple<Vector3Int, TileBase>(tilePosition, SelectedTile));
+
+		_buildingQueue.Add(
+			new Tuple<Vector3Int, TileBase>(tilePosition, SelectedTile == BulldozeTile ? null : SelectedTile)
+		);
 		Debug.Log($"Building queue has {_buildingQueue.Count} members.");
 	}
 
@@ -51,7 +54,7 @@ public class BuildOnTile : MonoBehaviour
 	public void ExecuteBuildOrder()
 	{
 		if (_buildingQueue.Count <= 0) return;
-		
+
 		(Vector3Int tilePosition, TileBase selectedTile) = _buildingQueue[0];
 		_buildingQueue.RemoveAt(0);
 		BuildingMap.SetTile(tilePosition, selectedTile);

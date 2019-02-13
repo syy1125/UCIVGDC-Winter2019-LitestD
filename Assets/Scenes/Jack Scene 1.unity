@@ -1399,7 +1399,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildTool: {fileID: 1690299056}
-  Tile: {fileID: 0}
+  Tile: {fileID: 11400000, guid: 525398cbcef9a054ea26ba2657443093, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
     m_HighlightedColor: {r: 0, g: 0.9607843, b: 0, a: 1}
@@ -4850,6 +4850,7 @@ MonoBehaviour:
   SelectBuildTileEvent: {fileID: 11400000, guid: ab192d5a7ccda3e4aaab79ba8c3185ec,
     type: 2}
   UpdateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
+  BulldozeTile: {fileID: 11400000, guid: 525398cbcef9a054ea26ba2657443093, type: 2}
 --- !u!222 &1690299057
 CanvasRenderer:
   m_ObjectHideFlags: 0
