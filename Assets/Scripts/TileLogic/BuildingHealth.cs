@@ -4,7 +4,6 @@ using UnityEngine.Tilemaps;
 
 public class BuildingHealth : MonoBehaviour
 {
-	public TileBase EmptyGroundTile;
 	public int MaxHealth = 10;
 	private int _health;
 
