@@ -13,15 +13,15 @@ MonoBehaviour:
   m_Name: Ground Pathfinding
   m_EditorClassIdentifier: 
   TileAttractions:
-  - Tile: {fileID: 11400000, guid: 23f1e81022ba0fc4aaf09a0aa390200c, type: 2}
+  - Tile: {fileID: 11400000, guid: 3250d827a1ae4ab41b747e5974735e4c, type: 2}
     Attraction: 5
-  - Tile: {fileID: 11400000, guid: b32e3afed0cbca14db53bce4f6a73bff, type: 2}
+  - Tile: {fileID: 11400000, guid: aa81ec2365e6e8745b15be4ae3eaba34, type: 2}
     Attraction: 3
   - Tile: {fileID: 11400000, guid: 7cf37c80d621b564da06a70fc8baa403, type: 2}
     Attraction: 3
   - Tile: {fileID: 11400000, guid: 88fb53e136ebe8046b15694defbd2630, type: 2}
     Attraction: 1
-  - Tile: {fileID: 11400000, guid: fe9a665b1a73c7f4180159854af3bde0, type: 2}
+  - Tile: {fileID: 11400000, guid: 2a4e85d843a17534c8565e9db5afc615, type: 2}
     Attraction: 2
   FalloffCurve:
     serializedVersion: 2

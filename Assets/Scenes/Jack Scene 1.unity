@@ -195,7 +195,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildTool: {fileID: 1690299056}
-  Tile: {fileID: 11400000, guid: fe9a665b1a73c7f4180159854af3bde0, type: 2}
+  Tile: {fileID: 11400000, guid: 2a4e85d843a17534c8565e9db5afc615, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
     m_HighlightedColor: {r: 0, g: 0.9607843, b: 0, a: 1}
@@ -1200,7 +1200,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildTool: {fileID: 1690299056}
-  Tile: {fileID: 11400000, guid: 23f1e81022ba0fc4aaf09a0aa390200c, type: 2}
+  Tile: {fileID: 11400000, guid: 3250d827a1ae4ab41b747e5974735e4c, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
     m_HighlightedColor: {r: 0, g: 0.9607843, b: 0, a: 1}
@@ -2833,15 +2833,51 @@ Tilemap:
   m_Enabled: 1
   m_Tiles: {}
   m_AnimatedTiles: {}
-  m_TileAssetArray: []
-  m_TileSpriteArray: []
-  m_TileMatrixArray: []
-  m_TileColorArray: []
+  m_TileAssetArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileSpriteArray:
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  m_TileMatrixArray:
+  - m_RefCount: 0
+    m_Data:
+      e00: 8.78511e-39
+      e01: 133.9646
+      e02: NaN
+      e03: 0
+      e10: 0
+      e11: 1e-45
+      e12: NaN
+      e13: 0
+      e20: 2.3170254
+      e21: 2.275473
+      e22: 2.4430087e+18
+      e23: 4.3e-44
+      e30: 1e-45
+      e31: 1e-45
+      e32: 4.5915e-41
+      e33: 0
+  m_TileColorArray:
+  - m_RefCount: 0
+    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Origin: {x: 0, y: 0, z: 0}
-  m_Size: {x: 0, y: 0, z: 1}
-  m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
+  m_Origin: {x: -2, y: -2, z: 0}
+  m_Size: {x: 2, y: 3, z: 1}
+  m_TileAnchor: {x: 1, y: 1, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
     e00: 1
@@ -3022,7 +3058,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   BuildTool: {fileID: 1690299056}
-  Tile: {fileID: 11400000, guid: b32e3afed0cbca14db53bce4f6a73bff, type: 2}
+  Tile: {fileID: 11400000, guid: aa81ec2365e6e8745b15be4ae3eaba34, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
     m_HighlightedColor: {r: 0, g: 0.9607843, b: 0, a: 1}
@@ -4789,7 +4825,7 @@ GameObject:
   - component: {fileID: 1690299056}
   - component: {fileID: 1690299058}
   m_Layer: 5
-  m_Name: Place Tile Tool
+  m_Name: Place Building Tool
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
