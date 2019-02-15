@@ -1,10 +1,12 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class SelectBuilding : MonoBehaviour
+public class SelectBuildingButton : MonoBehaviour
 {
-	public BuildOnTile BuildTool;
+	[FormerlySerializedAs("BuildTool")]
+	public ConstructionManager ConstructionManager;
 	public TileBase Tile;
 
 	private Button _button;
@@ -14,7 +16,7 @@ public class SelectBuilding : MonoBehaviour
 
 	private void Reset()
 	{
-		BuildTool = GetComponentInParent<BuildOnTile>();
+		ConstructionManager = GetComponentInParent<ConstructionManager>();
 		SelectedColors = ColorBlock.defaultColorBlock;
 	}
 
@@ -26,11 +28,11 @@ public class SelectBuilding : MonoBehaviour
 
 	public void OnClick()
 	{
-		BuildTool.SelectBuildTile(Tile);
+		ConstructionManager.SelectBuildTile(Tile);
 	}
 
 	public void OnBuildingSelectionChange()
 	{
-		_button.colors = BuildTool.SelectedTile == Tile ? SelectedColors : _originalColors;
+		_button.colors = ConstructionManager.SelectedTile == Tile ? SelectedColors : _originalColors;
 	}
 }

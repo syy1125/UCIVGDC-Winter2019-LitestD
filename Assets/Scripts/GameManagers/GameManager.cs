@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 
 	public ResourceManager ResourceManager;
 	public EnemyManager EnemyManager;
-	public BuildOnTile ConstructionManager;
+	public ConstructionManager ConstructionManager;
 	public TileSelectionManager TileSelectionManager;
 
 	private void Awake()

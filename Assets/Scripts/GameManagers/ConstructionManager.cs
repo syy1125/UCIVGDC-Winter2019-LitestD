@@ -5,7 +5,7 @@ using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class BuildOnTile : MonoBehaviour
+public class ConstructionManager : MonoBehaviour
 {
 	public Tilemap GroundMap;
 	public Tilemap BuildingMap;

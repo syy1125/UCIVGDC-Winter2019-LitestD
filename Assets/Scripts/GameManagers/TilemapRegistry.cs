@@ -6,5 +6,6 @@ public class TilemapRegistry : MonoBehaviour
 	public Tilemap OuterEdge;
 	public Tilemap Ground;
 	public Tilemap Buildings;
+	public Tilemap ConstructionPlanner;
 	public Tilemap Enemies;
 }
