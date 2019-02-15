@@ -3,7 +3,7 @@ using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
-public class BuildingHealth : MonoBehaviour
+public class HealthPool : MonoBehaviour
 {
 	public int MaxHealth = 10;
 	private int _health;

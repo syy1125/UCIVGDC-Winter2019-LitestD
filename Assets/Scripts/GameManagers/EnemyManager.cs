@@ -136,7 +136,7 @@ public class EnemyManager : MonoBehaviour
 					.AttackStrength;
 				Tilemaps.Buildings
 					.GetInstantiatedObject(bestTarget)
-					.GetComponent<BuildingHealth>()
+					.GetComponent<HealthPool>()
 					.Damage(attackStrength);
 			}
 			else
