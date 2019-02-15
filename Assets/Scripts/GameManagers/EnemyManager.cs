@@ -130,8 +130,14 @@ public class EnemyManager : MonoBehaviour
 
 			if (Tilemaps.Buildings.HasTile(bestTarget))
 			{
-				// Pretend attacks for now, implement logic later.
-				Debug.Log($"Enemy at {tilePosition} attacks building at {bestTarget}.");
+				int attackStrength = Tilemaps.Enemies
+					.GetInstantiatedObject(tilePosition)
+					.GetComponent<EnemyAttack>()
+					.AttackStrength;
+				Tilemaps.Buildings
+					.GetInstantiatedObject(bestTarget)
+					.GetComponent<BuildingHealth>()
+					.Damage(attackStrength);
 			}
 			else
 			{

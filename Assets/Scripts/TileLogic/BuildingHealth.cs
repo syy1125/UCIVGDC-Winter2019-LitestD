@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.Tilemaps;
 
 public class BuildingHealth : MonoBehaviour
@@ -7,12 +8,15 @@ public class BuildingHealth : MonoBehaviour
 	public int MaxHealth = 10;
 	private int _health;
 
-	private Tilemap _groundTilemap;
+	[Header("Events")]
+	public UnityEvent BeforeDeath;
+
+	private Tilemap _tilemap;
 
 	private void Start()
 	{
 		_health = MaxHealth;
-		_groundTilemap = GameObject.FindWithTag("GroundTilemap").GetComponent<Tilemap>();
+		_tilemap = GetComponentInParent<Tilemap>();
 	}
 
 	public void Damage(int amount)
@@ -21,12 +25,8 @@ public class BuildingHealth : MonoBehaviour
 
 		if (_health <= 0)
 		{
-			_groundTilemap.SetTile(_groundTilemap.WorldToCell(transform.position), EmptyGroundTile);
+			BeforeDeath.Invoke();
+			_tilemap.SetTile(_tilemap.WorldToCell(transform.position), null);
 		}
-	}
-
-	private void OnDestroy()
-	{
-		Debug.Log("Building Health Script Destroy");
 	}
 }
