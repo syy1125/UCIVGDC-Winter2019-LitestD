@@ -4,7 +4,8 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - GroundTilemap
+  - HealthbarParent
+  - MainCanvas
   layers:
   - Default
   - TransparentFX

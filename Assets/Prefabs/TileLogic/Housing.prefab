@@ -46,8 +46,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f631bb0963caa524db5d10c4dea67892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EmptyGroundTile: {fileID: 11400000, guid: 66c938bd799f3e4438abfe6114fc6758, type: 2}
   MaxHealth: 10
+  HealthbarPrefab: {fileID: 5517034944291465815, guid: 8be76ca8b2a52df4ea4a34449cf21a6f,
+    type: 3}
+  BeforeDeath:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &8758748543006644747
 MonoBehaviour:
   m_ObjectHideFlags: 0
