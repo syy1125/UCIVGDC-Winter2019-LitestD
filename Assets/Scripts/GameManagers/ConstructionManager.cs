@@ -58,6 +58,21 @@ public class ConstructionManager : MonoBehaviour
 		Vector3Int tilePosition = Tilemaps.Ground.WorldToCell(mouseRay.GetPoint(distance));
 		if (!Tilemaps.Ground.HasTile(tilePosition)) return;
 
+		if (Tilemaps.ConstructionPlanner.HasTile(tilePosition))
+		{
+			for (var i = 0; i < QueueLength;)
+			{
+				if (_buildingQueue[i].Item1 == tilePosition)
+				{
+					CancelBuildOrder(i);
+				}
+				else
+				{
+					i++;
+				}
+			}
+		}
+
 		Tilemaps.ConstructionPlanner.SetTile(tilePosition, SelectedTile);
 
 		GameObject queueItem = Instantiate(QueueItemPrefab, ConstructionQueueGrid.transform);
@@ -126,5 +141,10 @@ public class ConstructionManager : MonoBehaviour
 		Destroy(queueItem);
 		Tilemaps.Buildings.SetTile(tilePosition, selectedTile == BulldozeTile ? null : selectedTile);
 		Tilemaps.ConstructionPlanner.SetTile(tilePosition, null);
+
+		for (int index = 0; index < QueueLength; index++)
+		{
+			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
+		}
 	}
 }
