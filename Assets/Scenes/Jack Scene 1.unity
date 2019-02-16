@@ -112,6 +112,63 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &4136702
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4136703}
+  - component: {fileID: 4136706}
+  - component: {fileID: 4136704}
+  m_Layer: 5
+  m_Name: Grid
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &4136703
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136702}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1082909245}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -10, y: -10}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &4136704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -146154839, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!222 &4136706
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4136702}
+  m_CullTransparentMesh: 0
 --- !u!1 &99922981
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a4312e1b2397646b3edece1f8dc577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildTool: {fileID: 1690299056}
+  ConstructionManager: {fileID: 1690299056}
   Tile: {fileID: 11400000, guid: 2a4e85d843a17534c8565e9db5afc615, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
@@ -404,7 +461,7 @@ RectTransform:
   m_Children:
   - {fileID: 191841106}
   m_Father: {fileID: 221641547}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -739,6 +796,7 @@ RectTransform:
   - {fileID: 1690299054}
   - {fileID: 726788863}
   - {fileID: 1676295720}
+  - {fileID: 1082909245}
   - {fileID: 1440151982}
   - {fileID: 1034645706}
   - {fileID: 1299115227}
@@ -1201,7 +1259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a4312e1b2397646b3edece1f8dc577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildTool: {fileID: 1690299056}
+  ConstructionManager: {fileID: 1690299056}
   Tile: {fileID: 11400000, guid: 3250d827a1ae4ab41b747e5974735e4c, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
@@ -1400,6 +1458,80 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 565369889}
   m_CullTransparentMesh: 0
+--- !u!1 &568908820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 568908821}
+  - component: {fileID: 568908823}
+  - component: {fileID: 568908822}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &568908821
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568908820}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1082909245}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -4, y: -4}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &568908822
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568908820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &568908823
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 568908820}
+  m_CullTransparentMesh: 0
 --- !u!1 &663974558
 GameObject:
   m_ObjectHideFlags: 0
@@ -1482,7 +1614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a4312e1b2397646b3edece1f8dc577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildTool: {fileID: 1690299056}
+  ConstructionManager: {fileID: 1690299056}
   Tile: {fileID: 11400000, guid: 525398cbcef9a054ea26ba2657443093, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
@@ -1953,7 +2085,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 221641547}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2186,9 +2318,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingLayerID: 486323699
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -2316,7 +2448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a4312e1b2397646b3edece1f8dc577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildTool: {fileID: 1690299056}
+  ConstructionManager: {fileID: 1690299056}
   Tile: {fileID: 11400000, guid: 88fb53e136ebe8046b15694defbd2630, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
@@ -2544,7 +2676,7 @@ PrefabInstance:
     - target: {fileID: 1912053827227190533, guid: 0b74190072d4389478cf23b26d3bf0fc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1912053827227190533, guid: 0b74190072d4389478cf23b26d3bf0fc,
         type: 3}
@@ -2651,7 +2783,7 @@ RectTransform:
   m_Children:
   - {fileID: 207810993}
   m_Father: {fileID: 221641547}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -2748,6 +2880,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1034645705}
   m_CullTransparentMesh: 0
+--- !u!1 &1082909244
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1082909245}
+  - component: {fileID: 1082909247}
+  - component: {fileID: 1082909246}
+  m_Layer: 5
+  m_Name: Construction Queue
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1082909245
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082909244}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 568908821}
+  - {fileID: 4136703}
+  m_Father: {fileID: 221641547}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -500, y: 50}
+  m_Pivot: {x: 0.5, y: 0}
+--- !u!114 &1082909246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082909244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
+      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
+  m_Sprite: {fileID: 21300000, guid: 659b1cc0652c1584cbbb4468334bf3d8, type: 3}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+--- !u!222 &1082909247
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082909244}
+  m_CullTransparentMesh: 0
 --- !u!1 &1088829862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2814,9 +3022,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1
+  m_SortingLayerID: -673757135
+  m_SortingLayer: 1
+  m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -2925,7 +3133,7 @@ Transform:
   m_GameObject: {fileID: 1145175713}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 210313274}
   m_RootOrder: 3
@@ -2964,15 +3172,15 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -673757135
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 3
-  m_Mode: 0
+  m_Mode: 1
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1839735485 &1145175716
@@ -2990,7 +3198,7 @@ Tilemap:
   m_TileMatrixArray: []
   m_TileColorArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 0, y: 0, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -3173,7 +3381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a4312e1b2397646b3edece1f8dc577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildTool: {fileID: 1690299056}
+  ConstructionManager: {fileID: 1690299056}
   Tile: {fileID: 11400000, guid: aa81ec2365e6e8745b15be4ae3eaba34, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
@@ -3766,7 +3974,7 @@ RectTransform:
   m_Children:
   - {fileID: 270177471}
   m_Father: {fileID: 221641547}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -4051,7 +4259,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 221641547}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -4379,7 +4587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a4312e1b2397646b3edece1f8dc577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BuildTool: {fileID: 1690299056}
+  ConstructionManager: {fileID: 1690299056}
   Tile: {fileID: 11400000, guid: 7cf37c80d621b564da06a70fc8baa403, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
@@ -4655,7 +4863,7 @@ GameObject:
   - component: {fileID: 1676295723}
   - component: {fileID: 1676295724}
   m_Layer: 5
-  m_Name: Building Panel
+  m_Name: Building Info Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5008,13 +5216,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 366580c49ff2c3e48bee802a8f8c25f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GroundMap: {fileID: 1951453539}
-  BuildingMap: {fileID: 1088829865}
+  Tilemaps: {fileID: 210313275}
   SelectBuildTileEvent: {fileID: 11400000, guid: ab192d5a7ccda3e4aaab79ba8c3185ec,
     type: 2}
-  UpdateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
   ButtonGrid: {fileID: 240960060}
   BulldozeTile: {fileID: 11400000, guid: 525398cbcef9a054ea26ba2657443093, type: 2}
+  UpdateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
+  ConstructionQueueGrid: {fileID: 4136702}
+  QueueItemPrefab: {fileID: 3636450277169219273, guid: 0cd2e42d0c0d4e842ad672c728722501,
+    type: 3}
 --- !u!222 &1690299057
 CanvasRenderer:
   m_ObjectHideFlags: 0

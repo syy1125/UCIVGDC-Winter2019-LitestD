@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -7,10 +8,8 @@ using UnityEngine.UI;
 
 public class ConstructionManager : MonoBehaviour
 {
-	public Tilemap GroundMap;
-	public Tilemap BuildingMap;
+	public TilemapRegistry Tilemaps;
 	public GameEvent SelectBuildTileEvent;
-	public GameEvent UpdateUIEvent;
 
 	private Camera _mainCamera;
 	private static Plane _zPlane = new Plane(Vector3.forward, 0);
@@ -19,12 +18,17 @@ public class ConstructionManager : MonoBehaviour
 	public GameObject ButtonGrid;
 	public TileBase BulldozeTile;
 
-	private List<Tuple<Vector3Int, TileBase>> _buildingQueue;
+	[Header("Rendering")]
+	public GameEvent UpdateUIEvent;
+	public GameObject ConstructionQueueGrid;
+	public GameObject QueueItemPrefab;
+
+	private List<Tuple<Vector3Int, TileBase, GameObject>> _buildingQueue;
 
 	private void Start()
 	{
 		_mainCamera = Camera.main;
-		_buildingQueue = new List<Tuple<Vector3Int, TileBase>>();
+		_buildingQueue = new List<Tuple<Vector3Int, TileBase, GameObject>>();
 	}
 
 	private void OnEnable()
@@ -46,13 +50,26 @@ public class ConstructionManager : MonoBehaviour
 			return;
 		}
 
-		Vector3Int tilePosition = GroundMap.WorldToCell(mouseRay.GetPoint(distance));
-		if (!GroundMap.HasTile(tilePosition)) return;
+		Vector3Int tilePosition = Tilemaps.Ground.WorldToCell(mouseRay.GetPoint(distance));
+		if (!Tilemaps.Ground.HasTile(tilePosition)) return;
+
+		Tilemaps.ConstructionPlanner.SetTile(tilePosition, SelectedTile);
+
+		GameObject queueItem = Instantiate(QueueItemPrefab, ConstructionQueueGrid.transform);
+		var panelTransform = queueItem.GetComponent<RectTransform>();
+		Vector2 move = new Vector2(panelTransform.rect.width, 0);
+		panelTransform.offsetMin += move / 2;
+		panelTransform.offsetMax += move / 2;
+		var panelController = queueItem.GetComponent<ConstructionQueueItemPanel>();
+		panelController.BuildingSprite = ((Tile) SelectedTile).sprite;
+		panelController.SetQueueIndex(_buildingQueue.Count);
 
 		_buildingQueue.Add(
-			new Tuple<Vector3Int, TileBase>(tilePosition, SelectedTile == BulldozeTile ? null : SelectedTile)
+			new Tuple<Vector3Int, TileBase, GameObject>(
+				tilePosition, SelectedTile, queueItem
+			)
 		);
-		Debug.Log($"Building queue has {_buildingQueue.Count} members.");
+		UpdateUIEvent.Raise();
 	}
 
 	private void OnDisable()
@@ -70,14 +87,26 @@ public class ConstructionManager : MonoBehaviour
 		SelectBuildTileEvent.Raise();
 	}
 
+	public void CancelBuildOrder(int index)
+	{
+		(Vector3Int tilePosition, TileBase selectedTile, GameObject queueItem) = _buildingQueue[index];
+		_buildingQueue.RemoveAt(index);
+		Destroy(queueItem);
+		Tilemaps.ConstructionPlanner.SetTile(tilePosition, null);
+		for (var i = 0; i < _buildingQueue.Count; i++)
+		{
+			_buildingQueue[i].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(i);
+		}
+	}
+
 	public void ExecuteBuildOrder()
 	{
 		if (_buildingQueue.Count <= 0) return;
 
-		(Vector3Int tilePosition, TileBase selectedTile) = _buildingQueue[0];
+		(Vector3Int tilePosition, TileBase selectedTile, GameObject queueItem) = _buildingQueue[0];
 		_buildingQueue.RemoveAt(0);
-		BuildingMap.SetTile(tilePosition, selectedTile);
-		UpdateUIEvent.Raise();
-		Debug.Log($"Building queue has {_buildingQueue.Count} members.");
+		Destroy(queueItem);
+		Tilemaps.Buildings.SetTile(tilePosition, selectedTile == BulldozeTile ? null : selectedTile);
+		Tilemaps.ConstructionPlanner.SetTile(tilePosition, null);
 	}
 }
