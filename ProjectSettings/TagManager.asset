@@ -49,3 +49,6 @@ TagManager:
   - name: Enemies
     uniqueID: 486323699
     locked: 0
+  - name: Highlights
+    uniqueID: 1619882151
+    locked: 0
