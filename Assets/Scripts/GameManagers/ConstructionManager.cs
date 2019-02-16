@@ -25,6 +25,11 @@ public class ConstructionManager : MonoBehaviour
 
 	private List<Tuple<Vector3Int, TileBase, GameObject>> _buildingQueue;
 
+	public int QueueLength
+	{
+		get { return _buildingQueue.Count; }
+	}
+
 	private void Start()
 	{
 		_mainCamera = Camera.main;
@@ -93,9 +98,22 @@ public class ConstructionManager : MonoBehaviour
 		_buildingQueue.RemoveAt(index);
 		Destroy(queueItem);
 		Tilemaps.ConstructionPlanner.SetTile(tilePosition, null);
-		for (var i = 0; i < _buildingQueue.Count; i++)
+
+		for (; index < _buildingQueue.Count; index++)
 		{
-			_buildingQueue[i].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(i);
+			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
+		}
+	}
+
+	public void MoveQueueItem(int from, int to)
+	{
+		Tuple<Vector3Int, TileBase, GameObject> queueItem = _buildingQueue[from];
+		_buildingQueue.RemoveAt(from);
+		_buildingQueue.Insert(to, queueItem);
+
+		for (var index = 0; index < QueueLength; index++)
+		{
+			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
 		}
 	}
 
