@@ -39,7 +39,7 @@ public class ResourceManager : MonoBehaviour
 		PowerConsumers = new HashSet<PowerConsumer>();
 	}
 
-	public void DebugAddPop()
+	public void ExecuteFinalActions()
 	{
 		Population.value = Mathf.Clamp(Population + 1, 0, HousingCapacity);
 		UpdateUIEvent.Raise();

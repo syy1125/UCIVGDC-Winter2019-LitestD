@@ -508,7 +508,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1671584268}
+      - m_Target: {fileID: 0}
         m_MethodName: DebugRunPathfinding
         m_Mode: 1
         m_Arguments:
@@ -1649,6 +1649,8 @@ GameObject:
   - component: {fileID: 726788865}
   - component: {fileID: 726788864}
   - component: {fileID: 726788866}
+  - component: {fileID: 726788868}
+  - component: {fileID: 726788867}
   m_Layer: 5
   m_Name: Resource Overview
   m_TagString: Untagged
@@ -1742,6 +1744,64 @@ MonoBehaviour:
   FreeWorkforceDisplay: {fileID: 1690244780}
   GeneratorDisplay: {fileID: 907199053}
   FarmDisplay: {fileID: 806814055}
+--- !u!114 &726788867
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726788862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f79151e02691024e8b1e1257c3baee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a01f6341bb39f434f84db876f1d86a1e, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 726788866}
+        m_MethodName: ExecuteFinalActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+--- !u!114 &726788868
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 726788862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f79151e02691024e8b1e1257c3baee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 726788866}
+        m_MethodName: Display
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &759747705
 GameObject:
   m_ObjectHideFlags: 0
@@ -2490,6 +2550,7 @@ GameObject:
   - component: {fileID: 952180952}
   - component: {fileID: 952180954}
   - component: {fileID: 952180953}
+  - component: {fileID: 952180955}
   m_Layer: 0
   m_Name: Enemies
   m_TagString: Untagged
@@ -2593,6 +2654,26 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &952180955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 952180951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcd773d9236d7b84ca421f37f051c6e9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tilemaps: {fileID: 210313275}
+  EnemyTile: {fileID: 11400000, guid: 395d7d6188ade9e49b54e91ea521f91f, type: 2}
+  GroundEnemyTile: {fileID: 11400000, guid: 395d7d6188ade9e49b54e91ea521f91f, type: 2}
+  GroundEnemyPathfinding: {fileID: 11400000, guid: 45107c276ab8175429b528c88a794544,
+    type: 2}
+  DebugParent: {fileID: 859325716}
+  TextPrefab: {fileID: 218482175293547138, guid: ddb65b8c2ee5cc34596a7ca96b5e502a,
+    type: 3}
 --- !u!1 &1015918880
 GameObject:
   m_ObjectHideFlags: 0
@@ -3057,7 +3138,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1671584268}
+      - m_Target: {fileID: 0}
         m_MethodName: SpawnRandomEnemy
         m_Mode: 1
         m_Arguments:
@@ -5573,9 +5654,8 @@ GameObject:
   - component: {fileID: 1671584270}
   - component: {fileID: 1671584264}
   - component: {fileID: 1671584269}
-  - component: {fileID: 1671584268}
   m_Layer: 0
-  m_Name: GameManager
+  m_Name: Game Manager
   m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5594,7 +5674,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ResourceManager: {fileID: 726788866}
-  EnemyManager: {fileID: 1671584268}
+  EnemyManager: {fileID: 952180955}
   ConstructionManager: {fileID: 1690299056}
   TileSelectionManager: {fileID: 1676295723}
   RaiseOnStart:
@@ -5642,26 +5722,6 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &1671584268
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1671584263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bcd773d9236d7b84ca421f37f051c6e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Tilemaps: {fileID: 210313275}
-  EnemyTile: {fileID: 11400000, guid: 395d7d6188ade9e49b54e91ea521f91f, type: 2}
-  GroundEnemyTile: {fileID: 11400000, guid: 395d7d6188ade9e49b54e91ea521f91f, type: 2}
-  GroundEnemyPathfinding: {fileID: 11400000, guid: 45107c276ab8175429b528c88a794544,
-    type: 2}
-  DebugParent: {fileID: 859325716}
-  TextPrefab: {fileID: 218482175293547138, guid: ddb65b8c2ee5cc34596a7ca96b5e502a,
-    type: 3}
 --- !u!114 &1671584269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5678,7 +5738,7 @@ MonoBehaviour:
   response:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1671584268}
+      - m_Target: {fileID: 0}
         m_MethodName: ExecuteGroundEnemyActions
         m_Mode: 1
         m_Arguments:
