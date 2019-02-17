@@ -36,7 +36,7 @@ public class WorkerProvider : MonoBehaviour
 
 	public void KillWorkers()
 	{
-		WorkerCountRef.value -= WorkerPortraits.Count;
-		PopulationRef.value -= WorkerPortraits.Count;
+		WorkerCountRef.value -= AssignedCount;
+		PopulationRef.value -= AssignedCount;
 	}
 }
