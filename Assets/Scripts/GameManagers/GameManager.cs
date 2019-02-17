@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class GameManager : MonoBehaviour
 	public EnemyManager EnemyManager;
 	public ConstructionManager ConstructionManager;
 	public TileSelectionManager TileSelectionManager;
+
+	public GameEvent[] RaiseOnStart;
 
 	private void Awake()
 	{
@@ -19,6 +22,14 @@ public class GameManager : MonoBehaviour
 		{
 			Debug.LogWarning("A duplicate instance of GameManager is attempting to initialize. Destroying it.");
 			Destroy(gameObject);
+		}
+	}
+
+	private void Start()
+	{
+		foreach (GameEvent gameEvent in RaiseOnStart)
+		{
+			gameEvent.Raise();
 		}
 	}
 

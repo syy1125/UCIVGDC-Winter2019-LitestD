@@ -799,8 +799,8 @@ RectTransform:
   - {fileID: 1676295720}
   - {fileID: 1082909245}
   - {fileID: 1440151982}
-  - {fileID: 1025516403}
   - {fileID: 1367087429}
+  - {fileID: 1025516403}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2903,7 +2903,7 @@ PrefabInstance:
     - target: {fileID: 1912053827227190533, guid: 0b74190072d4389478cf23b26d3bf0fc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 9
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1912053827227190533, guid: 0b74190072d4389478cf23b26d3bf0fc,
         type: 3}
@@ -4618,7 +4618,7 @@ RectTransform:
   - {fileID: 199875768}
   - {fileID: 859325717}
   m_Father: {fileID: 221641547}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -5597,6 +5597,8 @@ MonoBehaviour:
   EnemyManager: {fileID: 1671584268}
   ConstructionManager: {fileID: 1690299056}
   TileSelectionManager: {fileID: 1676295723}
+  RaiseOnStart:
+  - {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
 --- !u!4 &1671584265
 Transform:
   m_ObjectHideFlags: 0
