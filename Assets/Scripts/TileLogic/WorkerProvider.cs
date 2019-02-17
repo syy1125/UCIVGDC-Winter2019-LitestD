@@ -18,7 +18,7 @@ public class WorkerProvider : MonoBehaviour
 
 	private void Start()
 	{
-		Capacity = GetComponent<CapacityProvider>().CapacityRef;
+		Capacity = GetComponent<CapacityProvider>().CapacityDelta;
 		WorkerPortraits = new Stack<Sprite>();
 	}
 
