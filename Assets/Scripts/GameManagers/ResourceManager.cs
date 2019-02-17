@@ -29,6 +29,11 @@ public class ResourceManager : MonoBehaviour
 	public TextMeshProUGUI GeneratorDisplay;
 	public TextMeshProUGUI FarmDisplay;
 
+	public int IdlePopulation
+	{
+		get { return Population - GeneratorWorkerCount - FarmWorkerCount;  }
+	}
+
 	private void Awake()
 	{
 		PowerConsumers = new HashSet<PowerConsumer>();
@@ -42,12 +47,12 @@ public class ResourceManager : MonoBehaviour
 
 	public void Display()
 	{
-		int unassignedPopulation = Population - GeneratorWorkerCount - FarmWorkerCount;
+		int idlePopulation = IdlePopulation;
 
 		HousingDisplay.text =
 			$"Housing {Population} / {HousingCapacity} ({HousingCapacity - Population} free)";
 		FreeWorkforceDisplay.text =
-			$"Unassigned: {unassignedPopulation}";
+			$"Idle: {idlePopulation}";
 		GeneratorDisplay.text =
 			$"Generator: {GeneratorWorkerCount} / {GeneratorCapacity} (+{PowerPerTechnician * GeneratorWorkerCount} power)";
 		FarmDisplay.text =
