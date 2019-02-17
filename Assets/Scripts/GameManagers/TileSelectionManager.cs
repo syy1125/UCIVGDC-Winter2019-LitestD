@@ -27,7 +27,7 @@ public class TileSelectionManager : MonoBehaviour
 	public Button AssignButton;
 	public Button UnassignButton;
 
-	private Stack<Sprite> _generatedWorkerPortraits;
+	private Stack<Sprite> _workerPortraits;
 
 	private static Plane _zPlane = new Plane(Vector3.forward, 0);
 	private Camera _mainCamera;
@@ -35,6 +35,7 @@ public class TileSelectionManager : MonoBehaviour
 	private void Start()
 	{
 		_mainCamera = Camera.main;
+		_workerPortraits = new Stack<Sprite>();
 	}
 
 	private void Update()
@@ -135,12 +136,14 @@ public class TileSelectionManager : MonoBehaviour
 				foreach (Sprite portraitSprite in provider.WorkerPortraits)
 				{
 					GameObject portrait = Instantiate(PortraitPrefab, PortraitGrid.transform);
-					portrait.GetComponent<Image>().sprite = portraitSprite;
+					portrait.transform.GetChild(0).GetComponent<Image>().sprite = portraitSprite;
+					Debug.Log("Portrait");
 				}
 
 				for (int index = provider.AssignedCount; index < provider.Capacity; index++)
 				{
 					Instantiate(PortraitPrefab, PortraitGrid.transform);
+					Debug.Log("Empty");
 				}
 			}
 		}
@@ -154,8 +157,27 @@ public class TileSelectionManager : MonoBehaviour
 	}
 
 	public void AssignWorker()
-	{}
-	
+	{
+		Debug.Assert(Selection != null, nameof(Selection) + " != null");
+		var provider = BuildingMap.GetInstantiatedObject(Selection.Value).GetComponent<WorkerProvider>();
+		
+		if (_workerPortraits.Count <= 0)
+		{
+			_workerPortraits.Push(NormalPortraits[Random.Range(0, NormalPortraits.Length)]);
+		}
+		
+		provider.AssignWorker(_workerPortraits.Pop());
+		
+		UpdateUIEvent.Raise();
+	}
+
 	public void UnassignWorker()
-	{}
+	{
+		System.Diagnostics.Debug.Assert(Selection != null, nameof(Selection) + " != null");
+		var provider = BuildingMap.GetInstantiatedObject(Selection.Value).GetComponent<WorkerProvider>();
+		
+		_workerPortraits.Push(provider.UnassignWorker());
+		
+		UpdateUIEvent.Raise();
+	}
 }

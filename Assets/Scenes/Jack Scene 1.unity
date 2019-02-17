@@ -5888,7 +5888,8 @@ MonoBehaviour:
   PortraitGrid: {fileID: 788876754}
   PortraitPrefab: {fileID: 5513802235734818025, guid: 6fdedb91b4e315845b6dc05fbf1bf4c4,
     type: 3}
-  NormalPortraits: []
+  NormalPortraits:
+  - {fileID: 21300000, guid: 2a2dc7ee4296b44428de9894711e7d2a, type: 3}
   AssignButton: {fileID: 759747707}
   UnassignButton: {fileID: 1181395701}
 --- !u!114 &1676295724
