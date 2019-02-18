@@ -4,9 +4,11 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class DisplayPopup : MonoBehaviour
+public class MessagePanel : MonoBehaviour
 {
-    [Header("Popup Components")]
+    public MessageEvent messageEvent;
+
+    [Header("Panel Components")]
     public TextMeshProUGUI titleField;
     public TextMeshProUGUI textField;
     public Button continueButton;
@@ -22,6 +24,7 @@ public class DisplayPopup : MonoBehaviour
     {
         anim = GetComponent<Animator>();    
         continueButton.onClick.AddListener(Continue);
+        messageEvent.Register(this);
     }
 
     public void EnqueueMessage(Message message)

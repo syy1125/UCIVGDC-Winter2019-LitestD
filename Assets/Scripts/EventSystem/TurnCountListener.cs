@@ -6,7 +6,7 @@ public class TurnCountListener : GameEventListener
 {
     public IntReference turnCountRef;
 
-    private void Start()
+    private void Awake()
     {
         LoadTurnCount();
     }
