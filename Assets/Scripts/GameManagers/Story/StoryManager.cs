@@ -6,19 +6,16 @@ public class StoryManager : GameEventListener
 {
     public MessageEvent messagePanelEvent;
     public IntReference turnCount;
-
-    private void Start()
-    {
-        messagePanelEvent.Display(new Message("Aaron", "Is the best!"));
-    }
+    public List<StoryElement> storyElements = new List<StoryElement>();
 
     public void DisplayStory()
     {
-        switch (turnCount)
+        foreach (StoryElement storyElement in storyElements)
         {
-            case 2:
-                messagePanelEvent.Display(new Message("Bob", "does not sob"));
-                break;
+            if (storyElement.IsConditionMet())
+            {
+                messagePanelEvent.Display(storyElement.message);
+            }
         }
     }
 }

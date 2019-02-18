@@ -168,7 +168,8 @@ MonoBehaviour:
   EnemyManager: {fileID: 0}
   ConstructionManager: {fileID: 0}
   TileSelectionManager: {fileID: 0}
-  RaiseOnStart: []
+  RaiseOnStart:
+  - {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
 --- !u!114 &543842256
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -264,6 +265,8 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   messagePanelEvent: {fileID: 11400000, guid: da9f43f8345ebe74984ac809f1880b9d, type: 2}
   turnCount: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
+  storyElements:
+  - {fileID: 11400000, guid: 6e4a7eb9507ba5347aa3fb8fbaa0eda6, type: 2}
 --- !u!114 &707043752 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5415448803892587203, guid: 0b74190072d4389478cf23b26d3bf0fc,
