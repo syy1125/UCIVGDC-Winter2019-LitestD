@@ -8,10 +8,7 @@ public class WorkerProvider : MonoBehaviour
 
 	public string JobName;
 
-	public int AssignedCount
-	{
-		get { return WorkerPortraits.Count; }
-	}
+	public int AssignedCount => WorkerPortraits.Count;
 
 	public int Capacity { get; private set; }
 	public Stack<Sprite> WorkerPortraits { get; private set; }
