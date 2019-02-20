@@ -1,20 +1,17 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "References/Int")]
 public class IntReference : ScriptableObject
 {
-    public int value;
+	public int value;
 
-    public static implicit operator int(IntReference ir)
-    {
-        return ir.value;
-    }
+	public static implicit operator int(IntReference ir)
+	{
+		return ir.value;
+	}
 
-    public override string ToString()
-    {
-        return value.ToString();
-    }
+	public override string ToString()
+	{
+		return value.ToString();
+	}
 }

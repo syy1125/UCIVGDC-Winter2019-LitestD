@@ -1,22 +1,20 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [CreateAssetMenu(menuName = "Events/MessageEvent")]
 public class MessageEvent : ScriptableObject
 {
-    private MessagePanel messagePanel;
+	private MessagePanel messagePanel;
 
-    public void Display(Message message)
-    {
-        if (messagePanel != null)
-        {
-            messagePanel.EnqueueMessage(message);
-        }
-    }
+	public void Display(Message message)
+	{
+		if (messagePanel != null)
+		{
+			messagePanel.EnqueueMessage(message);
+		}
+	}
 
-    public void Register(MessagePanel panel)
-    {
-        messagePanel = panel;
-    }
+	public void Register(MessagePanel panel)
+	{
+		messagePanel = panel;
+	}
 }

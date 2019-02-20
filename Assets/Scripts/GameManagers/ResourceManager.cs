@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 public class ResourceManager : MonoBehaviour
 {
@@ -29,10 +28,7 @@ public class ResourceManager : MonoBehaviour
 	public TextMeshProUGUI GeneratorDisplay;
 	public TextMeshProUGUI FarmDisplay;
 
-	public int IdlePopulation
-	{
-		get { return Population - GeneratorWorkerCount - FarmWorkerCount;  }
-	}
+	public int IdlePopulation => Population - GeneratorWorkerCount - FarmWorkerCount;
 
 	private void Awake()
 	{

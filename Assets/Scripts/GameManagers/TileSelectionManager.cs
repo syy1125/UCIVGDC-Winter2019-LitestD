@@ -160,14 +160,14 @@ public class TileSelectionManager : MonoBehaviour
 	{
 		Debug.Assert(Selection != null, nameof(Selection) + " != null");
 		var provider = BuildingMap.GetInstantiatedObject(Selection.Value).GetComponent<WorkerProvider>();
-		
+
 		if (_workerPortraits.Count <= 0)
 		{
 			_workerPortraits.Push(NormalPortraits[Random.Range(0, NormalPortraits.Length)]);
 		}
-		
+
 		provider.AssignWorker(_workerPortraits.Pop());
-		
+
 		UpdateUIEvent.Raise();
 	}
 
@@ -175,9 +175,9 @@ public class TileSelectionManager : MonoBehaviour
 	{
 		System.Diagnostics.Debug.Assert(Selection != null, nameof(Selection) + " != null");
 		var provider = BuildingMap.GetInstantiatedObject(Selection.Value).GetComponent<WorkerProvider>();
-		
+
 		_workerPortraits.Push(provider.UnassignWorker());
-		
+
 		UpdateUIEvent.Raise();
 	}
 }

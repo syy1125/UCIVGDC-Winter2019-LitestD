@@ -1,17 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Globalization;
-using UnityEditor.Experimental.UIElements;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
-using Random = UnityEngine.Random;
 
 public class EnemyManager : MonoBehaviour
 {
 	[Header("Game Objects")]
 	public TilemapRegistry Tilemaps;
-	public TileBase EnemyTile;
 
 	private List<Vector3Int> _validSpawnPositions;
 
@@ -61,7 +57,7 @@ public class EnemyManager : MonoBehaviour
 		{
 			if (Tilemaps.Enemies.HasTile(position)) continue;
 
-			Tilemaps.Enemies.SetTile(position, EnemyTile);
+			Tilemaps.Enemies.SetTile(position, GroundEnemyTile);
 
 			return;
 		}
@@ -115,7 +111,7 @@ public class EnemyManager : MonoBehaviour
 
 			float maxAttraction = float.MinValue;
 			Vector3Int bestTarget = tilePosition;
-			foreach (Vector3Int direction in new[] {Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right,})
+			foreach (Vector3Int direction in new[] {Vector3Int.up, Vector3Int.down, Vector3Int.left, Vector3Int.right})
 			{
 				Vector3Int target = tilePosition + direction;
 				if (Tilemaps.Enemies.HasTile(target)) continue;
