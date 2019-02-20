@@ -14,6 +14,7 @@ public class TileSelectionManager : MonoBehaviour
 	public GameEvent UpdateUIEvent;
 	public TextMeshProUGUI BuildingNameText;
 	public TextMeshProUGUI BuildingFlavourText;
+	public TextMeshProUGUI ToggleButtonText;
 	public string GroundName;
 	[TextArea]
 	public string GroundFlavourText;
@@ -27,7 +28,7 @@ public class TileSelectionManager : MonoBehaviour
 	public Button AssignButton;
 	public Button UnassignButton;
 
-	private Stack<Sprite> _workerPortraits;
+	private readonly Stack<Sprite> _workerPortraits = new Stack<Sprite>();
 
 	private static Plane _zPlane = new Plane(Vector3.forward, 0);
 	private Camera _mainCamera;
@@ -35,7 +36,6 @@ public class TileSelectionManager : MonoBehaviour
 	private void Start()
 	{
 		_mainCamera = Camera.main;
-		_workerPortraits = new Stack<Sprite>();
 	}
 
 	private void Update()
@@ -98,6 +98,10 @@ public class TileSelectionManager : MonoBehaviour
 			{
 				child.gameObject.SetActive(true);
 			}
+
+			ToggleButtonText.text = BuildingMap.GetInstantiatedObject(selectedTile).activeSelf
+				? "Turn Off"
+				: "Turn On";
 
 			DisplayBuildingInfo(selectedTile);
 		}
@@ -176,6 +180,14 @@ public class TileSelectionManager : MonoBehaviour
 
 		_workerPortraits.Push(provider.UnassignWorker());
 
+		UpdateUIEvent.Raise();
+	}
+
+	public void ToggleBuilding()
+	{
+		System.Diagnostics.Debug.Assert(Selection != null, nameof(Selection) + " != null");
+		GameObject buildingLogic = BuildingMap.GetInstantiatedObject(Selection.Value);
+		buildingLogic.SetActive(!buildingLogic.activeSelf);
 		UpdateUIEvent.Raise();
 	}
 }

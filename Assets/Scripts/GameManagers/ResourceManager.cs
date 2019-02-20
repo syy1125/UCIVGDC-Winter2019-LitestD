@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResourceManager : MonoBehaviour
 {
@@ -28,7 +30,14 @@ public class ResourceManager : MonoBehaviour
 	public TextMeshProUGUI GeneratorDisplay;
 	public TextMeshProUGUI FarmDisplay;
 
+	public Button EndTurnButton;
+
 	public int IdlePopulation => Population - GeneratorWorkerCount - FarmWorkerCount;
+	public int PowerProduced => GeneratorWorkerCount * PowerPerTechnician;
+	public int FoodProduced => FarmWorkerCount * FoodPerFarmer;
+	public int PowerConsumed => PowerConsumers.Sum(consumer => consumer.PowerDraw);
+	public int FoodConsumed => Population;
+	public int ExcessPower => PowerProduced - PowerConsumed;
 
 	private void Awake()
 	{
@@ -43,16 +52,12 @@ public class ResourceManager : MonoBehaviour
 
 	public void Display()
 	{
-		int idlePopulation = IdlePopulation;
+		HousingDisplay.text = $"Housing {Population} / {HousingCapacity} ({HousingCapacity - Population} free)";
+		FreeWorkforceDisplay.text = $"Idle: {IdlePopulation}";
+		GeneratorDisplay.text = $"Generator: {GeneratorWorkerCount} / {GeneratorCapacity} (+{PowerProduced} power)";
+		FarmDisplay.text = $"Farm: {FarmWorkerCount} / {FarmCapacity.value} (+{FoodProduced} food)";
 
-		HousingDisplay.text =
-			$"Housing {Population} / {HousingCapacity} ({HousingCapacity - Population} free)";
-		FreeWorkforceDisplay.text =
-			$"Idle: {idlePopulation}";
-		GeneratorDisplay.text =
-			$"Generator: {GeneratorWorkerCount} / {GeneratorCapacity} (+{PowerPerTechnician * GeneratorWorkerCount} power)";
-		FarmDisplay.text =
-			$"Farm: {FarmWorkerCount} / {FarmCapacity.value} (+{FoodPerFarmer * FarmWorkerCount} food)";
+//		EndTurnButton.interactable = ExcessPower >= 0;
 	}
 
 	private void OnDestroy()
