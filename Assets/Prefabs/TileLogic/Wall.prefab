@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7162318674730543221
+--- !u!1 &2708933932313829711
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7162318674730543220}
-  - component: {fileID: 4197752392811905052}
-  - component: {fileID: 3108768025464872325}
+  - component: {fileID: 2708933932313829712}
+  - component: {fileID: 2708933932313829713}
+  - component: {fileID: 4234171313899362203}
   m_Layer: 0
-  m_Name: Ground Enemy
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7162318674730543220
+--- !u!4 &2708933932313829712
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7162318674730543221}
+  m_GameObject: {fileID: 2708933932313829711}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,36 +32,39 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4197752392811905052
+--- !u!114 &2708933932313829713
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7162318674730543221}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 25eb86ec4a022db47aaf6e3eda6f0aec, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  AttackStrength: 3
---- !u!114 &3108768025464872325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7162318674730543221}
+  m_GameObject: {fileID: 2708933932313829711}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f631bb0963caa524db5d10c4dea67892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 5
-  HealthbarPrefab: {fileID: 5517034944291465815, guid: 5c337a7f146be2d48b22ed39f575e12b,
+  MaxHealth: 25
+  HealthbarPrefab: {fileID: 5517034944291465815, guid: 8be76ca8b2a52df4ea4a34449cf21a6f,
     type: 3}
   BeforeDeath:
     m_PersistentCalls:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &4234171313899362203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2708933932313829711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8d9d98cb291c4e479ee2355c873738d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: Wall
+  FlavourText: "A simple brick-and-mortar wall. As your settlement\u2019s first line
+    of defense, it is surprisingly sturdy against intruders, particularly hungry animals
+    hoping to raid the food supply."
