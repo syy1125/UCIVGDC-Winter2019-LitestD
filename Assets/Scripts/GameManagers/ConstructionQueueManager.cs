@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 
 public class ConstructionQueueManager : MonoBehaviour
@@ -12,11 +13,23 @@ public class ConstructionQueueManager : MonoBehaviour
 	public TileBase BulldozeTile;
 
 	public GameEvent UpdateUIEvent;
+	[FormerlySerializedAs("OutlineTile")]
+	[FormerlySerializedAs("HighlightFrameTile")]
+	public TileBase HighlightTile;
 
 	private readonly List<Tuple<Vector3Int, TileBase, GameObject>> _buildingQueue =
 		new List<Tuple<Vector3Int, TileBase, GameObject>>();
+	private int _selectedIndex = -1;
 
 	public int QueueLength => _buildingQueue.Count;
+
+	private void OnEnable()
+	{
+		foreach (Tuple<Vector3Int,TileBase,GameObject> queueItem in _buildingQueue)
+		{
+			queueItem.Item3.GetComponent<ConstructionQueueItemPanel>().SetButtonInteractable(true);
+		}
+	}
 
 	public void QueueConstruction(Vector3Int tilePosition, TileBase selectedTile)
 	{
@@ -46,6 +59,7 @@ public class ConstructionQueueManager : MonoBehaviour
 		var panelController = queueItem.GetComponent<ConstructionQueueItemPanel>();
 		panelController.BuildingSprite = ((Tile) selectedTile).sprite;
 		panelController.SetQueueIndex(_buildingQueue.Count);
+		if (!enabled) panelController.SetButtonInteractable(false);
 
 		_buildingQueue.Add(
 			new Tuple<Vector3Int, TileBase, GameObject>(
@@ -81,6 +95,24 @@ public class ConstructionQueueManager : MonoBehaviour
 		}
 	}
 
+	public void SelectIndex(int index)
+	{
+		if (_selectedIndex >= 0)
+		{
+			Tilemaps.Highlights.SetTile(_buildingQueue[_selectedIndex].Item1, null);
+			_buildingQueue[_selectedIndex].Item3.GetComponent<ConstructionQueueItemPanel>().SetSelected(false);
+		}
+
+		_selectedIndex = index;
+
+		if (_selectedIndex >= 0)
+		{
+			Tilemaps.Highlights.SetTile(_buildingQueue[_selectedIndex].Item1, HighlightTile);
+			_buildingQueue[_selectedIndex].Item3.GetComponent<ConstructionQueueItemPanel>().SetSelected(true);
+			GameManager.Instance.DisableOtherManagers(this);
+		}
+	}
+
 	public void ExecuteBuildOrder()
 	{
 		if (_buildingQueue.Count <= 0) return;
@@ -94,6 +126,14 @@ public class ConstructionQueueManager : MonoBehaviour
 		for (int index = 0; index < QueueLength; index++)
 		{
 			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
+		}
+	}
+
+	private void OnDisable()
+	{
+		foreach (Tuple<Vector3Int,TileBase,GameObject> queueItem in _buildingQueue)
+		{
+			queueItem.Item3.GetComponent<ConstructionQueueItemPanel>().SetButtonInteractable(false);
 		}
 	}
 }

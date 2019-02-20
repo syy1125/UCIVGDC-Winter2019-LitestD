@@ -15,13 +15,18 @@ public class ConstructionQueueItemPanel : MonoBehaviour
 	public AnimationCurve TransitionCurve;
 	public float TransitionDuration = 0.5f;
 	public float Spacing;
+	public Color SelectedColor;
+	public Button[] Buttons;
+	
 	private int _queueIndex;
+	private Image _image;
 	private Coroutine _moveCoroutine;
 	private ConstructionQueueManager _queueManager;
 
 	private void Start()
 	{
 		BuildingPreview.sprite = BuildingSprite;
+		_image = GetComponent<Image>();
 		_queueManager = GameManager.Instance.ConstructionQueueManager;
 	}
 
@@ -63,6 +68,19 @@ public class ConstructionQueueItemPanel : MonoBehaviour
 		_moveCoroutine = null;
 	}
 
+	public void SetSelected(bool selected)
+	{
+		_image.color = selected ? SelectedColor : Color.white;
+	}
+
+	public void SetButtonInteractable(bool interactable)
+	{
+		foreach (Button button in Buttons)
+		{
+			button.interactable = interactable;
+		}
+	}
+	
 	public void MoveLeftmost()
 	{
 		_queueManager.MoveQueueItem(_queueIndex, 0);
@@ -81,6 +99,11 @@ public class ConstructionQueueItemPanel : MonoBehaviour
 	public void MoveRightmost()
 	{
 		_queueManager.MoveQueueItem(_queueIndex, _queueManager.QueueLength - 1);
+	}
+
+	public void SelectThis()
+	{
+		_queueManager.SelectIndex(_queueIndex);
 	}
 
 	public void Cancel()

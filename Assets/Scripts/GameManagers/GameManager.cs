@@ -40,16 +40,19 @@ public class GameManager : MonoBehaviour
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
 			PlanConstructionManager.SelectBuildTile(null);
+			ConstructionQueueManager.SelectIndex(-1);
 			TileSelectionManager.SetSelection(null);
 
 			PlanConstructionManager.enabled = true;
+			ConstructionQueueManager.enabled = true;
 			TileSelectionManager.enabled = true;
 		}
 	}
 
 	public void DisableOtherManagers(MonoBehaviour active)
 	{
-		foreach (MonoBehaviour manager in new MonoBehaviour[] {PlanConstructionManager, TileSelectionManager})
+		foreach (MonoBehaviour manager in new MonoBehaviour[]
+			{PlanConstructionManager, ConstructionQueueManager, TileSelectionManager})
 		{
 			manager.enabled = manager == active;
 		}

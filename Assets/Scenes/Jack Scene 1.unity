@@ -680,10 +680,10 @@ Transform:
   m_Children:
   - {fileID: 1259911560}
   - {fileID: 1951453537}
+  - {fileID: 887160256}
   - {fileID: 1088829863}
   - {fileID: 1145175714}
   - {fileID: 952180952}
-  - {fileID: 887160256}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -704,6 +704,7 @@ MonoBehaviour:
   Buildings: {fileID: 1088829865}
   ConstructionPlanner: {fileID: 1145175716}
   Enemies: {fileID: 952180954}
+  Highlights: {fileID: 887160258}
 --- !u!1 &221641543
 GameObject:
   m_ObjectHideFlags: 0
@@ -2295,7 +2296,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 210313274}
-  m_RootOrder: 5
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &887160257
 TilemapRenderer:
@@ -2331,9 +2332,9 @@ TilemapRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 1619882151
-  m_SortingLayer: 3
-  m_SortingOrder: 0
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
@@ -2357,7 +2358,7 @@ Tilemap:
   m_TileMatrixArray: []
   m_TileColorArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 1, b: 1, a: 0.23529412}
   m_Origin: {x: 0, y: 0, z: 0}
   m_Size: {x: 0, y: 0, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -2571,7 +2572,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 210313274}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &952180953
 TilemapRenderer:
@@ -3312,6 +3313,7 @@ MonoBehaviour:
     type: 3}
   BulldozeTile: {fileID: 11400000, guid: 525398cbcef9a054ea26ba2657443093, type: 2}
   UpdateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
+  HighlightTile: {fileID: 11400000, guid: edc8b550f37cb05488174d9adbd07abf, type: 2}
 --- !u!114 &1082909249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3371,7 +3373,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 210313274}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1088829864
 TilemapRenderer:
@@ -3521,7 +3523,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 210313274}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!483693784 &1145175715
 TilemapRenderer:
@@ -3559,7 +3561,7 @@ TilemapRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -673757135
   m_SortingLayer: 1
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
   m_MaxChunkCount: 16
