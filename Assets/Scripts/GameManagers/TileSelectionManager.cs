@@ -137,13 +137,11 @@ public class TileSelectionManager : MonoBehaviour
 				{
 					GameObject portrait = Instantiate(PortraitPrefab, PortraitGrid.transform);
 					portrait.transform.GetChild(0).GetComponent<Image>().sprite = portraitSprite;
-					Debug.Log("Portrait");
 				}
 
 				for (int index = provider.AssignedCount; index < provider.Capacity; index++)
 				{
 					Instantiate(PortraitPrefab, PortraitGrid.transform);
-					Debug.Log("Empty");
 				}
 			}
 		}
