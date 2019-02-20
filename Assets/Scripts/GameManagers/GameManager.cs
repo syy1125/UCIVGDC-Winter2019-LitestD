@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class GameManager : MonoBehaviour
 {
@@ -6,7 +7,9 @@ public class GameManager : MonoBehaviour
 
 	public ResourceManager ResourceManager;
 	public EnemyManager EnemyManager;
-	public ConstructionManager ConstructionManager;
+	[FormerlySerializedAs("ConstructionManager")]
+	public PlanConstructionManager PlanConstructionManager;
+	public ConstructionQueueManager ConstructionQueueManager;
 	public TileSelectionManager TileSelectionManager;
 
 	public GameEvent[] RaiseOnStart;
@@ -36,17 +39,17 @@ public class GameManager : MonoBehaviour
 	{
 		if (Input.GetKeyDown(KeyCode.Escape))
 		{
-			ConstructionManager.SelectBuildTile(null);
+			PlanConstructionManager.SelectBuildTile(null);
 			TileSelectionManager.SetSelection(null);
 
-			ConstructionManager.enabled = true;
+			PlanConstructionManager.enabled = true;
 			TileSelectionManager.enabled = true;
 		}
 	}
 
 	public void DisableOtherManagers(MonoBehaviour active)
 	{
-		foreach (MonoBehaviour manager in new MonoBehaviour[] {ConstructionManager, TileSelectionManager})
+		foreach (MonoBehaviour manager in new MonoBehaviour[] {PlanConstructionManager, TileSelectionManager})
 		{
 			manager.enabled = manager == active;
 		}

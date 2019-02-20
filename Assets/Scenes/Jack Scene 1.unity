@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a4312e1b2397646b3edece1f8dc577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConstructionManager: {fileID: 1690299056}
+  PlanConstructionManager: {fileID: 1690299056}
   Tile: {fileID: 11400000, guid: 2a4e85d843a17534c8565e9db5afc615, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
@@ -1257,7 +1257,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a4312e1b2397646b3edece1f8dc577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConstructionManager: {fileID: 1690299056}
+  PlanConstructionManager: {fileID: 1690299056}
   Tile: {fileID: 11400000, guid: 3250d827a1ae4ab41b747e5974735e4c, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
@@ -1538,7 +1538,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a4312e1b2397646b3edece1f8dc577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConstructionManager: {fileID: 1690299056}
+  PlanConstructionManager: {fileID: 1690299056}
   Tile: {fileID: 11400000, guid: 525398cbcef9a054ea26ba2657443093, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
@@ -2668,7 +2668,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tilemaps: {fileID: 210313275}
-  EnemyTile: {fileID: 11400000, guid: 395d7d6188ade9e49b54e91ea521f91f, type: 2}
   GroundEnemyTile: {fileID: 11400000, guid: 395d7d6188ade9e49b54e91ea521f91f, type: 2}
   GroundEnemyPathfinding: {fileID: 11400000, guid: 45107c276ab8175429b528c88a794544,
     type: 2}
@@ -2786,7 +2785,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a4312e1b2397646b3edece1f8dc577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConstructionManager: {fileID: 1690299056}
+  PlanConstructionManager: {fileID: 1690299056}
   Tile: {fileID: 11400000, guid: 88fb53e136ebe8046b15694defbd2630, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
@@ -3229,6 +3228,8 @@ GameObject:
   - component: {fileID: 1082909245}
   - component: {fileID: 1082909247}
   - component: {fileID: 1082909246}
+  - component: {fileID: 1082909248}
+  - component: {fileID: 1082909249}
   m_Layer: 5
   m_Name: Construction Queue
   m_TagString: Untagged
@@ -3293,6 +3294,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1082909244}
   m_CullTransparentMesh: 0
+--- !u!114 &1082909248
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082909244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 518013f54a09dab4b89501f7c02c3411, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Tilemaps: {fileID: 210313275}
+  ConstructionQueueGrid: {fileID: 1082909244}
+  QueueItemPrefab: {fileID: 3636450277169219273, guid: 0cd2e42d0c0d4e842ad672c728722501,
+    type: 3}
+  BulldozeTile: {fileID: 11400000, guid: 525398cbcef9a054ea26ba2657443093, type: 2}
+  UpdateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
+--- !u!114 &1082909249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082909244}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f79151e02691024e8b1e1257c3baee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: dc6ceac355280c14fb879cfa8dee2e5d, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1082909248}
+        m_MethodName: ExecuteBuildOrder
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1088829862
 GameObject:
   m_ObjectHideFlags: 0
@@ -3847,7 +3895,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a4312e1b2397646b3edece1f8dc577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConstructionManager: {fileID: 1690299056}
+  PlanConstructionManager: {fileID: 1690299056}
   Tile: {fileID: 11400000, guid: aa81ec2365e6e8745b15be4ae3eaba34, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
@@ -5576,7 +5624,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22a4312e1b2397646b3edece1f8dc577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ConstructionManager: {fileID: 1690299056}
+  PlanConstructionManager: {fileID: 1690299056}
   Tile: {fileID: 11400000, guid: 7cf37c80d621b564da06a70fc8baa403, type: 2}
   SelectedColors:
     m_NormalColor: {r: 0, g: 1, b: 0, a: 1}
@@ -5707,7 +5755,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ResourceManager: {fileID: 726788866}
   EnemyManager: {fileID: 952180955}
-  ConstructionManager: {fileID: 1690299056}
+  PlanConstructionManager: {fileID: 1690299056}
+  ConstructionQueueManager: {fileID: 1082909248}
   TileSelectionManager: {fileID: 1676295723}
   RaiseOnStart:
   - {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
@@ -6067,7 +6116,6 @@ GameObject:
   - component: {fileID: 1690299057}
   - component: {fileID: 1690299055}
   - component: {fileID: 1690299056}
-  - component: {fileID: 1690299058}
   m_Layer: 5
   m_Name: Place Building Tool
   m_TagString: Untagged
@@ -6140,11 +6188,6 @@ MonoBehaviour:
   SelectBuildTileEvent: {fileID: 11400000, guid: ab192d5a7ccda3e4aaab79ba8c3185ec,
     type: 2}
   ButtonGrid: {fileID: 240960060}
-  BulldozeTile: {fileID: 11400000, guid: 525398cbcef9a054ea26ba2657443093, type: 2}
-  UpdateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
-  ConstructionQueueGrid: {fileID: 4136702}
-  QueueItemPrefab: {fileID: 3636450277169219273, guid: 0cd2e42d0c0d4e842ad672c728722501,
-    type: 3}
 --- !u!222 &1690299057
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -6153,35 +6196,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1690299053}
   m_CullTransparentMesh: 0
---- !u!114 &1690299058
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1690299053}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f79151e02691024e8b1e1257c3baee0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: a01f6341bb39f434f84db876f1d86a1e, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1690299056}
-        m_MethodName: ExecuteBuildOrder
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1738059825
 GameObject:
   m_ObjectHideFlags: 0

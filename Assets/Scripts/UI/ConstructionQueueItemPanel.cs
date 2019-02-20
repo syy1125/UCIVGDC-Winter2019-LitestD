@@ -17,12 +17,12 @@ public class ConstructionQueueItemPanel : MonoBehaviour
 	public float Spacing;
 	private int _queueIndex;
 	private Coroutine _moveCoroutine;
-	private ConstructionManager _constructionManager;
+	private ConstructionQueueManager _queueManager;
 
 	private void Start()
 	{
 		BuildingPreview.sprite = BuildingSprite;
-		_constructionManager = GameManager.Instance.ConstructionManager;
+		_queueManager = GameManager.Instance.ConstructionQueueManager;
 	}
 
 	public void SetQueueIndex(int index)
@@ -65,26 +65,26 @@ public class ConstructionQueueItemPanel : MonoBehaviour
 
 	public void MoveLeftmost()
 	{
-		_constructionManager.MoveQueueItem(_queueIndex, 0);
+		_queueManager.MoveQueueItem(_queueIndex, 0);
 	}
 
 	public void MoveLeft()
 	{
-		_constructionManager.MoveQueueItem(_queueIndex, _queueIndex - 1);
+		_queueManager.MoveQueueItem(_queueIndex, _queueIndex - 1);
 	}
 
 	public void MoveRight()
 	{
-		_constructionManager.MoveQueueItem(_queueIndex, _queueIndex + 1);
+		_queueManager.MoveQueueItem(_queueIndex, _queueIndex + 1);
 	}
 
 	public void MoveRightmost()
 	{
-		_constructionManager.MoveQueueItem(_queueIndex, _constructionManager.QueueLength - 1);
+		_queueManager.MoveQueueItem(_queueIndex, _queueManager.QueueLength - 1);
 	}
 
 	public void Cancel()
 	{
-		_constructionManager.CancelBuildOrder(_queueIndex);
+		_queueManager.CancelBuildOrder(_queueIndex);
 	}
 }

@@ -5,8 +5,9 @@ using UnityEngine.UI;
 
 public class SelectBuildingButton : MonoBehaviour
 {
+	[FormerlySerializedAs("ConstructionManager")]
 	[FormerlySerializedAs("BuildTool")]
-	public ConstructionManager ConstructionManager;
+	public PlanConstructionManager PlanConstructionManager;
 	public TileBase Tile;
 
 	private Button _button;
@@ -16,7 +17,7 @@ public class SelectBuildingButton : MonoBehaviour
 
 	private void Reset()
 	{
-		ConstructionManager = GetComponentInParent<ConstructionManager>();
+		PlanConstructionManager = GetComponentInParent<PlanConstructionManager>();
 		SelectedColors = ColorBlock.defaultColorBlock;
 	}
 
@@ -28,11 +29,11 @@ public class SelectBuildingButton : MonoBehaviour
 
 	public void OnClick()
 	{
-		ConstructionManager.SelectBuildTile(Tile);
+		PlanConstructionManager.SelectBuildTile(Tile);
 	}
 
 	public void OnBuildingSelectionChange()
 	{
-		_button.colors = ConstructionManager.SelectedTile == Tile ? SelectedColors : _originalColors;
+		_button.colors = PlanConstructionManager.SelectedTile == Tile ? SelectedColors : _originalColors;
 	}
 }
