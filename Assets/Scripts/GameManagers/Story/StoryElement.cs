@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [CreateAssetMenu]
 public class StoryElement : ScriptableObject
@@ -16,7 +17,7 @@ public class StoryElement : ScriptableObject
 	public IntReference intReference;
 	public Condition condition;
 	public int value;
-	public Message message;
+	public List<Message> messages = new List<Message>();
 
 	// TODO: Add an option to limit the number of times a message can be shown.
 	//      This is probably most important for the LessThans and GreaterThans.

@@ -15,7 +15,9 @@ MonoBehaviour:
   intReference: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
   condition: 0
   value: 1
-  message:
-    title: Aaron Buckles
-    text: Hello hello, my name is Aaron and I will be your guide throughout Litest
-      D. I hope you enjoy your stay!
+  messages:
+  - title: Aaron Buckles
+    text: Hello hello! Welcome to LitestD!
+  - title: Aaron Buckles
+    text: I'll be your guide today. If you have any questions please don't feel free
+      to ask.
