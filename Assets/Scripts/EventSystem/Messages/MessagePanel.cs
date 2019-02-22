@@ -11,8 +11,8 @@ public class MessagePanel : MonoBehaviour
 	public TextMeshProUGUI titleField;
 	public TextMeshProUGUI textField;
 
-	[Header("Items to Disable")]
-	public Button endTurnButton;
+	[Header("Buttons to Disable")]
+	public List<Button> buttonsToDisable = new List<Button>();
 
 	private Queue<Message> messages = new Queue<Message>();
 	private Animator anim;
@@ -52,12 +52,20 @@ public class MessagePanel : MonoBehaviour
 		titleField.text = message.title;
 		textField.text = message.text;
 		anim.SetBool(visible, true);
-		endTurnButton.interactable = false;
+        SetButtonsInteractable(false);
 	}
 
 	private void HidePopup()
 	{
 		anim.SetBool(visible, false);
-		endTurnButton.interactable = true;
+        SetButtonsInteractable(true);
 	}
+
+    private void SetButtonsInteractable(bool interactable)
+    {
+        foreach (Button button in buttonsToDisable)
+        {
+            button.interactable = interactable;
+        }
+    }
 }

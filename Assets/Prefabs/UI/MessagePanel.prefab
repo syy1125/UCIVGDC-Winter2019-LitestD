@@ -527,7 +527,8 @@ MonoBehaviour:
   messageEvent: {fileID: 11400000, guid: da9f43f8345ebe74984ac809f1880b9d, type: 2}
   titleField: {fileID: 2686346811516000861}
   textField: {fileID: 2686346812479386908}
-  endTurnButton: {fileID: 0}
+  buttonsToDisable:
+  - {fileID: 0}
 --- !u!114 &2686346812670258875
 MonoBehaviour:
   m_ObjectHideFlags: 0
