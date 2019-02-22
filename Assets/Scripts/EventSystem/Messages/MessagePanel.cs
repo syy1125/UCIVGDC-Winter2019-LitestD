@@ -10,7 +10,6 @@ public class MessagePanel : MonoBehaviour
 	[Header("Panel Components")]
 	public TextMeshProUGUI titleField;
 	public TextMeshProUGUI textField;
-	public Button continueButton;
 
 	[Header("Items to Disable")]
 	public Button endTurnButton;
@@ -22,7 +21,6 @@ public class MessagePanel : MonoBehaviour
 	private void Awake()
 	{
 		anim = GetComponent<Animator>();
-		continueButton.onClick.AddListener(Continue);
 		messageEvent.Register(this);
 	}
 
@@ -36,7 +34,7 @@ public class MessagePanel : MonoBehaviour
 		}
 	}
 
-	private void Continue()
+	public void Continue()
 	{
 		if (messages.Count == 0)
 		{
