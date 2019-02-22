@@ -14,9 +14,12 @@ public class StoryElement : ScriptableObject
 		GreaterThanOrEqual
 	}
 
+    [Header("Condition")]
 	public IntReference intReference;
 	public Condition condition;
 	public int value;
+
+    [Header("Messages")]
 	public List<Message> messages = new List<Message>();
 
 	// TODO: Add an option to limit the number of times a message can be shown.
