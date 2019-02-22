@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 public class SelectBuildingButton : MonoBehaviour
 {
@@ -10,21 +9,16 @@ public class SelectBuildingButton : MonoBehaviour
 	public PlanConstructionManager PlanConstructionManager;
 	public TileBase Tile;
 
-	private Button _button;
+    private Animator anim;
 
-	public ColorBlock SelectedColors;
-	private ColorBlock _originalColors;
+    private void Awake()
+    {
+        anim = GetComponent<Animator>();
+    }
 
-	private void Reset()
+    private void Reset()
 	{
 		PlanConstructionManager = GetComponentInParent<PlanConstructionManager>();
-		SelectedColors = ColorBlock.defaultColorBlock;
-	}
-
-	private void Start()
-	{
-		_button = GetComponent<Button>();
-		_originalColors = _button.colors;
 	}
 
 	public void OnClick()
@@ -34,6 +28,6 @@ public class SelectBuildingButton : MonoBehaviour
 
 	public void OnBuildingSelectionChange()
 	{
-		_button.colors = PlanConstructionManager.SelectedTile == Tile ? SelectedColors : _originalColors;
+        anim.SetBool("Selected", PlanConstructionManager.SelectedTile == Tile);
 	}
 }
