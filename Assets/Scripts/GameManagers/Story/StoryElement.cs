@@ -18,16 +18,19 @@ public class StoryElement : ScriptableObject
 	public IntReference intReference;
 	public Condition condition;
 	public int value;
+	
+	[Header("Limits")]
+	public int maxActivations = 1; // Set to negative to always activate
+	[HideInInspector]
+	public int currentActivations;
 
     [Header("Messages")]
 	public List<Message> messages = new List<Message>();
 
-	// TODO: Add an option to limit the number of times a message can be shown.
-	//      This is probably most important for the LessThans and GreaterThans.
-	//      Could have a checkbox for ShowOnlyOnce.
-
 	public bool IsConditionMet()
 	{
+		if (maxActivations >= 0 && currentActivations >= maxActivations) return false;
+		
 		switch (condition)
 		{
 			case Condition.Equals:
