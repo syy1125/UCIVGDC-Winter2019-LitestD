@@ -12,10 +12,11 @@ public class StoryManager : GameEventListener
 		{
 			if (storyElement.IsConditionMet())
 			{
-                foreach (Message message in storyElement.messages)
-                {
-                    messagePanelEvent.Display(message);
-                }
+				storyElement.currentActivations++;
+				foreach (Message message in storyElement.messages)
+				{
+					messagePanelEvent.Display(message);
+				}
 			}
 		}
 	}
