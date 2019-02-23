@@ -1841,6 +1841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tilemaps: {fileID: 210313275}
+  TurnCountRef: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
   GroundEnemyTile: {fileID: 11400000, guid: 395d7d6188ade9e49b54e91ea521f91f, type: 2}
   GroundEnemyPathfinding: {fileID: 11400000, guid: 45107c276ab8175429b528c88a794544,
     type: 2}
@@ -1865,6 +1866,17 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 952180955}
         m_MethodName: ExecuteGroundEnemyActions
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 952180955}
+        m_MethodName: ExecuteEnemySpawns
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2230,7 +2242,7 @@ TilemapRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0, y: 0.25, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 3
@@ -2245,48 +2257,68 @@ Tilemap:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1088829862}
   m_Enabled: 1
-  m_Tiles: {}
+  m_Tiles:
+  - first: {x: -1, y: -1, z: 0}
+    second:
+      m_TileIndex: 3
+      m_TileSpriteIndex: 3
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 2708933932313829711, guid: ca7a091c54900d145a7136f280551c2e,
+        type: 3}
+      m_TileFlags: 1
+      m_ColliderType: 1
+  - first: {x: -1, y: 0, z: 0}
+    second:
+      m_TileIndex: 2
+      m_TileSpriteIndex: 2
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 2708933932313829711, guid: b41523fd205ed244ba4f29f4d093b97f,
+        type: 3}
+      m_TileFlags: 1
+      m_ColliderType: 1
   m_AnimatedTiles: {}
   m_TileAssetArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: aa81ec2365e6e8745b15be4ae3eaba34, type: 2}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: 3250d827a1ae4ab41b747e5974735e4c, type: 2}
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 1df7c4fd3eb935646a7a975818e6bdda, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 650d784c5b35c9048b2c4cca77dcefc2, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 0
+  - m_RefCount: 2
     m_Data:
-      e00: 8.78511e-39
-      e01: 133.9646
-      e02: NaN
+      e00: 1
+      e01: 0
+      e02: 0
       e03: 0
       e10: 0
-      e11: 1e-45
-      e12: NaN
+      e11: 1
+      e12: 0
       e13: 0
-      e20: 2.3170254
-      e21: 2.275473
-      e22: 2.4430087e+18
-      e23: 4.3e-44
-      e30: 1e-45
-      e31: 1e-45
-      e32: 4.5915e-41
-      e33: 0
+      e20: 0
+      e21: 0
+      e22: 1
+      e23: 0
+      e30: 0
+      e31: 0
+      e32: 0
+      e33: 1
   m_TileColorArray:
-  - m_RefCount: 0
-    m_Data: {r: NaN, g: NaN, b: NaN, a: NaN}
+  - m_RefCount: 2
+    m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -2, y: -2, z: 0}

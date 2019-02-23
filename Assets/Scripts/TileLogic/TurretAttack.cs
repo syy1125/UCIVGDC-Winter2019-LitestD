@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
@@ -8,6 +10,10 @@ public class TurretAttack : MonoBehaviour
 {
 	public int AttackStrength;
 	public int Range;
+
+	[Header("Effects")]
+	public GameObject ProjectilePrefab;
+	public float ProjectileLifetime;
 
 	private Tilemap _enemyTilemap;
 	private Tilemap _buildingTilemap;
@@ -22,10 +28,8 @@ public class TurretAttack : MonoBehaviour
 		_worker = GetComponent<WorkerProvider>();
 	}
 
-	public void OnBuildingAction()
+	private IEnumerator BuildingActionSequence()
 	{
-		if (!_power.enabled || _worker.AssignedCount != _worker.Capacity) return;
-
 		Vector3Int turretPosition = _buildingTilemap.WorldToCell(transform.position);
 		var nearbyEnemies = new List<Vector3Int>();
 		for (int x = -Range; x <= Range; x++)
@@ -41,13 +45,49 @@ public class TurretAttack : MonoBehaviour
 			}
 		}
 
-		if (nearbyEnemies.Count <= 0) return;
-		AttackEnemy(nearbyEnemies[Random.Range(0, nearbyEnemies.Count)]);
+		if (nearbyEnemies.Count <= 0) yield break;
+		yield return StartCoroutine(AttackEnemy(nearbyEnemies[Random.Range(0, nearbyEnemies.Count)]));
 	}
 
-	private void AttackEnemy(Vector3Int targetPosition)
+	public void OnBuildingAction()
+	{
+		// TODO implement power mechanics
+//		if (!_power.enabled || _worker.AssignedCount != _worker.Capacity) return;
+
+		EndTurnListener.actions.Enqueue(BuildingActionSequence());
+	}
+
+	private IEnumerator AttackEnemy(Vector3Int targetPosition)
 	{
 		var enemyHealth = _enemyTilemap.GetInstantiatedObject(targetPosition).GetComponent<HealthPool>();
+		Transform projectileTransform = Instantiate(ProjectilePrefab).transform;
+
+		Vector3 startPosition = _buildingTilemap.GetCellCenterWorld(_buildingTilemap.WorldToCell(transform.position));
+		Vector3 enemyPosition = _enemyTilemap.GetCellCenterWorld(targetPosition);
+
+		projectileTransform.position = startPosition + Vector3.forward;
+		projectileTransform.rotation =
+			Quaternion.AngleAxis(
+				Mathf.Atan2(
+					enemyPosition.y - projectileTransform.position.y,
+					enemyPosition.x - projectileTransform.position.x
+				) * Mathf.Rad2Deg,
+				Vector3.forward
+			);
+
+		float startTime = Time.time;
+
+		while ((Time.time - startTime) < ProjectileLifetime)
+		{
+			projectileTransform.position = Vector3.Lerp(
+				startPosition, enemyPosition, (Time.time - startTime) / ProjectileLifetime
+			) + Vector3.forward;
+			yield return null;
+		}
+		
+		Destroy(projectileTransform.gameObject);
+
+		Debug.Log(AttackStrength);
 		enemyHealth.Damage(AttackStrength);
 	}
 }

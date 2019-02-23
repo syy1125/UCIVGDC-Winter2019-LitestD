@@ -78,7 +78,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2708933932313829711}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 77f490a679879aa469217a2b17f3c605, type: 3}
   m_Name: 
@@ -129,6 +129,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackStrength: 2
   Range: 3
+  ProjectilePrefab: {fileID: 3424278304916881456, guid: e54e48623846eee4489af5d64e73cf97,
+    type: 3}
+  ProjectileLifetime: 0.5
 --- !u!114 &3175269546298699547
 MonoBehaviour:
   m_ObjectHideFlags: 0

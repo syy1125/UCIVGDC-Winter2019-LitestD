@@ -8,6 +8,7 @@ public class EnemyManager : MonoBehaviour
 {
 	[Header("Game Objects")]
 	public TilemapRegistry Tilemaps;
+	public IntReference TurnCountRef;
 
 	private List<Vector3Int> _validSpawnPositions;
 
@@ -91,6 +92,16 @@ public class EnemyManager : MonoBehaviour
 		}
 	}
 
+	public void ExecuteEnemySpawns()
+	{
+		if (TurnCountRef < 5) return;
+		
+		for (int i = 0; i < 2; i++)
+		{
+			SpawnRandomEnemy();
+		}
+	}
+	
 	public void ExecuteGroundEnemyActions()
 	{
 		Dictionary<Vector3Int, float> attractionMap =
