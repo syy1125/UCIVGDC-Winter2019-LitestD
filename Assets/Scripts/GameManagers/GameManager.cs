@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
@@ -37,17 +38,22 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape))
+		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
 		{
-			PlanConstructionManager.SelectBuildTile(null);
-			ConstructionQueueManager.SelectIndex(-1);
-			TileSelectionManager.SetSelection(null);
-
-			PlanConstructionManager.enabled = true;
-			ConstructionQueueManager.enabled = true;
-			TileSelectionManager.enabled = true;
+            EnterSelectionMode();
 		}
 	}
+
+    void EnterSelectionMode()
+    {
+        PlanConstructionManager.SelectBuildTile(null);
+        ConstructionQueueManager.SelectIndex(-1);
+        TileSelectionManager.SetSelection(null);
+
+        PlanConstructionManager.enabled = true;
+        ConstructionQueueManager.enabled = true;
+        TileSelectionManager.enabled = true;
+    }
 
 	public void DisableOtherManagers(MonoBehaviour active)
 	{
