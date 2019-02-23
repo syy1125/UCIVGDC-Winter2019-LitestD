@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
 		}
 	}
 
-    void EnterSelectionMode()
+    public void EnterSelectionMode()
     {
         PlanConstructionManager.SelectBuildTile(null);
         ConstructionQueueManager.SelectIndex(-1);

@@ -9,13 +9,13 @@ public class WorkerProvider : MonoBehaviour
 
 	public string JobName;
 
-	public int AssignedCount => WorkerPortraits.Count;
-	private int _lastAssignedCount;
-
 	public int Capacity { get; private set; }
 	public Stack<Sprite> WorkerPortraits { get; private set; }
 
-	private void OnEnable()
+    public int AssignedCount => WorkerPortraits.Count;
+    private int _lastAssignedCount;
+
+    private void OnEnable()
 	{
 		if (_lastAssignedCount <= 0) return;
 		

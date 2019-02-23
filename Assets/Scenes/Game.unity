@@ -2493,6 +2493,7 @@ GameObject:
   - component: {fileID: 1671584264}
   - component: {fileID: 1671584270}
   - component: {fileID: 1671584266}
+  - component: {fileID: 1671584267}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameController
@@ -2563,6 +2564,35 @@ MonoBehaviour:
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   turnCountRef: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
+--- !u!114 &1671584267
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1671584263}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f79151e02691024e8b1e1257c3baee0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameEvent: {fileID: 11400000, guid: a51c5abf6c897214f8929175d40c0690, type: 2}
+  response:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 1671584264}
+        m_MethodName: EnterSelectionMode
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1671584270
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2597,6 +2627,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc6ceac355280c14fb879cfa8dee2e5d, type: 2}
   - {fileID: 11400000, guid: fd23dbcbf852cba4ca3a3329ddf44d3b, type: 2}
   - {fileID: 11400000, guid: a01f6341bb39f434f84db876f1d86a1e, type: 2}
+  - {fileID: 11400000, guid: a51c5abf6c897214f8929175d40c0690, type: 2}
 --- !u!224 &1676295720 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 378346472273222142, guid: f6bcd091eebe1e7448d60dac79a2c515,
@@ -3600,6 +3631,16 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6120210686753903654, guid: f6bcd091eebe1e7448d60dac79a2c515,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445256324640114075, guid: f6bcd091eebe1e7448d60dac79a2c515,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8445256324640114075, guid: f6bcd091eebe1e7448d60dac79a2c515,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
