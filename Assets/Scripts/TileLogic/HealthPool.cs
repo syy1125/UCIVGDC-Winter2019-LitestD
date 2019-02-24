@@ -1,12 +1,15 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class HealthPool : MonoBehaviour
 {
 	public int MaxHealth = 10;
-	private int _health;
+	[FormerlySerializedAs("_health")]
+	[HideInInspector]
+	public int Health;
 
 	public GameObject HealthbarPrefab;
 	private Image _healthbarImage;
@@ -18,23 +21,23 @@ public class HealthPool : MonoBehaviour
 
 	private void Start()
 	{
-		_health = MaxHealth;
+		Health = MaxHealth;
 		_healthbarImage = null;
 		_tilemap = GetComponentInParent<Tilemap>();
 	}
 
 	public void Damage(int amount)
 	{
-		_health -= amount;
+		Health -= amount;
 
 		if (ReferenceEquals(_healthbarImage, null))
 		{
 			CreateHealthbarImage();
 		}
 
-		_healthbarImage.fillAmount = (float) _health / MaxHealth;
+		_healthbarImage.fillAmount = (float) Health / MaxHealth;
 
-		if (_health <= 0)
+		if (Health <= 0)
 		{
 			BeforeDeath.Invoke();
 			_tilemap.SetTile(_tilemap.WorldToCell(transform.position), null);

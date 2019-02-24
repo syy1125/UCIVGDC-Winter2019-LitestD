@@ -95,13 +95,13 @@ public class EnemyManager : MonoBehaviour
 	public void ExecuteEnemySpawns()
 	{
 		if (TurnCountRef < 5) return;
-		
+
 		for (int i = 0; i < 2; i++)
 		{
 			SpawnRandomEnemy();
 		}
 	}
-	
+
 	public void ExecuteGroundEnemyActions()
 	{
 		Dictionary<Vector3Int, float> attractionMap =
@@ -118,7 +118,6 @@ public class EnemyManager : MonoBehaviour
 		foreach (Transform child in children)
 		{
 			Vector3Int tilePosition = Tilemaps.Enemies.WorldToCell(child.position);
-			TileBase enemyTile = Tilemaps.Enemies.GetTile(tilePosition);
 
 			float maxAttraction = float.MinValue;
 			Vector3Int bestTarget = tilePosition;
@@ -148,9 +147,22 @@ public class EnemyManager : MonoBehaviour
 			}
 			else
 			{
-				Tilemaps.Enemies.SetTile(tilePosition, null);
-				Tilemaps.Enemies.SetTile(bestTarget, enemyTile);
+				MoveEnemy(tilePosition, bestTarget);
 			}
 		}
+	}
+
+	private void MoveEnemy(Vector3Int from, Vector3Int to)
+	{
+		TileBase enemyTile = Tilemaps.Enemies.GetTile(from);
+		Tilemaps.Enemies.SetTile(to, enemyTile);
+
+		GameObject oldEnemy = Tilemaps.Enemies.GetInstantiatedObject(from);
+		GameObject newEnemy = Tilemaps.Enemies.GetInstantiatedObject(to);
+		newEnemy.GetComponent<EnemyAttack>().AttackStrength =
+			oldEnemy.GetComponent<EnemyAttack>().AttackStrength;
+		newEnemy.GetComponent<HealthPool>().Health = oldEnemy.GetComponent<HealthPool>().Health;
+
+		Tilemaps.Enemies.SetTile(from, null);
 	}
 }
