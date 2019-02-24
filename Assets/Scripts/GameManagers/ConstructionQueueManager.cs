@@ -25,7 +25,7 @@ public class ConstructionQueueManager : MonoBehaviour
 
 	private void OnEnable()
 	{
-		foreach (Tuple<Vector3Int,TileBase,GameObject> queueItem in _buildingQueue)
+		foreach (Tuple<Vector3Int, TileBase, GameObject> queueItem in _buildingQueue)
 		{
 			queueItem.Item3.GetComponent<ConstructionQueueItemPanel>().SetButtonInteractable(true);
 		}
@@ -53,10 +53,11 @@ public class ConstructionQueueManager : MonoBehaviour
 
 		GameObject queueItem = Instantiate(QueueItemPrefab, ConstructionQueueGrid.transform);
 		var panelTransform = queueItem.GetComponent<RectTransform>();
-		var move = new Vector2(panelTransform.rect.width, 0);
-		panelTransform.offsetMin += move / 2;
-		panelTransform.offsetMax += move / 2;
 		var panelController = queueItem.GetComponent<ConstructionQueueItemPanel>();
+
+		var move = new Vector2(panelTransform.rect.width / 2 + panelController.Spacing, 0);
+		panelTransform.offsetMin += move;
+		panelTransform.offsetMax += move;
 		panelController.BuildingSprite = ((Tile) selectedTile).sprite;
 		panelController.SetQueueIndex(_buildingQueue.Count);
 		if (!enabled) panelController.SetButtonInteractable(false);
@@ -100,7 +101,6 @@ public class ConstructionQueueManager : MonoBehaviour
 		if (_selectedIndex >= 0)
 		{
 			Tilemaps.Highlights.SetTile(_buildingQueue[_selectedIndex].Item1, null);
-			_buildingQueue[_selectedIndex].Item3.GetComponent<ConstructionQueueItemPanel>().SetSelected(false);
 		}
 
 		_selectedIndex = index;
@@ -108,7 +108,7 @@ public class ConstructionQueueManager : MonoBehaviour
 		if (_selectedIndex >= 0)
 		{
 			Tilemaps.Highlights.SetTile(_buildingQueue[_selectedIndex].Item1, HighlightTile);
-			_buildingQueue[_selectedIndex].Item3.GetComponent<ConstructionQueueItemPanel>().SetSelected(true);
+			_buildingQueue[_selectedIndex].Item3.GetComponent<ConstructionQueueItemPanel>().SelfButton.Select();
 			GameManager.Instance.DisableOtherManagers(this);
 		}
 	}
@@ -131,7 +131,7 @@ public class ConstructionQueueManager : MonoBehaviour
 
 	private void OnDisable()
 	{
-		foreach (Tuple<Vector3Int,TileBase,GameObject> queueItem in _buildingQueue)
+		foreach (Tuple<Vector3Int, TileBase, GameObject> queueItem in _buildingQueue)
 		{
 			queueItem.Item3.GetComponent<ConstructionQueueItemPanel>().SetButtonInteractable(false);
 		}

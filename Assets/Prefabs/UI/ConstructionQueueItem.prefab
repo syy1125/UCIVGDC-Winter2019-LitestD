@@ -134,14 +134,11 @@ MonoBehaviour:
     m_RotationOrder: 4
   TransitionDuration: 0.5
   Spacing: 5
-  SelectedColor: {r: 0, g: 1, b: 1, a: 1}
-  Buttons:
-  - {fileID: 3031289236467270335}
-  - {fileID: 2646244980391651472}
-  - {fileID: 2988089766527912794}
-  - {fileID: 4530398405462161802}
-  - {fileID: 2434260760275099960}
-  - {fileID: 410102993292451120}
+  ShiftLeftmostButton: {fileID: 2988089766527912794}
+  ShiftLeftButton: {fileID: 4530398405462161802}
+  ShiftRightButton: {fileID: 2434260760275099960}
+  ShiftRightmostButton: {fileID: 2646244980391651472}
+  CancelButton: {fileID: 410102993292451120}
 --- !u!114 &3031289236467270335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,8 +160,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_HighlightedColor: {r: 0, g: 0.9607843, b: 0.9607843, a: 1}
+    m_PressedColor: {r: 0, g: 0.78431374, b: 0.78431374, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
@@ -562,6 +559,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5886049878332874232, guid: aab69544d9be07148992fe7d1c37aee5,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886049878332874232, guid: aab69544d9be07148992fe7d1c37aee5,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5886049878332874235, guid: aab69544d9be07148992fe7d1c37aee5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -646,16 +653,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5886049878332874232, guid: aab69544d9be07148992fe7d1c37aee5,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5886049878332874232, guid: aab69544d9be07148992fe7d1c37aee5,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aab69544d9be07148992fe7d1c37aee5, type: 3}
@@ -1024,7 +1021,7 @@ PrefabInstance:
     - target: {fileID: 5886049878332874235, guid: aab69544d9be07148992fe7d1c37aee5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: MoveLeft
+      value: MoveRight
       objectReference: {fileID: 0}
     - target: {fileID: 5886049878332874235, guid: aab69544d9be07148992fe7d1c37aee5,
         type: 3}
