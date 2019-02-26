@@ -426,12 +426,12 @@ PrefabInstance:
         type: 3}
       propertyPath: GroundMap
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1951453539}
     - target: {fileID: 378346472273222141, guid: f6bcd091eebe1e7448d60dac79a2c515,
         type: 3}
       propertyPath: BuildingMap
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1088829865}
     - target: {fileID: 6120210685687606673, guid: f6bcd091eebe1e7448d60dac79a2c515,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -879,8 +879,8 @@ RectTransform:
   - {fileID: 1690299054}
   - {fileID: 726788863}
   - {fileID: 197152197}
-  - {fileID: 1082909245}
   - {fileID: 1440151982}
+  - {fileID: 1082909245}
   - {fileID: 1367087429}
   - {fileID: 1025516403}
   - {fileID: 1094883910}
@@ -971,6 +971,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 270177470}
   m_CullTransparentMesh: 0
+--- !u!114 &271549979 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 378346472273222141, guid: f6bcd091eebe1e7448d60dac79a2c515,
+    type: 3}
+  m_PrefabInstance: {fileID: 197152196}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eef7e86d57c9ace43a6dddd076483ceb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1520,7 +1532,7 @@ PrefabInstance:
     - target: {fileID: 1912053827227190533, guid: 0b74190072d4389478cf23b26d3bf0fc,
         type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1912053827227190533, guid: 0b74190072d4389478cf23b26d3bf0fc,
         type: 3}
@@ -2163,7 +2175,7 @@ PrefabInstance:
     - target: {fileID: 2686346812670258864, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2686346812670258864, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
@@ -2899,7 +2911,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 221641547}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2941,7 +2953,7 @@ MonoBehaviour:
   EnemyManager: {fileID: 952180955}
   PlanConstructionManager: {fileID: 1690299056}
   ConstructionQueueManager: {fileID: 1082909248}
-  TileSelectionManager: {fileID: 0}
+  TileSelectionManager: {fileID: 271549979}
   RaiseOnStart:
   - {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
 --- !u!4 &1671584265
