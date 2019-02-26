@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -33,6 +33,7 @@ public class TileSelectionManager : MonoBehaviour
 	private void Update()
 	{
 		if (!Input.GetMouseButtonDown(0)) return;
+		if (EventSystem.current.IsPointerOverGameObject()) return; // Abort raycast when clicking on buttons
 
 		Ray mouseRay = _mainCamera.ScreenPointToRay(Input.mousePosition);
 		if (!_zPlane.Raycast(mouseRay, out float distance))
