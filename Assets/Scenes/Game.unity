@@ -595,6 +595,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -610,6 +611,22 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1690312454, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_EventMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_MaxRayIntersections: 1
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -732,6 +749,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2757904027497942613, guid: d3eb8ec25f7346a45a3a5e5c593fdb11,
+        type: 3}
+      propertyPath: PointerClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1676295723}
+    - target: {fileID: 2757904027497942613, guid: d3eb8ec25f7346a45a3a5e5c593fdb11,
+        type: 3}
+      propertyPath: PointerClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: OnGroundClick
+      objectReference: {fileID: 0}
     - target: {fileID: 7090405000068932636, guid: d3eb8ec25f7346a45a3a5e5c593fdb11,
         type: 3}
       propertyPath: m_Name
@@ -1862,6 +1889,41 @@ PrefabInstance:
       propertyPath: BuildingMap
       value: 
       objectReference: {fileID: 1772983884}
+    - target: {fileID: 378346472273222141, guid: f6bcd091eebe1e7448d60dac79a2c515,
+        type: 3}
+      propertyPath: SelectedColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 378346472273222141, guid: f6bcd091eebe1e7448d60dac79a2c515,
+        type: 3}
+      propertyPath: SelectedColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 378346472273222141, guid: f6bcd091eebe1e7448d60dac79a2c515,
+        type: 3}
+      propertyPath: SelectedColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 378346472273222141, guid: f6bcd091eebe1e7448d60dac79a2c515,
+        type: 3}
+      propertyPath: DisabledColor.a
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 378346472273222141, guid: f6bcd091eebe1e7448d60dac79a2c515,
+        type: 3}
+      propertyPath: DisabledColor.r
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 378346472273222141, guid: f6bcd091eebe1e7448d60dac79a2c515,
+        type: 3}
+      propertyPath: DisabledColor.g
+      value: 0.39215687
+      objectReference: {fileID: 0}
+    - target: {fileID: 378346472273222141, guid: f6bcd091eebe1e7448d60dac79a2c515,
+        type: 3}
+      propertyPath: DisabledColor.b
+      value: 0.39215687
+      objectReference: {fileID: 0}
     - target: {fileID: 6120210685687606673, guid: f6bcd091eebe1e7448d60dac79a2c515,
         type: 3}
       propertyPath: m_havePropertiesChanged
