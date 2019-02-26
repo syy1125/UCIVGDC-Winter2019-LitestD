@@ -93,6 +93,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   GroundMap: {fileID: 0}
   BuildingMap: {fileID: 0}
+  SelectedColor: {r: 0, g: 1, b: 1, a: 1}
+  DisabledColor: {r: 0.39215687, g: 0.39215687, b: 0.39215687, a: 1}
   UpdateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
   BuildingNameText: {fileID: 8445256324640114075}
   BuildingFlavourText: {fileID: 378346472729510274}
