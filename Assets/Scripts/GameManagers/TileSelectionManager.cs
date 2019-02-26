@@ -2,14 +2,18 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using Debug = System.Diagnostics.Debug;
 
 public class TileSelectionManager : MonoBehaviour
 {
 	public Tilemap GroundMap;
 	public Tilemap BuildingMap;
 	public Vector3Int? Selection { get; private set; }
+	[FormerlySerializedAs("ClickAdaptor")]
+	public PointerEventAdaptor GroundClickAdaptor;
 
 	[Header("Tilemap Effect Colors")]
 	public Color SelectedColor;
@@ -29,12 +33,9 @@ public class TileSelectionManager : MonoBehaviour
 
 	private readonly Stack<Sprite> _workerPortraits = new Stack<Sprite>();
 
-	private static Plane _zPlane = new Plane(Vector3.forward, 0);
-	private Camera _mainCamera;
-
-	private void Start()
+	private void OnEnable()
 	{
-		_mainCamera = Camera.main;
+		GroundClickAdaptor.enabled = true;
 	}
 
 	public void OnGroundClick(PointerEventData eventData)
@@ -117,7 +118,7 @@ public class TileSelectionManager : MonoBehaviour
 
 	public void ToggleBuilding()
 	{
-		System.Diagnostics.Debug.Assert(Selection != null, nameof(Selection) + " != null");
+		Debug.Assert(Selection != null, nameof(Selection) + " != null");
 
 		GameObject buildingLogic = BuildingMap.GetInstantiatedObject(Selection.Value);
 		buildingLogic.SetActive(!buildingLogic.activeSelf);
@@ -126,5 +127,10 @@ public class TileSelectionManager : MonoBehaviour
 		BuildingMap.SetColor(Selection.Value, buildingLogic.activeSelf ? Color.white : DisabledColor);
 
 		UpdateUIEvent.Raise();
+	}
+
+	private void OnDisable()
+	{
+		GroundClickAdaptor.enabled = false;
 	}
 }

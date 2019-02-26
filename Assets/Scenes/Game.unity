@@ -498,7 +498,7 @@ RectTransform:
   - {fileID: 1025516403}
   - {fileID: 1094883910}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -802,7 +802,7 @@ PrefabInstance:
     - target: {fileID: 7090405000068932638, guid: d3eb8ec25f7346a45a3a5e5c593fdb11,
         type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7090405000068932638, guid: d3eb8ec25f7346a45a3a5e5c593fdb11,
         type: 3}
@@ -821,6 +821,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3eb8ec25f7346a45a3a5e5c593fdb11, type: 3}
+--- !u!114 &1006750728 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2757904027497942613, guid: d3eb8ec25f7346a45a3a5e5c593fdb11,
+    type: 3}
+  m_PrefabInstance: {fileID: 1006750727}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d088fd155f0ae141b7b9fb1b977d265, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1025516402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1889,6 +1901,11 @@ PrefabInstance:
       propertyPath: BuildingMap
       value: 
       objectReference: {fileID: 1772983884}
+    - target: {fileID: 378346472273222141, guid: f6bcd091eebe1e7448d60dac79a2c515,
+        type: 3}
+      propertyPath: GroundClickAdaptor
+      value: 
+      objectReference: {fileID: 1006750728}
     - target: {fileID: 6120210685687606673, guid: f6bcd091eebe1e7448d60dac79a2c515,
         type: 3}
       propertyPath: m_havePropertiesChanged
