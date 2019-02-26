@@ -16,7 +16,7 @@ public class ResourceManager : MonoBehaviour
 	public IntReference FarmWorkerCount;
 
 	[HideInInspector]
-	public HashSet<PowerConsumer> PowerConsumers;
+	public HashSet<PowerConsumer> PowerConsumers = new HashSet<PowerConsumer>();
 
 	[Header("Balancing")]
 	public int PowerPerTechnician = 3;
@@ -39,11 +39,6 @@ public class ResourceManager : MonoBehaviour
 	public int FoodConsumed => Population;
 	public int ExcessPower => PowerProduced - PowerConsumed;
 
-	private void Awake()
-	{
-		PowerConsumers = new HashSet<PowerConsumer>();
-	}
-
 	public void ExecuteFinalActions()
 	{
 		Population.value = Mathf.Clamp(Population + 1, 0, HousingCapacity);
@@ -54,12 +49,12 @@ public class ResourceManager : MonoBehaviour
 	{
 		HousingDisplay.text = $"Housing {Population} / {HousingCapacity} ({HousingCapacity - Population} free)";
 		FreeWorkforceDisplay.text = $"Idle: {IdlePopulation}";
-		GeneratorDisplay.text = $"Generator: {GeneratorWorkerCount} / {GeneratorCapacity} (+{PowerProduced} power)";
-		FarmDisplay.text = $"Farm: {FarmWorkerCount} / {FarmCapacity.value} (+{FoodProduced} food)";
+		GeneratorDisplay.text = $"Generator: {GeneratorWorkerCount} / {GeneratorCapacity}";
+		FarmDisplay.text = $"Farm: {FarmWorkerCount} / {FarmCapacity.value}";
 
 //		EndTurnButton.interactable = ExcessPower >= 0;
 	}
-
+	
 	private void OnDestroy()
 	{
 		Population.value = 0;
