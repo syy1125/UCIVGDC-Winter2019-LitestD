@@ -30,6 +30,12 @@ public class ResourceManager : MonoBehaviour
 	public TextMeshProUGUI GeneratorDisplay;
 	public TextMeshProUGUI FarmDisplay;
 
+	[Space]
+	public Button AssignGeneratorButton;
+	public Button UnassignGeneratorButton;
+	public Button AssignFarmButton;
+	public Button UnassignFarmButton;
+
 	public Button EndTurnButton;
 
 	public int IdlePopulation => Population - GeneratorWorkerCount - FarmWorkerCount;
@@ -45,12 +51,41 @@ public class ResourceManager : MonoBehaviour
 		UpdateUIEvent.Raise();
 	}
 
+	public void AssignGenerator()
+	{
+		GeneratorWorkerCount.value += 1;
+		UpdateUIEvent.Raise();
+	}
+
+	public void UnassignGenerator()
+	{
+		GeneratorWorkerCount.value -= 1;
+		UpdateUIEvent.Raise();
+	}
+
+	public void AssignFarm()
+	{
+		FarmWorkerCount.value += 1;
+		UpdateUIEvent.Raise();
+	}
+
+	public void UnassignFarm()
+	{
+		FarmWorkerCount.value -= 1;
+		UpdateUIEvent.Raise();
+	}
+
 	public void Display()
 	{
 		HousingDisplay.text = $"Housing {Population} / {HousingCapacity} ({HousingCapacity - Population} free)";
 		FreeWorkforceDisplay.text = $"Idle: {IdlePopulation}";
 		GeneratorDisplay.text = $"Generator: {GeneratorWorkerCount} / {GeneratorCapacity}";
 		FarmDisplay.text = $"Farm: {FarmWorkerCount} / {FarmCapacity.value}";
+
+		AssignGeneratorButton.interactable = GeneratorWorkerCount < GeneratorCapacity && IdlePopulation > 0;
+		UnassignGeneratorButton.interactable = GeneratorWorkerCount > 0;
+		AssignFarmButton.interactable = FarmWorkerCount < FarmCapacity && IdlePopulation > 0;
+		UnassignFarmButton.interactable = FarmWorkerCount > 0;
 
 //		EndTurnButton.interactable = ExcessPower >= 0;
 	}
