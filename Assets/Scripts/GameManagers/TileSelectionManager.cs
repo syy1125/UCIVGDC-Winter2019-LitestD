@@ -19,15 +19,6 @@ public class TileSelectionManager : MonoBehaviour
 	[TextArea]
 	public string GroundFlavourText;
 
-	[Space]
-	public GameObject AssignJobPanel;
-	public TextMeshProUGUI JobNameText;
-	public GameObject PortraitGrid;
-	public GameObject PortraitPrefab;
-	public Sprite[] NormalPortraits;
-	public Button AssignButton;
-	public Button UnassignButton;
-
 	private readonly Stack<Sprite> _workerPortraits = new Stack<Sprite>();
 
 	private static Plane _zPlane = new Plane(Vector3.forward, 0);
@@ -116,71 +107,12 @@ public class TileSelectionManager : MonoBehaviour
 
 			BuildingNameText.text = description.Name;
 			BuildingFlavourText.text = description.FlavourText;
-
-			var provider = BuildingMap.GetInstantiatedObject(selectedTile).GetComponent<WorkerProvider>();
-
-			if (provider == null)
-			{
-				AssignJobPanel.SetActive(false);
-			}
-			else
-			{
-				AssignJobPanel.SetActive(true);
-				JobNameText.text = provider.JobName;
-
-				AssignButton.interactable = provider.AssignedCount < provider.Capacity
-				                            && GameManager.Instance.ResourceManager.IdlePopulation > 0;
-				UnassignButton.interactable = provider.AssignedCount > 0;
-
-				foreach (Transform child in PortraitGrid.transform)
-				{
-					Destroy(child.gameObject);
-				}
-
-				foreach (Sprite portraitSprite in provider.WorkerPortraits)
-				{
-					GameObject portrait = Instantiate(PortraitPrefab, PortraitGrid.transform);
-					portrait.transform.GetChild(0).GetComponent<Image>().sprite = portraitSprite;
-				}
-
-				for (int index = provider.AssignedCount; index < provider.Capacity; index++)
-				{
-					Instantiate(PortraitPrefab, PortraitGrid.transform);
-				}
-			}
 		}
 		else
 		{
 			BuildingNameText.text = GroundName;
 			BuildingFlavourText.text = GroundFlavourText;
-
-			AssignJobPanel.SetActive(false);
 		}
-	}
-
-	public void AssignWorker()
-	{
-		Debug.Assert(Selection != null, nameof(Selection) + " != null");
-		var provider = BuildingMap.GetInstantiatedObject(Selection.Value).GetComponent<WorkerProvider>();
-
-		if (_workerPortraits.Count <= 0)
-		{
-			_workerPortraits.Push(NormalPortraits[Random.Range(0, NormalPortraits.Length)]);
-		}
-
-		provider.AssignWorker(_workerPortraits.Pop());
-
-		UpdateUIEvent.Raise();
-	}
-
-	public void UnassignWorker()
-	{
-		System.Diagnostics.Debug.Assert(Selection != null, nameof(Selection) + " != null");
-		var provider = BuildingMap.GetInstantiatedObject(Selection.Value).GetComponent<WorkerProvider>();
-
-		_workerPortraits.Push(provider.UnassignWorker());
-
-		UpdateUIEvent.Raise();
 	}
 
 	public void ToggleBuilding()

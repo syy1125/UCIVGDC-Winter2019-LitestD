@@ -18,14 +18,12 @@ public class TurretAttack : MonoBehaviour
 	private Tilemap _enemyTilemap;
 	private Tilemap _buildingTilemap;
 	private PowerConsumer _power;
-	private WorkerProvider _worker;
 
 	private void Start()
 	{
 		_enemyTilemap = GetComponentInParent<TilemapRegistry>().Enemies;
 		_buildingTilemap = GetComponentInParent<Tilemap>();
 		_power = GetComponent<PowerConsumer>();
-		_worker = GetComponent<WorkerProvider>();
 	}
 
 	private IEnumerator BuildingActionSequence()
@@ -80,11 +78,12 @@ public class TurretAttack : MonoBehaviour
 		while ((Time.time - startTime) < ProjectileLifetime)
 		{
 			projectileTransform.position = Vector3.Lerp(
-				startPosition, enemyPosition, (Time.time - startTime) / ProjectileLifetime
-			) + Vector3.forward;
+				                               startPosition, enemyPosition,
+				                               (Time.time - startTime) / ProjectileLifetime
+			                               ) + Vector3.forward;
 			yield return null;
 		}
-		
+
 		Destroy(projectileTransform.gameObject);
 
 		Debug.Log(AttackStrength);

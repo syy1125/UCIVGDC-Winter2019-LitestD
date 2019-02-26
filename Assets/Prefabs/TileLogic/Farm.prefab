@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 2708933932313829712}
   - component: {fileID: 2708933932313829713}
   - component: {fileID: 8758748543006644747}
-  - component: {fileID: 889492794880183165}
   - component: {fileID: 8970340852632726699}
   m_Layer: 0
   m_Name: Farm
@@ -47,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 10
+  Health: 0
   HealthbarPrefab: {fileID: 5517034944291465815, guid: 8be76ca8b2a52df4ea4a34449cf21a6f,
     type: 3}
   BeforeDeath:
@@ -68,21 +68,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   CapacityRef: {fileID: 11400000, guid: 8eaa17df851b7a047b839c0e40d570bb, type: 2}
   CapacityDelta: 1
---- !u!114 &889492794880183165
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2708933932313829711}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f490a679879aa469217a2b17f3c605, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PopulationRef: {fileID: 11400000, guid: 210f09d76a72dc34a9087a0df44f456c, type: 2}
-  WorkerCountRef: {fileID: 11400000, guid: 037f982f36282e348aed033d05908d30, type: 2}
-  JobName: Farmers
 --- !u!114 &8970340852632726699
 MonoBehaviour:
   m_ObjectHideFlags: 0

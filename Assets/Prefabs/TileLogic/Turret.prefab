@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2708933932313829712}
   - component: {fileID: 2708933932313829713}
-  - component: {fileID: 8758748543006644747}
-  - component: {fileID: 8881608998950122900}
   - component: {fileID: 6068799677360457966}
   - component: {fileID: 4234171313899362203}
   - component: {fileID: 859652493973906294}
@@ -50,6 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 10
+  Health: 0
   HealthbarPrefab: {fileID: 5517034944291465815, guid: 8be76ca8b2a52df4ea4a34449cf21a6f,
     type: 3}
   BeforeDeath:
@@ -57,35 +56,6 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
---- !u!114 &8758748543006644747
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2708933932313829711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e07b0273e59d0e74d862775360689644, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CapacityRef: {fileID: 11400000, guid: f74f343184665714da2e9c4117e1ee76, type: 2}
-  CapacityDelta: 1
---- !u!114 &8881608998950122900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2708933932313829711}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 77f490a679879aa469217a2b17f3c605, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PopulationRef: {fileID: 11400000, guid: 210f09d76a72dc34a9087a0df44f456c, type: 2}
-  WorkerCountRef: {fileID: 11400000, guid: f74f343184665714da2e9c4117e1ee76, type: 2}
-  JobName: Gunner
 --- !u!114 &6068799677360457966
 MonoBehaviour:
   m_ObjectHideFlags: 0
