@@ -97,17 +97,9 @@ MonoBehaviour:
   BuildingNameText: {fileID: 8445256324640114075}
   BuildingFlavourText: {fileID: 378346472729510274}
   ToggleButtonText: {fileID: 6120210685687606673}
+  ToggleButton: {fileID: 6120210685450054521}
   GroundName: Ground
   GroundFlavourText: An empty patch of land, suitable for development.
-  AssignJobPanel: {fileID: 0}
-  JobNameText: {fileID: 0}
-  PortraitGrid: {fileID: 0}
-  PortraitPrefab: {fileID: 5513802235734818025, guid: 6fdedb91b4e315845b6dc05fbf1bf4c4,
-    type: 3}
-  NormalPortraits:
-  - {fileID: 21300000, guid: 2a2dc7ee4296b44428de9894711e7d2a, type: 3}
-  AssignButton: {fileID: 0}
-  UnassignButton: {fileID: 0}
 --- !u!114 &378346472273222138
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -744,6 +736,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aab69544d9be07148992fe7d1c37aee5, type: 3}
+--- !u!1 &6120210685450054521 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5886049878332874237, guid: aab69544d9be07148992fe7d1c37aee5,
+    type: 3}
+  m_PrefabInstance: {fileID: 378346473459283588}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &6120210685450054526 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 5886049878332874234, guid: aab69544d9be07148992fe7d1c37aee5,

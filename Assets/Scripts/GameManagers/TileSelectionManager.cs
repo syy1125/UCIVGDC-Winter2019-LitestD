@@ -1,6 +1,7 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
@@ -10,12 +11,18 @@ public class TileSelectionManager : MonoBehaviour
 	public Tilemap BuildingMap;
 	public Vector3Int? Selection { get; private set; }
 
+	[Header("Tilemap Effect Colors")]
+	public Color SelectedColor;
+	public Color DisabledColor;
+
 	[Header("Rendering")]
 	public GameEvent UpdateUIEvent;
 	public TextMeshProUGUI BuildingNameText;
 	public TextMeshProUGUI BuildingFlavourText;
 	public TextMeshProUGUI ToggleButtonText;
 	public GameObject ToggleButton;
+
+	[Space]
 	public string GroundName;
 	[TextArea]
 	public string GroundFlavourText;
@@ -30,19 +37,10 @@ public class TileSelectionManager : MonoBehaviour
 		_mainCamera = Camera.main;
 	}
 
-	private void Update()
+	public void OnGroundClick(PointerEventData eventData)
 	{
-		if (!Input.GetMouseButtonDown(0)) return;
-		if (EventSystem.current.IsPointerOverGameObject()) return; // Abort raycast when clicking on buttons
+		Vector3Int tilePosition = GroundMap.WorldToCell(eventData.pointerCurrentRaycast.worldPosition);
 
-		Ray mouseRay = _mainCamera.ScreenPointToRay(Input.mousePosition);
-		if (!_zPlane.Raycast(mouseRay, out float distance))
-		{
-			Debug.LogError("Failed to raycast onto Z plane.");
-			return;
-		}
-
-		Vector3Int tilePosition = GroundMap.WorldToCell(mouseRay.GetPoint(distance));
 		if (!GroundMap.HasTile(tilePosition)) return;
 
 		SetSelection(tilePosition);
@@ -53,7 +51,7 @@ public class TileSelectionManager : MonoBehaviour
 		if (Selection != null)
 		{
 			GroundMap.SetColor(Selection.Value, Color.white);
-			BuildingMap.SetColor(Selection.Value, Color.white);
+//			BuildingMap.SetColor(Selection.Value, Color.white);
 		}
 
 		Selection = target;
@@ -61,9 +59,9 @@ public class TileSelectionManager : MonoBehaviour
 		if (Selection != null)
 		{
 			GroundMap.SetTileFlags(Selection.Value, TileFlags.None);
-			GroundMap.SetColor(Selection.Value, Color.cyan);
-			BuildingMap.SetTileFlags(Selection.Value, TileFlags.None);
-			BuildingMap.SetColor(Selection.Value, Color.cyan);
+			GroundMap.SetColor(Selection.Value, SelectedColor);
+//			BuildingMap.SetTileFlags(Selection.Value, TileFlags.None);
+//			BuildingMap.SetColor(Selection.Value, SelectedColor);
 		}
 
 		GameManager.Instance.DisableOtherManagers(this);
@@ -120,8 +118,13 @@ public class TileSelectionManager : MonoBehaviour
 	public void ToggleBuilding()
 	{
 		System.Diagnostics.Debug.Assert(Selection != null, nameof(Selection) + " != null");
+
 		GameObject buildingLogic = BuildingMap.GetInstantiatedObject(Selection.Value);
 		buildingLogic.SetActive(!buildingLogic.activeSelf);
+
+		BuildingMap.SetTileFlags(Selection.Value, TileFlags.None);
+		BuildingMap.SetColor(Selection.Value, buildingLogic.activeSelf ? Color.white : DisabledColor);
+
 		UpdateUIEvent.Raise();
 	}
 }
