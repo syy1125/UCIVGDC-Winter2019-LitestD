@@ -15,6 +15,7 @@ public class TileSelectionManager : MonoBehaviour
 	public TextMeshProUGUI BuildingNameText;
 	public TextMeshProUGUI BuildingFlavourText;
 	public TextMeshProUGUI ToggleButtonText;
+	public GameObject ToggleButton;
 	public string GroundName;
 	[TextArea]
 	public string GroundFlavourText;
@@ -88,10 +89,6 @@ public class TileSelectionManager : MonoBehaviour
 				child.gameObject.SetActive(true);
 			}
 
-			ToggleButtonText.text = BuildingMap.GetInstantiatedObject(selectedTile).activeSelf
-				? "Turn Off"
-				: "Turn On";
-
 			DisplayBuildingInfo(selectedTile);
 		}
 	}
@@ -105,11 +102,17 @@ public class TileSelectionManager : MonoBehaviour
 
 			BuildingNameText.text = description.Name;
 			BuildingFlavourText.text = description.FlavourText;
+
+			ToggleButton.SetActive(true);
+			ToggleButtonText.text = BuildingMap.GetInstantiatedObject(selectedTile).activeSelf
+				? "Turn Off"
+				: "Turn On";
 		}
 		else
 		{
 			BuildingNameText.text = GroundName;
 			BuildingFlavourText.text = GroundFlavourText;
+			ToggleButton.SetActive(false);
 		}
 	}
 
