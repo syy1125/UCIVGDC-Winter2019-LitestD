@@ -51,9 +51,7 @@ public class TileSelectionManager : MonoBehaviour
 		if (Selection != null)
 		{
 			GroundMap.SetColor(Selection.Value, Color.white);
-			GroundMap.SetTileFlags(Selection.Value, TileFlags.LockColor);
 			BuildingMap.SetColor(Selection.Value, Color.white);
-			BuildingMap.SetTileFlags(Selection.Value, TileFlags.LockColor);
 		}
 
 		Selection = target;
