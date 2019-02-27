@@ -2,7 +2,7 @@
 using UnityEngine;
 
 [CreateAssetMenu]
-public class StoryElement : ScriptableObject
+public class MessageElement : ScriptableObject
 {
 	public enum Condition
 	{

@@ -267,7 +267,7 @@ MonoBehaviour:
   messagePanelEvent: {fileID: 11400000, guid: da9f43f8345ebe74984ac809f1880b9d, type: 2}
   turnCount: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
   storyElements:
-  - {fileID: 11400000, guid: 6e4a7eb9507ba5347aa3fb8fbaa0eda6, type: 2}
+  - {fileID: 11400000, guid: 8c1c3218fff015d4c9f3de1b697d1fb2, type: 2}
 --- !u!114 &707043752 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5415448803892587203, guid: 0b74190072d4389478cf23b26d3bf0fc,

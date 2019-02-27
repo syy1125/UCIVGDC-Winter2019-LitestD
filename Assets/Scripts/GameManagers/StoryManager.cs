@@ -4,11 +4,11 @@ public class StoryManager : GameEventListener
 {
 	public MessageEvent messagePanelEvent;
 	public IntReference turnCount;
-	public List<StoryElement> storyElements = new List<StoryElement>();
+	public List<MessageElement> storyElements = new List<MessageElement>();
 
     private void Awake()
     {
-        foreach (StoryElement storyElement in storyElements)
+        foreach (MessageElement storyElement in storyElements)
         {
             storyElement.currentActivations = 0;
         }
@@ -16,7 +16,7 @@ public class StoryManager : GameEventListener
 
     public void DisplayStory()
 	{
-		foreach (StoryElement storyElement in storyElements)
+		foreach (MessageElement storyElement in storyElements)
 		{
 			if (storyElement.IsConditionMet())
 			{
