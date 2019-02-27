@@ -18,10 +18,20 @@ public class MessagePanel : MonoBehaviour
 	private Animator anim;
 	private string visible = "Visible";
 
+    private RectTransform rt;
+    private Vector2 defaultPivotAndAnchors;
+    private Vector2 defaultAnchoredPos;
+    private float margin = 10f;
+    private float titleHeight = 20f;
+
 	private void Awake()
 	{
 		anim = GetComponent<Animator>();
 		messageEvent.Register(this);
+
+        rt = GetComponent<RectTransform>();
+        defaultPivotAndAnchors = rt.pivot;
+        defaultAnchoredPos = rt.anchoredPosition;
 	}
 
 	public void EnqueueMessage(Message message)
@@ -49,8 +59,11 @@ public class MessagePanel : MonoBehaviour
 	private void ShowPopup()
 	{
 		Message message = messages.Dequeue();
+
 		titleField.text = message.title;
 		textField.text = message.text;
+        SetPosition(message.position);
+
 		anim.SetBool(visible, true);
         SetButtonsInteractable(false);
 	}
@@ -60,6 +73,38 @@ public class MessagePanel : MonoBehaviour
 		anim.SetBool(visible, false);
         SetButtonsInteractable(true);
 	}
+
+    private void SetPosition(Position position)
+    {
+
+        switch (position)
+        {
+            case Position.Default:
+                SetRectTransform(defaultPivotAndAnchors.x, defaultPivotAndAnchors.y, defaultAnchoredPos.x, defaultAnchoredPos.y);
+                break;
+            case Position.Center:
+                SetRectTransform(0.5f, 0.5f, 0, 0);
+                break;
+            case Position.TopLeft:
+                SetRectTransform(0, 1, margin, -(margin + titleHeight));
+                break;
+            case Position.TopRight:
+                SetRectTransform(1, 1, -margin, -(margin + titleHeight));
+                break;
+            case Position.BottomRight:
+                SetRectTransform(1, 0, -margin, margin);
+                break;
+            case Position.BottomLeft:
+                SetRectTransform(0, 0, margin, margin);
+                break;
+        }
+    }
+
+    private void SetRectTransform(float pivotX, float pivotY, float offsetX, float offsetY)
+    {
+        rt.anchorMin = rt.anchorMax = rt.pivot = new Vector2(pivotX, pivotY);
+        rt.anchoredPosition = new Vector2(offsetX, offsetY);
+    }
 
     private void SetButtonsInteractable(bool interactable)
     {

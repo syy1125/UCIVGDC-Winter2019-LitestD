@@ -1726,7 +1726,7 @@ PrefabInstance:
     - target: {fileID: 2686346812670258865, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2686346812670258864, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
@@ -1843,22 +1843,22 @@ PrefabInstance:
       propertyPath: buttonsToDisable.Array.data[0]
       value: 
       objectReference: {fileID: 707043752}
-    - target: {fileID: 2686346811516000861, guid: 51846ad503248d14fabdb928ca1eb35c,
+    - target: {fileID: 2686346812479386908, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
       propertyPath: m_havePropertiesChanged
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2686346811516000861, guid: 51846ad503248d14fabdb928ca1eb35c,
+    - target: {fileID: 2686346812479386908, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2686346812479386908, guid: 51846ad503248d14fabdb928ca1eb35c,
+    - target: {fileID: 2686346811516000861, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
       propertyPath: m_havePropertiesChanged
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2686346812479386908, guid: 51846ad503248d14fabdb928ca1eb35c,
+    - target: {fileID: 2686346811516000861, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 0
@@ -2286,22 +2286,22 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5415448803659328557, guid: 0b74190072d4389478cf23b26d3bf0fc,
+    - target: {fileID: 1912053826436786157, guid: 0b74190072d4389478cf23b26d3bf0fc,
         type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5415448803659328557, guid: 0b74190072d4389478cf23b26d3bf0fc,
+    - target: {fileID: 1912053826436786157, guid: 0b74190072d4389478cf23b26d3bf0fc,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1912053826436786157, guid: 0b74190072d4389478cf23b26d3bf0fc,
+    - target: {fileID: 5415448803659328557, guid: 0b74190072d4389478cf23b26d3bf0fc,
         type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 1912053826436786157, guid: 0b74190072d4389478cf23b26d3bf0fc,
+    - target: {fileID: 5415448803659328557, guid: 0b74190072d4389478cf23b26d3bf0fc,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -2773,11 +2773,11 @@ RectTransform:
   m_Father: {fileID: 1039809069}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -4}
-  m_SizeDelta: {x: -539.3, y: 132.7}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 0, y: -30}
+  m_SizeDelta: {x: 260, y: 130}
+  m_Pivot: {x: 0.5, y: 1}
 --- !u!95 &8123661446644467932
 Animator:
   serializedVersion: 3
@@ -2809,7 +2809,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b97c26b4af7613418aed3432c7930d5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  messageEvent: {fileID: 11400000, guid: aa1c48b1250888e4a94d263862095631, type: 2}
+  messageEvent: {fileID: 11400000, guid: da9f43f8345ebe74984ac809f1880b9d, type: 2}
   titleField: {fileID: 8123661445685263412}
   textField: {fileID: 8123661446449402741}
   buttonsToDisable: []

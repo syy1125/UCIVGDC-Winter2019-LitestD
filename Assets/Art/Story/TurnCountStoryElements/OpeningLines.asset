@@ -18,10 +18,12 @@ MonoBehaviour:
   maxActivations: 1
   currentActivations: 1
   messages:
-  - title: Aaron Buckles
-    text: Hello hello! Welcome to LitestD!
-    position: 0
-  - title: Aaron Buckles
-    text: I'll be your guide today. If you have any questions please don't feel free
-      to ask.
+  - title: Jack Sun
+    text: "It seems we\u2019ve finally arrived. The recent apocalypse has left many
+      displaced people in desperate need of shelter and food. We need to get them
+      settled in quickly."
+    position: 3
+  - title: Jack Sun
+    text: Luckily there seems to be a house and farm already. However, we will need
+      more if we want to house everyone.
     position: 0
