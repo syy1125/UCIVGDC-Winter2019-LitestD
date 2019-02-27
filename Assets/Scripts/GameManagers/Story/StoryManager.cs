@@ -20,7 +20,6 @@ public class StoryManager : GameEventListener
 		{
 			if (storyElement.IsConditionMet())
 			{
-                print("Hello");
 				storyElement.currentActivations++;
 				foreach (Message message in storyElement.messages)
 				{
