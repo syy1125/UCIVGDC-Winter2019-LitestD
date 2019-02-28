@@ -22,6 +22,7 @@ public class EnemyManager : MonoBehaviour
 	[Header("Effects and Timing")]
 	public float AttackAftermathInterval;
 	public float MovementAftermathInterval;
+    public int turnOfFirstAttack = 5;
 
 	[Header("Debug")]
 	public GameObject DebugParent;
@@ -99,7 +100,7 @@ public class EnemyManager : MonoBehaviour
 
 	public void ExecuteEnemySpawns()
 	{
-		if (TurnCountRef < 5) return;
+		if (TurnCountRef < turnOfFirstAttack) return;
 
 		for (int i = 0; i < 2; i++)
 		{

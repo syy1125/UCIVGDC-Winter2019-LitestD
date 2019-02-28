@@ -1455,6 +1455,8 @@ MonoBehaviour:
   turnCount: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
   storyElements:
   - {fileID: 11400000, guid: 6e4a7eb9507ba5347aa3fb8fbaa0eda6, type: 2}
+  - {fileID: 11400000, guid: 6a2ed18eb0b8a0b428a46b758576d494, type: 2}
+  - {fileID: 11400000, guid: 752c8cd0bbb9fec4a8e95a8cccdd87a6, type: 2}
 --- !u!4 &1129293078
 Transform:
   m_ObjectHideFlags: 0
@@ -1739,6 +1741,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3d4eebc664b144fbe8a0fc9ebd3dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canEnterSelectionMode: 0
   ResourceManager: {fileID: 726788866}
   EnemyManager: {fileID: 1837134482}
   PlanConstructionManager: {fileID: 1690299056}
@@ -2472,6 +2475,26 @@ PrefabInstance:
       propertyPath: Tilemaps
       value: 
       objectReference: {fileID: 1006750729}
+    - target: {fileID: 8147421138608062371, guid: 42651d9a48af9bf42a2203e19715ed1a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8147421138608062371, guid: 42651d9a48af9bf42a2203e19715ed1a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8147421138608062371, guid: 42651d9a48af9bf42a2203e19715ed1a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8147421138608062371, guid: 42651d9a48af9bf42a2203e19715ed1a,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 5359818826525141232}
     - target: {fileID: 5359818826522545048, guid: 42651d9a48af9bf42a2203e19715ed1a,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -2777,26 +2800,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BarrierButton
       objectReference: {fileID: 0}
-    - target: {fileID: 8147421138608062371, guid: 42651d9a48af9bf42a2203e19715ed1a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8147421138608062371, guid: 42651d9a48af9bf42a2203e19715ed1a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8147421138608062371, guid: 42651d9a48af9bf42a2203e19715ed1a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8147421138608062371, guid: 42651d9a48af9bf42a2203e19715ed1a,
-        type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
-      value: 
-      objectReference: {fileID: 5359818826525141232}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 42651d9a48af9bf42a2203e19715ed1a, type: 3}
 --- !u!114 &5359818826525141232 stripped

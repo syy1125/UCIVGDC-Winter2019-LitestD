@@ -18,7 +18,7 @@ public class MessagePanel : MonoBehaviour
     private RectTransform rt;
     private Vector2 defaultPivotAndAnchors;
     private Vector2 defaultAnchoredPos;
-    private float margin = 10f;
+    private float margin = 30f;
     private float titleHeight = 20f;
 
 	private void Awake()
