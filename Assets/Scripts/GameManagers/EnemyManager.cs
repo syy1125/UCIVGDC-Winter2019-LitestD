@@ -120,6 +120,14 @@ public class EnemyManager : MonoBehaviour
 			children.Enqueue(child);
 		}
 
+		EndTurnManager.actions.Enqueue(GroundEnemyActionsCoroutine(children, attractionMap));
+	}
+
+	private IEnumerator GroundEnemyActionsCoroutine(
+		IEnumerable<Transform> children,
+		IReadOnlyDictionary<Vector3Int, float> attractionMap
+	)
+	{
 		foreach (Transform child in children)
 		{
 			Vector3Int tilePosition = Tilemaps.Enemies.WorldToCell(child.position);
@@ -141,11 +149,11 @@ public class EnemyManager : MonoBehaviour
 
 			if (Tilemaps.Buildings.HasTile(bestTarget))
 			{
-				EndTurnManager.actions.Enqueue(AttackBuildingCoroutine(tilePosition, bestTarget));
+				yield return StartCoroutine(AttackBuildingCoroutine(tilePosition, bestTarget));
 			}
 			else
 			{
-				EndTurnManager.actions.Enqueue(MoveEnemyCoroutine(tilePosition, bestTarget));
+				yield return StartCoroutine(MoveEnemyCoroutine(tilePosition, bestTarget));
 			}
 		}
 	}
