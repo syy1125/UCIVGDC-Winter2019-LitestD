@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
@@ -160,14 +160,13 @@ public class EnemyManager : MonoBehaviour
 
 	private IEnumerator AttackBuildingCoroutine(Vector3Int enemyPosition, Vector3Int targetPosition)
 	{
-		int attackStrength = Tilemaps.Enemies
-			.GetInstantiatedObject(enemyPosition)
-			.GetComponent<EnemyAttack>()
-			.AttackStrength;
+		var attack = Tilemaps.Enemies.GetInstantiatedObject(enemyPosition).GetComponent<EnemyAttack>();
+		int attackStrength = attack.AttackStrength;
 		Tilemaps.Buildings
 			.GetInstantiatedObject(targetPosition)
 			.GetComponent<HealthPool>()
 			.Damage(attackStrength);
+		attack.PlayAttackSound();
 
 		yield return new WaitForSeconds(AttackAftermathInterval);
 	}
