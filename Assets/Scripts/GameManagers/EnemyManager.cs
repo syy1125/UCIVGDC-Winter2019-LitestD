@@ -161,7 +161,11 @@ public class EnemyManager : MonoBehaviour
 		GameObject newEnemy = Tilemaps.Enemies.GetInstantiatedObject(to);
 		newEnemy.GetComponent<EnemyAttack>().AttackStrength =
 			oldEnemy.GetComponent<EnemyAttack>().AttackStrength;
-		newEnemy.GetComponent<HealthPool>().Health = oldEnemy.GetComponent<HealthPool>().Health;
+		var oldEnemyHealth = oldEnemy.GetComponent<HealthPool>();
+		if (oldEnemyHealth.Health < oldEnemyHealth.MaxHealth)
+		{
+			newEnemy.GetComponent<HealthPool>().Damage(oldEnemyHealth.MaxHealth - oldEnemyHealth.Health);
+		}
 
 		Tilemaps.Enemies.SetTile(from, null);
 	}

@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
@@ -20,7 +20,7 @@ public class HealthPool : MonoBehaviour
 	private Tilemap _parentTilemap;
 	private Tilemap ParentTilemap => _parentTilemap ? _parentTilemap : _parentTilemap = GetComponentInParent<Tilemap>();
 
-	private void Start()
+	private void Awake()
 	{
 		Health = MaxHealth;
 		_healthbarImage = null;
