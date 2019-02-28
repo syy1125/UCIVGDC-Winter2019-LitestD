@@ -18,12 +18,14 @@ public class TurretAttack : MonoBehaviour
 
 	private Tilemap _enemyTilemap;
 	private Tilemap _buildingTilemap;
+	private AudioSource _audio;
 	private PowerConsumer _power;
 
 	private void Start()
 	{
 		_enemyTilemap = GetComponentInParent<TilemapRegistry>().Enemies;
 		_buildingTilemap = GetComponentInParent<Tilemap>();
+		_audio = GetComponent<AudioSource>();
 		_power = GetComponent<PowerConsumer>();
 	}
 
@@ -60,6 +62,7 @@ public class TurretAttack : MonoBehaviour
 	{
 		var enemyHealth = _enemyTilemap.GetInstantiatedObject(targetPosition).GetComponent<HealthPool>();
 		Transform projectileTransform = Instantiate(ProjectilePrefab).transform;
+		_audio.Play();
 
 		Vector3 startPosition = _buildingTilemap.GetCellCenterWorld(_buildingTilemap.WorldToCell(transform.position));
 		Vector3 enemyPosition = _enemyTilemap.GetCellCenterWorld(targetPosition);
