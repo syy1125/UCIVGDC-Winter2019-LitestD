@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
 using UnityEngine.Tilemaps;
@@ -17,6 +18,9 @@ public class EnemyManager : MonoBehaviour
 	public EnemyPathfinding GroundEnemyPathfinding;
 
 	private List<Vector3Int> _pathfindPositions;
+
+	[Header("Effects and Timing")]
+	public float AftermathInterval;
 
 	[Header("Debug")]
 	public GameObject DebugParent;
@@ -136,23 +140,30 @@ public class EnemyManager : MonoBehaviour
 
 			if (Tilemaps.Buildings.HasTile(bestTarget))
 			{
-				int attackStrength = Tilemaps.Enemies
-					.GetInstantiatedObject(tilePosition)
-					.GetComponent<EnemyAttack>()
-					.AttackStrength;
-				Tilemaps.Buildings
-					.GetInstantiatedObject(bestTarget)
-					.GetComponent<HealthPool>()
-					.Damage(attackStrength);
+				EndTurnManager.actions.Enqueue(AttackBuildingCoroutine(tilePosition, bestTarget));
 			}
 			else
 			{
-				MoveEnemy(tilePosition, bestTarget);
+				EndTurnManager.actions.Enqueue(MoveEnemyCoroutine(tilePosition, bestTarget));
 			}
 		}
 	}
 
-	private void MoveEnemy(Vector3Int from, Vector3Int to)
+	private IEnumerator AttackBuildingCoroutine(Vector3Int enemyPosition, Vector3Int targetPosition)
+	{
+		int attackStrength = Tilemaps.Enemies
+			.GetInstantiatedObject(enemyPosition)
+			.GetComponent<EnemyAttack>()
+			.AttackStrength;
+		Tilemaps.Buildings
+			.GetInstantiatedObject(targetPosition)
+			.GetComponent<HealthPool>()
+			.Damage(attackStrength);
+
+		yield return new WaitForSeconds(AftermathInterval);
+	}
+
+	private IEnumerator MoveEnemyCoroutine(Vector3Int from, Vector3Int to)
 	{
 		TileBase enemyTile = Tilemaps.Enemies.GetTile(from);
 		Tilemaps.Enemies.SetTile(to, enemyTile);
@@ -168,5 +179,7 @@ public class EnemyManager : MonoBehaviour
 		}
 
 		Tilemaps.Enemies.SetTile(from, null);
+
+		yield return new WaitForSeconds(AftermathInterval);
 	}
 }

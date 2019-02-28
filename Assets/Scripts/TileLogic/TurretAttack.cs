@@ -11,7 +11,7 @@ public class TurretAttack : MonoBehaviour
 	public int AttackStrength;
 	public int Range;
 
-	[Header("Effects")]
+	[Header("Effects and Timing")]
 	public GameObject ProjectilePrefab;
 	public float ProjectileLifetime;
 	public float AftermathInterval;

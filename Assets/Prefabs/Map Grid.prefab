@@ -1774,6 +1774,7 @@ MonoBehaviour:
   GroundEnemyTile: {fileID: 11400000, guid: 395d7d6188ade9e49b54e91ea521f91f, type: 2}
   GroundEnemyPathfinding: {fileID: 11400000, guid: 45107c276ab8175429b528c88a794544,
     type: 2}
+  AftermathInterval: 0.2
   DebugParent: {fileID: 0}
   TextPrefab: {fileID: 218482175293547138, guid: ddb65b8c2ee5cc34596a7ca96b5e502a,
     type: 3}
