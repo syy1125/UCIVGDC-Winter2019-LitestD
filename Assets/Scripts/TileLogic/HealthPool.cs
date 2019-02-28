@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
@@ -17,13 +17,13 @@ public class HealthPool : MonoBehaviour
 	[Header("Events")]
 	public UnityEvent BeforeDeath;
 
-	private Tilemap _tilemap;
+	private Tilemap _parentTilemap;
+	private Tilemap ParentTilemap => _parentTilemap ? _parentTilemap : _parentTilemap = GetComponentInParent<Tilemap>();
 
 	private void Start()
 	{
 		Health = MaxHealth;
 		_healthbarImage = null;
-		_tilemap = GetComponentInParent<Tilemap>();
 	}
 
 	public void Damage(int amount)
@@ -40,7 +40,7 @@ public class HealthPool : MonoBehaviour
 		if (Health <= 0)
 		{
 			BeforeDeath.Invoke();
-			_tilemap.SetTile(_tilemap.WorldToCell(transform.position), null);
+			ParentTilemap.SetTile(ParentTilemap.WorldToCell(transform.position), null);
 		}
 	}
 
