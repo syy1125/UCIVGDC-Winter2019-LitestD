@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
 using UnityEngine;
@@ -20,7 +20,8 @@ public class EnemyManager : MonoBehaviour
 	private List<Vector3Int> _pathfindPositions;
 
 	[Header("Effects and Timing")]
-	public float AftermathInterval;
+	public float AttackAftermathInterval;
+	public float MovementAftermathInterval;
 
 	[Header("Debug")]
 	public GameObject DebugParent;
@@ -160,7 +161,7 @@ public class EnemyManager : MonoBehaviour
 			.GetComponent<HealthPool>()
 			.Damage(attackStrength);
 
-		yield return new WaitForSeconds(AftermathInterval);
+		yield return new WaitForSeconds(AttackAftermathInterval);
 	}
 
 	private IEnumerator MoveEnemyCoroutine(Vector3Int from, Vector3Int to)
@@ -180,6 +181,6 @@ public class EnemyManager : MonoBehaviour
 
 		Tilemaps.Enemies.SetTile(from, null);
 
-		yield return new WaitForSeconds(AftermathInterval);
+		yield return new WaitForSeconds(MovementAftermathInterval);
 	}
 }
