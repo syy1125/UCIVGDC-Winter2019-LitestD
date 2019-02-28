@@ -15,6 +15,8 @@ public class TurretAttack : MonoBehaviour
 	public GameObject ProjectilePrefab;
 	public float ProjectileLifetime;
 	public float AftermathInterval;
+	public float MinPitch;
+	public float MaxPitch;
 
 	private Tilemap _enemyTilemap;
 	private Tilemap _buildingTilemap;
@@ -62,6 +64,8 @@ public class TurretAttack : MonoBehaviour
 	{
 		var enemyHealth = _enemyTilemap.GetInstantiatedObject(targetPosition).GetComponent<HealthPool>();
 		Transform projectileTransform = Instantiate(ProjectilePrefab).transform;
+
+		_audio.pitch = Random.Range(MinPitch, MaxPitch);
 		_audio.Play();
 
 		Vector3 startPosition = _buildingTilemap.GetCellCenterWorld(_buildingTilemap.WorldToCell(transform.position));

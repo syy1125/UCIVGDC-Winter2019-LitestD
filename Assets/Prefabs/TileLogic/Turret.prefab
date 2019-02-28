@@ -104,6 +104,8 @@ MonoBehaviour:
     type: 3}
   ProjectileLifetime: 0.5
   AftermathInterval: 0.2
+  MinPitch: 0.7
+  MaxPitch: 1.3
 --- !u!114 &3175269546298699547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -145,7 +147,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e336989e9ede7e34ebc33eae8a9ccdb8, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.4
+  m_Volume: 0.25
   m_Pitch: 1
   Loop: 0
   Mute: 0
