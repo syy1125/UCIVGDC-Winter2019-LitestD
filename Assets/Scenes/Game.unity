@@ -2311,12 +2311,12 @@ PrefabInstance:
     - target: {fileID: 1558391925107738499, guid: b19f1037ec047e344907e7cdcdd1e70b,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1558391925107738499, guid: b19f1037ec047e344907e7cdcdd1e70b,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19f1037ec047e344907e7cdcdd1e70b, type: 3}

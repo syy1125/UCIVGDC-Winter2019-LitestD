@@ -94,7 +94,7 @@ MonoBehaviour:
   ConstructionQueueGrid: {fileID: 1558391923609401193}
   QueueItemPrefab: {fileID: 3636450277169219273, guid: 0cd2e42d0c0d4e842ad672c728722501,
     type: 3}
-  BulldozeTile: {fileID: 11400000, guid: 525398cbcef9a054ea26ba2657443093, type: 2}
+  BulldozeTile: {fileID: 11400000, guid: 5a0b8d875b778cc4395822d656e574bf, type: 2}
   UpdateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
   HighlightTile: {fileID: 11400000, guid: edc8b550f37cb05488174d9adbd07abf, type: 2}
 --- !u!114 &1558391923609401108
