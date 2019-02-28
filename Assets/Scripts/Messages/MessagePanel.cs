@@ -11,9 +11,6 @@ public class MessagePanel : MonoBehaviour
 	public TextMeshProUGUI titleField;
 	public TextMeshProUGUI textField;
 
-	[Header("Buttons to Disable")]
-	public List<Button> buttonsToDisable = new List<Button>();
-
 	private Queue<Message> messages = new Queue<Message>();
 	private Animator anim;
 	private string visible = "Visible";
@@ -65,13 +62,13 @@ public class MessagePanel : MonoBehaviour
         SetPosition(message.position);
 
 		anim.SetBool(visible, true);
-        SetButtonsInteractable(false);
+		GameManager.Instance.DisableOtherManagers(null);
 	}
 
 	private void HidePopup()
 	{
 		anim.SetBool(visible, false);
-        SetButtonsInteractable(true);
+		GameManager.Instance.EnterSelectionMode();
 	}
 
     private void SetPosition(Position position)
@@ -104,13 +101,5 @@ public class MessagePanel : MonoBehaviour
     {
         rt.anchorMin = rt.anchorMax = rt.pivot = new Vector2(pivotX, pivotY);
         rt.anchoredPosition = new Vector2(offsetX, offsetY);
-    }
-
-    private void SetButtonsInteractable(bool interactable)
-    {
-        foreach (Button button in buttonsToDisable)
-        {
-            button.interactable = interactable;
-        }
     }
 }
