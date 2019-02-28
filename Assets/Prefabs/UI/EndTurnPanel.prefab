@@ -455,7 +455,7 @@ PrefabInstance:
     - target: {fileID: 5886049878332874235, guid: aab69544d9be07148992fe7d1c37aee5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5886049878332874235, guid: aab69544d9be07148992fe7d1c37aee5,
         type: 3}
@@ -486,6 +486,31 @@ PrefabInstance:
     - target: {fileID: 5886049878332874235, guid: aab69544d9be07148992fe7d1c37aee5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886049878332874235, guid: aab69544d9be07148992fe7d1c37aee5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2858307396305919218}
+    - target: {fileID: 5886049878332874235, guid: aab69544d9be07148992fe7d1c37aee5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: Play
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886049878332874235, guid: aab69544d9be07148992fe7d1c37aee5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886049878332874235, guid: aab69544d9be07148992fe7d1c37aee5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886049878332874235, guid: aab69544d9be07148992fe7d1c37aee5,
+        type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_CallState
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5886049878571375381, guid: aab69544d9be07148992fe7d1c37aee5,
@@ -555,6 +580,12 @@ MonoBehaviour:
   m_Script: {fileID: 1392445389, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!82 &2858307396305919218 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 4405160066671995850, guid: aab69544d9be07148992fe7d1c37aee5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1912053827827660600}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &5415448803659328557 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 5886049878571375381, guid: aab69544d9be07148992fe7d1c37aee5,
