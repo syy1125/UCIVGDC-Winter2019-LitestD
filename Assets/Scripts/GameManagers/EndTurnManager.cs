@@ -25,7 +25,7 @@ public class EndTurnManager : MonoBehaviour
 
 	private IEnumerator ExecutePhaseCoroutines()
 	{
-		GameManager.Instance.DisableOtherManagers(null);
+        GameManager.Instance.EnterSpectatorMode();
 		
 		foreach (GameEvent phase in phases)
 		{
@@ -36,7 +36,7 @@ public class EndTurnManager : MonoBehaviour
 				yield return StartCoroutine(actions.Dequeue());
 			}
 		}
-		
+
 		GameManager.Instance.EnterSelectionMode();
 
 		updateUIEvent.Raise();

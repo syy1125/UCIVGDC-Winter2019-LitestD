@@ -5,6 +5,7 @@ using UnityEngine.Serialization;
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance;
+    public bool canEnterSelectionMode = false;
 
 	public ResourceManager ResourceManager;
 	public EnemyManager EnemyManager;
@@ -39,7 +40,7 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
+		if (canEnterSelectionMode && (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)))
 		{
 			EnterSelectionMode();
 		}
@@ -47,6 +48,8 @@ public class GameManager : MonoBehaviour
 
 	public void EnterSelectionMode()
 	{
+        canEnterSelectionMode = true;
+
 		PlanConstructionManager.SelectBuildTile(null);
 		ConstructionQueueManager.SelectIndex(-1);
 		TileSelectionManager.SetSelection(null);
@@ -57,6 +60,12 @@ public class GameManager : MonoBehaviour
 		TileSelectionManager.enabled = true;
 		EndTurnManager.enabled = true;
 	}
+
+    public void EnterSpectatorMode()
+    {
+        canEnterSelectionMode = false;
+        DisableOtherManagers(null);
+    }
 
 	public void DisableOtherManagers(MonoBehaviour active)
 	{
