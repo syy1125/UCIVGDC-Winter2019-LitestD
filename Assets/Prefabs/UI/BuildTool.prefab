@@ -553,7 +553,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Tile
       value: 
-      objectReference: {fileID: 11400000, guid: 88fb53e136ebe8046b15694defbd2630,
+      objectReference: {fileID: 11400000, guid: feb994336b309194abed271bce5eeceb,
         type: 2}
     - target: {fileID: 4283084362703180401, guid: ad0c3b654b701824e97229f616b833da,
         type: 3}
@@ -568,12 +568,22 @@ PrefabInstance:
     - target: {fileID: 4283084362703180401, guid: ad0c3b654b701824e97229f616b833da,
         type: 3}
       propertyPath: m_text
-      value: Wall
+      value: Barrier
       objectReference: {fileID: 0}
     - target: {fileID: 4283084362703180401, guid: ad0c3b654b701824e97229f616b833da,
         type: 3}
       propertyPath: m_textInfo.characterCount
-      value: 4
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283084362703180401, guid: ad0c3b654b701824e97229f616b833da,
+        type: 3}
+      propertyPath: m_firstOverflowCharacterIndex
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4283084362703180401, guid: ad0c3b654b701824e97229f616b833da,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad0c3b654b701824e97229f616b833da, type: 3}
@@ -1046,7 +1056,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Tile
       value: 
-      objectReference: {fileID: 11400000, guid: 7cf37c80d621b564da06a70fc8baa403,
+      objectReference: {fileID: 11400000, guid: f668af207446d4a43a2615ba823ba84b,
         type: 2}
     - target: {fileID: 4283084362703180401, guid: ad0c3b654b701824e97229f616b833da,
         type: 3}
