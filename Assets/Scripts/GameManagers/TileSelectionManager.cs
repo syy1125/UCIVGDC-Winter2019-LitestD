@@ -40,6 +40,8 @@ public class TileSelectionManager : MonoBehaviour
 
 	public void OnGroundClick(PointerEventData eventData)
 	{
+        if (eventData.button != PointerEventData.InputButton.Left) return; // Only want left click to select tiles
+
 		Vector3Int tilePosition = GroundMap.WorldToCell(eventData.pointerCurrentRaycast.worldPosition);
 
 		if (!GroundMap.HasTile(tilePosition)) return;
