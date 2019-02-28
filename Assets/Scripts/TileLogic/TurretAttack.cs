@@ -52,7 +52,7 @@ public class TurretAttack : MonoBehaviour
 		// TODO implement power mechanics
 //		if (!_power.enabled || _worker.AssignedCount != _worker.Capacity) return;
 
-		EndTurnListener.actions.Enqueue(BuildingActionSequence());
+		EndTurnManager.actions.Enqueue(BuildingActionSequence());
 	}
 
 	private IEnumerator AttackEnemy(Vector3Int targetPosition)

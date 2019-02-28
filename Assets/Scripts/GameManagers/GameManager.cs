@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 	public PlanConstructionManager PlanConstructionManager;
 	public ConstructionQueueManager ConstructionQueueManager;
 	public TileSelectionManager TileSelectionManager;
+	public EndTurnManager EndTurnManager;
 
 	public GameEvent[] RaiseOnStart;
 
@@ -54,12 +55,13 @@ public class GameManager : MonoBehaviour
 		PlanConstructionManager.enabled = true;
 		ConstructionQueueManager.enabled = true;
 		TileSelectionManager.enabled = true;
+		EndTurnManager.enabled = true;
 	}
 
 	public void DisableOtherManagers(MonoBehaviour active)
 	{
 		foreach (MonoBehaviour manager in new MonoBehaviour[]
-			{PlanConstructionManager, ConstructionQueueManager, TileSelectionManager})
+			{PlanConstructionManager, ConstructionQueueManager, TileSelectionManager, EndTurnManager})
 		{
 			manager.enabled = manager == active;
 		}
