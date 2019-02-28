@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance;
-    public bool canEnterSelectionMode = false;
 
 	public ResourceManager ResourceManager;
 	public EnemyManager EnemyManager;
@@ -17,7 +17,9 @@ public class GameManager : MonoBehaviour
 
 	public GameEvent[] RaiseOnStart;
 
-	private void Awake()
+    private bool canEnterSelectionMode = false;
+
+    private void Awake()
 	{
 		if (Instance == null)
 		{

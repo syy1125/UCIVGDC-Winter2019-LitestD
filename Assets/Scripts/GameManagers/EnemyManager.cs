@@ -22,7 +22,8 @@ public class EnemyManager : MonoBehaviour
 	[Header("Effects and Timing")]
 	public float AttackAftermathInterval;
 	public float MovementAftermathInterval;
-    public int turnOfFirstAttack = 5;
+    //public int turnOfFirstAttack = 5;
+    public EnemySpawning enemySpawning;
 
 	[Header("Debug")]
 	public GameObject DebugParent;
@@ -100,12 +101,13 @@ public class EnemyManager : MonoBehaviour
 
 	public void ExecuteEnemySpawns()
 	{
-		if (TurnCountRef < turnOfFirstAttack) return;
-
-		for (int i = 0; i < 2; i++)
-		{
-			SpawnRandomEnemy();
-		}
+        // QUESTION: Do we want to be able to pass in the current amount of enemies,
+        // so that we don't have too many enemies at once?
+        int enemiesToSpawn = enemySpawning.HowManyEnemiesToSpawn(TurnCountRef);
+        for (int i = 0; i < enemiesToSpawn; i++)
+        {
+            SpawnRandomEnemy();
+        }
 	}
 
 	public void ExecuteGroundEnemyActions()

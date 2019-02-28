@@ -781,32 +781,32 @@ PrefabInstance:
     - target: {fileID: 2686346812479386908, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2686346812479386908, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2686346811516000861, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2686346811516000861, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2686346812782651528, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2686346812782651528, guid: 51846ad503248d14fabdb928ca1eb35c,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 51846ad503248d14fabdb928ca1eb35c, type: 3}
@@ -1075,6 +1075,12 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7090404999729718527, guid: d3eb8ec25f7346a45a3a5e5c593fdb11,
+        type: 3}
+      propertyPath: enemySpawning
+      value: 
+      objectReference: {fileID: 11400000, guid: cce34a81853a5ca43990c8e6f90f9e8d,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d3eb8ec25f7346a45a3a5e5c593fdb11, type: 3}
 --- !u!114 &1006750728 stripped
@@ -1741,7 +1747,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc3d4eebc664b144fbe8a0fc9ebd3dbe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  canEnterSelectionMode: 0
   ResourceManager: {fileID: 726788866}
   EnemyManager: {fileID: 1837134482}
   PlanConstructionManager: {fileID: 1690299056}
