@@ -1059,6 +1059,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d088fd155f0ae141b7b9fb1b977d265, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1006750729 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7090405000068932639, guid: d3eb8ec25f7346a45a3a5e5c593fdb11,
+    type: 3}
+  m_PrefabInstance: {fileID: 1006750727}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43ce57b2ddd44c349a9c7d3a08fff6b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1025516402
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2286,7 +2298,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Tilemaps
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1006750729}
     - target: {fileID: 1558391925107738499, guid: b19f1037ec047e344907e7cdcdd1e70b,
         type: 3}
       propertyPath: m_havePropertiesChanged
@@ -2420,7 +2432,7 @@ PrefabInstance:
         type: 3}
       propertyPath: Tilemaps
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1006750729}
     - target: {fileID: 5359818826522545048, guid: 42651d9a48af9bf42a2203e19715ed1a,
         type: 3}
       propertyPath: m_havePropertiesChanged
