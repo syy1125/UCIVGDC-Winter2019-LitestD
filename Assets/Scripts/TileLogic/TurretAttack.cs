@@ -86,7 +86,6 @@ public class TurretAttack : MonoBehaviour
 
 		Destroy(projectileTransform.gameObject);
 
-		Debug.Log(AttackStrength);
 		enemyHealth.Damage(AttackStrength);
 	}
 }
