@@ -1188,6 +1188,26 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1912053826436786157, guid: 0b74190072d4389478cf23b26d3bf0fc,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1912053826436786157, guid: 0b74190072d4389478cf23b26d3bf0fc,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5415448803659328557, guid: 0b74190072d4389478cf23b26d3bf0fc,
+        type: 3}
+      propertyPath: m_havePropertiesChanged
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5415448803659328557, guid: 0b74190072d4389478cf23b26d3bf0fc,
+        type: 3}
+      propertyPath: m_isInputParsingRequired
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0b74190072d4389478cf23b26d3bf0fc, type: 3}
 --- !u!224 &1025516403 stripped
@@ -1587,60 +1607,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1382166861 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1912053827227190532, guid: 0b74190072d4389478cf23b26d3bf0fc,
+--- !u!114 &1382166862 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1382166862, guid: 0b74190072d4389478cf23b26d3bf0fc,
     type: 3}
   m_PrefabInstance: {fileID: 1025516402}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1382166862
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382166861}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11dbc507c6dd1ac46a8aae83258fc21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phases:
-  - {fileID: 11400000, guid: dc6ceac355280c14fb879cfa8dee2e5d, type: 2}
-  - {fileID: 11400000, guid: fd23dbcbf852cba4ca3a3329ddf44d3b, type: 2}
-  - {fileID: 11400000, guid: a01f6341bb39f434f84db876f1d86a1e, type: 2}
-  - {fileID: 11400000, guid: a51c5abf6c897214f8929175d40c0690, type: 2}
-  updateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
-  endTurnButton: {fileID: 1025516404}
---- !u!114 &1382166863
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1382166861}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f79151e02691024e8b1e1257c3baee0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 812d6b39235e804449ce497ca8c51d9c, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1382166862}
-        m_MethodName: ExecutePhases
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1440151981
 GameObject:
   m_ObjectHideFlags: 0
