@@ -22,8 +22,13 @@ MonoBehaviour:
     text: "It seems we\u2019ve finally arrived. The recent apocalypse has left many
       displaced people in desperate need of shelter and food. We need to get them
       settled in quickly."
-    position: 0
+    position: 1
   - title: Jack Sun
     text: Luckily there seems to be a house and farm already. However, we will need
       more if we want to house everyone.
-    position: 0
+    position: 1
+  - title: Aaron Buckles
+    text: Hi! I'm Aaron Buckles and I'll be your guide today. If you have any questions
+      please don't feel free to ask. To build a house, click on [Housing] in the [Build]
+      menu and place it on an empty plot of land.
+    position: 3
