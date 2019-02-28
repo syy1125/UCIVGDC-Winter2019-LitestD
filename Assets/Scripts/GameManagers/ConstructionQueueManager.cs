@@ -49,7 +49,7 @@ public class ConstructionQueueManager : MonoBehaviour
 		}
 
 		Tilemaps.ConstructionPlanner.SetTile(tilePosition, selectedTile);
-		GameObject tileLogic = Tilemaps.ConstructionPlanner.GetInstantiatedObject(tilePosition)
+		GameObject tileLogic = Tilemaps.ConstructionPlanner.GetInstantiatedObject(tilePosition);
 		if (tileLogic)
 		{
 			tileLogic.SetActive(false);
