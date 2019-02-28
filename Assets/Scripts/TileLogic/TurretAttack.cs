@@ -14,6 +14,7 @@ public class TurretAttack : MonoBehaviour
 	[Header("Effects")]
 	public GameObject ProjectilePrefab;
 	public float ProjectileLifetime;
+	public float AftermathInterval;
 
 	private Tilemap _enemyTilemap;
 	private Tilemap _buildingTilemap;
@@ -87,5 +88,7 @@ public class TurretAttack : MonoBehaviour
 		Destroy(projectileTransform.gameObject);
 
 		enemyHealth.Damage(AttackStrength);
+		
+		yield return new WaitForSeconds(AftermathInterval);
 	}
 }
