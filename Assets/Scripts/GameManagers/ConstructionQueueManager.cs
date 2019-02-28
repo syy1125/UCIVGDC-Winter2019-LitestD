@@ -49,7 +49,11 @@ public class ConstructionQueueManager : MonoBehaviour
 		}
 
 		Tilemaps.ConstructionPlanner.SetTile(tilePosition, selectedTile);
-		Tilemaps.ConstructionPlanner.GetInstantiatedObject(tilePosition).SetActive(false);
+		GameObject tileLogic = Tilemaps.ConstructionPlanner.GetInstantiatedObject(tilePosition)
+		if (tileLogic)
+		{
+			tileLogic.SetActive(false);
+		}
 
 		GameObject queueItem = Instantiate(QueueItemPrefab, ConstructionQueueGrid.transform);
 		var panelTransform = queueItem.GetComponent<RectTransform>();
