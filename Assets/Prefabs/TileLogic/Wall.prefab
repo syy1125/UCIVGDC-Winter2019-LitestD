@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2708933932313829712}
   - component: {fileID: 2708933932313829713}
   - component: {fileID: 4234171313899362203}
+  - component: {fileID: 8047131993411339636}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Untagged
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MaxHealth: 25
+  Health: 0
   HealthbarPrefab: {fileID: 5517034944291465815, guid: 8be76ca8b2a52df4ea4a34449cf21a6f,
     type: 3}
   BeforeDeath:
@@ -68,3 +70,16 @@ MonoBehaviour:
   FlavourText: "A simple brick-and-mortar wall. As your settlement\u2019s first line
     of defense, it is surprisingly sturdy against intruders, particularly hungry animals
     hoping to raid the food supply."
+--- !u!114 &8047131993411339636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2708933932313829711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94618f8ed329a74ebc96df7193a9d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cost: 3

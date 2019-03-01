@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4234171313899362203}
   - component: {fileID: 859652493973906294}
   - component: {fileID: 3175269546298699547}
+  - component: {fileID: 8340825708260291203}
   - component: {fileID: 5088388607521902232}
   m_Layer: 0
   m_Name: Turret
@@ -119,6 +120,19 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &8340825708260291203
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2708933932313829711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94618f8ed329a74ebc96df7193a9d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cost: 6
 --- !u!82 &5088388607521902232
 AudioSource:
   m_ObjectHideFlags: 0

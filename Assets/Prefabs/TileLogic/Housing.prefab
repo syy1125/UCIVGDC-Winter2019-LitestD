@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2708933932313829713}
   - component: {fileID: 8758748543006644747}
   - component: {fileID: 4234171313899362203}
+  - component: {fileID: 5598727686939005336}
   m_Layer: 0
   m_Name: Housing
   m_TagString: Untagged
@@ -82,3 +83,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Houses
   FlavourText: Spacious houses fit for a few families.
+--- !u!114 &5598727686939005336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2708933932313829711}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c94618f8ed329a74ebc96df7193a9d55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Cost: 2
