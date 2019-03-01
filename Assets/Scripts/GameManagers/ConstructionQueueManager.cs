@@ -144,6 +144,11 @@ public class ConstructionQueueManager : MonoBehaviour
 			Tilemaps.ConstructionPlanner.SetTile(tilePosition, null);
 		}
 
+		if (_buildingQueue.Count <= 0)
+		{
+			_currentProgress = 0;
+		}
+
 		for (var index = 0; index < QueueLength; index++)
 		{
 			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
