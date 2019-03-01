@@ -14,9 +14,10 @@ public enum Position
 public class Message
 {
 	public string title;
-	[TextArea]
+	[TextArea(3, 6)]
 	public string text;
     public Position position;
+    public bool disableUI = true;
 
 	public Message(string title, string text)
 	{

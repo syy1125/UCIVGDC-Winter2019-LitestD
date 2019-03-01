@@ -16,9 +16,10 @@ MonoBehaviour:
   condition: 0
   value: 5
   maxActivations: 1
-  currentActivations: 1
+  currentActivations: 0
   messages:
   - title: Elizabeth Chen
     text: There's an impending alien attack! Quick, we need to build turrets before
       they get through!
     position: 1
+    disableUI: 1

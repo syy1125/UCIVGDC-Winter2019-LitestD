@@ -10,15 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 084bd0b0caaa889489b5142d9cdd270e, type: 3}
-  m_Name: FirstPopulationMilestone
+  m_Name: SelectionModeTutorial
   m_EditorClassIdentifier: 
-  intReference: {fileID: 11400000, guid: 210f09d76a72dc34a9087a0df44f456c, type: 2}
-  condition: 5
-  value: 10
+  intReference: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
+  condition: 0
+  value: 1
   maxActivations: 1
   currentActivations: 0
   messages:
-  - title: Steven Luu
-    text: Wow great moves so far! You've reached a population of 10. Keep it up, proud
-      of you!
-    position: 1
+  - title: Aaron Buckles
+    text: After placing the housing, Press the [Escape] key or [Right-Click] your
+      mouse to enter selection
+    position: 3

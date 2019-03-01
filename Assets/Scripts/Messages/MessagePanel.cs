@@ -62,7 +62,11 @@ public class MessagePanel : MonoBehaviour
         SetPosition(message.position);
 
 		anim.SetBool(visible, true);
-        GameManager.Instance.EnterSpectatorMode();
+
+        if (message.disableUI)
+        {
+            GameManager.Instance.EnterSpectatorMode();
+        }
 	}
 
 	private void HidePopup()

@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
+using UnityEngine;
 
-public class StoryManager : GameEventListener
+public class DisplayMessageElements : MonoBehaviour
 {
 	public MessageEvent messagePanelEvent;
-	public IntReference turnCount;
-	public List<MessageElement> storyElements = new List<MessageElement>();
+	public List<MessageElement> messageElements = new List<MessageElement>();
 
     private void Awake()
     {
-        foreach (MessageElement storyElement in storyElements)
+        foreach (MessageElement storyElement in messageElements)
         {
             storyElement.currentActivations = 0;
         }
@@ -16,7 +16,7 @@ public class StoryManager : GameEventListener
 
     public void DisplayStory()
 	{
-		foreach (MessageElement storyElement in storyElements)
+		foreach (MessageElement storyElement in messageElements)
 		{
 			if (storyElement.IsConditionMet())
 			{
