@@ -21,14 +21,12 @@ public class TurretAttack : MonoBehaviour
 	private Tilemap _enemyTilemap;
 	private Tilemap _buildingTilemap;
 	private AudioSource _audio;
-	private PowerConsumer _power;
 
 	private void Start()
 	{
 		_enemyTilemap = GetComponentInParent<TilemapRegistry>().Enemies;
 		_buildingTilemap = GetComponentInParent<Tilemap>();
 		_audio = GetComponent<AudioSource>();
-		_power = GetComponent<PowerConsumer>();
 	}
 
 	private IEnumerator BuildingActionSequence()
@@ -54,9 +52,6 @@ public class TurretAttack : MonoBehaviour
 
 	public void OnBuildingAction()
 	{
-		// TODO implement power mechanics
-//		if (!_power.enabled || _worker.AssignedCount != _worker.Capacity) return;
-
 		EndTurnManager.actions.Enqueue(BuildingActionSequence());
 	}
 

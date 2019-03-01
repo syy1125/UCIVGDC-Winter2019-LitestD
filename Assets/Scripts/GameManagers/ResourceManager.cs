@@ -15,9 +15,6 @@ public class ResourceManager : MonoBehaviour
 	public IntReference GeneratorWorkerCount;
 	public IntReference FarmWorkerCount;
 
-	[HideInInspector]
-	public HashSet<PowerConsumer> PowerConsumers = new HashSet<PowerConsumer>();
-
 	[Header("Balancing")]
 	public int PowerPerTechnician = 3;
 	public int FoodPerFarmer = 3;
@@ -41,9 +38,7 @@ public class ResourceManager : MonoBehaviour
 	public int IdlePopulation => Population - GeneratorWorkerCount - FarmWorkerCount;
 	public int PowerProduced => GeneratorWorkerCount * PowerPerTechnician;
 	public int FoodProduced => FarmWorkerCount * FoodPerFarmer;
-	public int PowerConsumed => PowerConsumers.Sum(consumer => consumer.PowerDraw);
 	public int FoodConsumed => Population;
-	public int ExcessPower => PowerProduced - PowerConsumed;
 
 	public void ExecuteFinalActions()
 	{
@@ -86,8 +81,6 @@ public class ResourceManager : MonoBehaviour
 		UnassignGeneratorButton.interactable = GeneratorWorkerCount > 0;
 		AssignFarmButton.interactable = FarmWorkerCount < FarmCapacity && IdlePopulation > 0;
 		UnassignFarmButton.interactable = FarmWorkerCount > 0;
-
-//		EndTurnButton.interactable = ExcessPower >= 0;
 	}
 	
 	private void OnDestroy()
