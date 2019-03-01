@@ -83,9 +83,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: Turret
-  FlavourText: "Ranged weapons built from scrap metal and loaded with extra gunpowder
-    and bullets that were left behind when the previous inhabitants fled. Great for
-    taking down bulkier intruders \u2013 or aliens."
+  FlavourText: The aliens don't stand a chance against this bad boy!
 --- !u!114 &859652493973906294
 MonoBehaviour:
   m_ObjectHideFlags: 0
