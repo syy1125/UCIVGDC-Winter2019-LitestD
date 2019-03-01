@@ -133,6 +133,9 @@ public class TileSelectionManager : MonoBehaviour
 
 	private void OnDisable()
 	{
-		GroundClickAdaptor.enabled = false;
+        if (GroundClickAdaptor != null)
+        {
+            GroundClickAdaptor.enabled = false;
+        }
 	}
 }
