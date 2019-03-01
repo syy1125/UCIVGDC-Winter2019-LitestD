@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Tilemaps: {fileID: 0}
-  ConstructionQueueGrid: {fileID: 1558391923609401193}
+  ConstructionQueueGrid: {fileID: 1558391924676070315}
   QueueItemPrefab: {fileID: 3636450277169219273, guid: 0cd2e42d0c0d4e842ad672c728722501,
     type: 3}
   BulldozeTile: {fileID: 11400000, guid: 5a0b8d875b778cc4395822d656e574bf, type: 2}

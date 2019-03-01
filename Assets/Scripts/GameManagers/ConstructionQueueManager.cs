@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
@@ -59,7 +59,7 @@ public class ConstructionQueueManager : MonoBehaviour
 		var panelTransform = queueItem.GetComponent<RectTransform>();
 		var panelController = queueItem.GetComponent<ConstructionQueueItemPanel>();
 
-		var move = new Vector2(panelTransform.rect.width / 2 + panelController.Spacing, 0);
+		var move = new Vector2(panelTransform.rect.width / 2, 0);
 		panelTransform.offsetMin += move;
 		panelTransform.offsetMax += move;
 		panelController.BuildingSprite = ((Tile) selectedTile).sprite;

@@ -57,8 +57,8 @@ public class ConstructionQueueItemPanel : MonoBehaviour
 		Vector2 startMin = t.offsetMin;
 		Vector2 startMax = t.offsetMax;
 		float width = t.rect.width;
-		var endMin = new Vector2(Spacing + (width + Spacing) * _queueIndex, startMin.y);
-		var endMax = new Vector2((width + Spacing) * (_queueIndex + 1), startMax.y);
+		var endMin = new Vector2((width + Spacing) * _queueIndex, startMin.y);
+		var endMax = new Vector2(width + (width + Spacing) * _queueIndex, startMax.y);
 
 		float startTime = Time.time;
 		while (Time.time - startTime < TransitionDuration)
