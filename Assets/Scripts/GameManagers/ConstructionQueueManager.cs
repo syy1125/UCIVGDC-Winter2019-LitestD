@@ -128,7 +128,7 @@ public class ConstructionQueueManager : MonoBehaviour
 		if (_buildingQueue.Count <= 0) return;
 		_currentProgress += GameManager.Instance.ResourceManager.PowerProduced;
 
-		while (true)
+		while (_buildingQueue.Count > 0)
 		{
 			(Vector3Int tilePosition, TileBase selectedTile, GameObject queueItem) = _buildingQueue[0];
 			int buildingCost = Tilemaps.ConstructionPlanner
