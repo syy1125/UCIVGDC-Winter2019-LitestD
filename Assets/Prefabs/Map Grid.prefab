@@ -828,6 +828,16 @@ Tilemap:
         type: 3}
       m_TileFlags: 1
       m_ColliderType: 1
+  - first: {x: 0, y: -1, z: 0}
+    second:
+      m_TileIndex: 1
+      m_TileSpriteIndex: 1
+      m_TileMatrixIndex: 0
+      m_TileColorIndex: 0
+      m_ObjectToInstantiate: {fileID: 2708933932313829711, guid: d46f6cf0fc32ae24489fa819e885b0fd,
+        type: 3}
+      m_TileFlags: 1
+      m_ColliderType: 1
   - first: {x: -1, y: 0, z: 0}
     second:
       m_TileIndex: 2
@@ -842,8 +852,8 @@ Tilemap:
   m_TileAssetArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 11400000, guid: f668af207446d4a43a2615ba823ba84b, type: 2}
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: aa81ec2365e6e8745b15be4ae3eaba34, type: 2}
   - m_RefCount: 1
@@ -851,14 +861,14 @@ Tilemap:
   m_TileSpriteArray:
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: 18931fcb671b312459aa7df0f01b5fe6, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 1df7c4fd3eb935646a7a975818e6bdda, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: 650d784c5b35c9048b2c4cca77dcefc2, type: 3}
   m_TileMatrixArray:
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data:
       e00: 1
       e01: 0
@@ -877,12 +887,12 @@ Tilemap:
       e32: 0
       e33: 1
   m_TileColorArray:
-  - m_RefCount: 2
+  - m_RefCount: 3
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_AnimationFrameRate: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Origin: {x: -2, y: -2, z: 0}
-  m_Size: {x: 2, y: 3, z: 1}
+  m_Size: {x: 3, y: 3, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
   m_TileOrientation: 0
   m_TileOrientationMatrix:
@@ -944,7 +954,7 @@ TilemapRenderer:
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 3
-  m_Mode: 1
+  m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1 &7090404998848969349
@@ -1058,7 +1068,7 @@ TilemapRenderer:
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 3
-  m_Mode: 1
+  m_Mode: 0
   m_DetectChunkCullingBounds: 0
   m_MaskInteraction: 0
 --- !u!1 &7090404998903938467
@@ -1776,6 +1786,7 @@ MonoBehaviour:
     type: 2}
   AttackAftermathInterval: 0.5
   MovementAftermathInterval: 0.2
+  enemySpawning: {fileID: 0}
   DebugParent: {fileID: 0}
   TextPrefab: {fileID: 218482175293547138, guid: ddb65b8c2ee5cc34596a7ca96b5e502a,
     type: 3}
