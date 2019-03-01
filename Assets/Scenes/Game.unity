@@ -2185,6 +2185,11 @@ PrefabInstance:
       propertyPath: GroundClickAdaptor
       value: 
       objectReference: {fileID: 1006750728}
+    - target: {fileID: 378346472273222141, guid: f6bcd091eebe1e7448d60dac79a2c515,
+        type: 3}
+      propertyPath: Tilemaps
+      value: 
+      objectReference: {fileID: 1006750729}
     - target: {fileID: 6120210685687606673, guid: f6bcd091eebe1e7448d60dac79a2c515,
         type: 3}
       propertyPath: m_havePropertiesChanged

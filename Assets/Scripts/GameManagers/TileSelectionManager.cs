@@ -5,17 +5,16 @@ using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
-using Debug = System.Diagnostics.Debug;
 
 public class TileSelectionManager : MonoBehaviour
 {
-	public Tilemap GroundMap;
-	public Tilemap BuildingMap;
+	public TilemapRegistry Tilemaps;
 	public Vector3Int? Selection { get; private set; }
 	[FormerlySerializedAs("ClickAdaptor")]
 	public PointerEventAdaptor GroundClickAdaptor;
 
-	[Header("Tilemap Effect Colors")]
+	[Header("Tilemap Effects")]
+	public TileBase HighlightTile;
 	public Color SelectedColor;
 	public Color DisabledColor;
 
@@ -40,11 +39,11 @@ public class TileSelectionManager : MonoBehaviour
 
 	public void OnGroundClick(PointerEventData eventData)
 	{
-        if (eventData.button != PointerEventData.InputButton.Left) return; // Only want left click to select tiles
+		if (eventData.button != PointerEventData.InputButton.Left) return; // Only want left click to select tiles
 
-		Vector3Int tilePosition = GroundMap.WorldToCell(eventData.pointerCurrentRaycast.worldPosition);
+		Vector3Int tilePosition = Tilemaps.Ground.WorldToCell(eventData.pointerCurrentRaycast.worldPosition);
 
-		if (!GroundMap.HasTile(tilePosition)) return;
+		if (!Tilemaps.Ground.HasTile(tilePosition)) return;
 
 		SetSelection(tilePosition);
 	}
@@ -53,22 +52,37 @@ public class TileSelectionManager : MonoBehaviour
 	{
 		if (Selection != null)
 		{
-			GroundMap.SetColor(Selection.Value, Color.white);
-//			BuildingMap.SetColor(Selection.Value, Color.white);
+			Tilemaps.Ground.SetColor(Selection.Value, Color.white);
+			Tilemaps.Highlights.ClearAllTiles();
 		}
 
 		Selection = target;
 
 		if (Selection != null)
 		{
-			GroundMap.SetTileFlags(Selection.Value, TileFlags.None);
-			GroundMap.SetColor(Selection.Value, SelectedColor);
-//			BuildingMap.SetTileFlags(Selection.Value, TileFlags.None);
-//			BuildingMap.SetColor(Selection.Value, SelectedColor);
+			Tilemaps.Ground.SetTileFlags(Selection.Value, TileFlags.None);
+			Tilemaps.Ground.SetColor(Selection.Value, SelectedColor);
+
+			DisplayHighlights();
 		}
 
 		GameManager.Instance.DisableOtherManagers(this);
 		UpdateUIEvent.Raise();
+	}
+
+	private void DisplayHighlights()
+	{
+		System.Diagnostics.Debug.Assert(Selection != null, nameof(Selection) + " != null");
+		GameObject tileLogic = Tilemaps.Buildings.GetInstantiatedObject(Selection.Value);
+
+		var turret = tileLogic.GetComponent<TurretAttack>();
+		if (turret != null)
+		{
+			foreach (Vector3Int position in turret.GetPositionsInRange())
+			{
+				Tilemaps.Highlights.SetTile(position, HighlightTile);
+			}
+		}
 	}
 
 	public void Display()
@@ -97,16 +111,16 @@ public class TileSelectionManager : MonoBehaviour
 
 	private void DisplayBuildingInfo(Vector3Int selectedTile)
 	{
-		if (BuildingMap.HasTile(selectedTile))
+		if (Tilemaps.Buildings.HasTile(selectedTile))
 		{
 			var description =
-				BuildingMap.GetInstantiatedObject(selectedTile).GetComponent<BuildingDescription>();
+				Tilemaps.Buildings.GetInstantiatedObject(selectedTile).GetComponent<BuildingDescription>();
 
 			BuildingNameText.text = description.Name;
 			BuildingFlavourText.text = description.FlavourText;
 
 			ToggleButton.SetActive(true);
-			ToggleButtonText.text = BuildingMap.GetInstantiatedObject(selectedTile).activeSelf
+			ToggleButtonText.text = Tilemaps.Buildings.GetInstantiatedObject(selectedTile).activeSelf
 				? "Turn Off"
 				: "Turn On";
 		}
@@ -122,20 +136,20 @@ public class TileSelectionManager : MonoBehaviour
 	{
 		Debug.Assert(Selection != null, nameof(Selection) + " != null");
 
-		GameObject buildingLogic = BuildingMap.GetInstantiatedObject(Selection.Value);
+		GameObject buildingLogic = Tilemaps.Buildings.GetInstantiatedObject(Selection.Value);
 		buildingLogic.SetActive(!buildingLogic.activeSelf);
 
-		BuildingMap.SetTileFlags(Selection.Value, TileFlags.None);
-		BuildingMap.SetColor(Selection.Value, buildingLogic.activeSelf ? Color.white : DisabledColor);
+		Tilemaps.Buildings.SetTileFlags(Selection.Value, TileFlags.None);
+		Tilemaps.Buildings.SetColor(Selection.Value, buildingLogic.activeSelf ? Color.white : DisabledColor);
 
 		UpdateUIEvent.Raise();
 	}
 
 	private void OnDisable()
 	{
-        if (GroundClickAdaptor != null)
-        {
-            GroundClickAdaptor.enabled = false;
-        }
+		if (GroundClickAdaptor != null)
+		{
+			GroundClickAdaptor.enabled = false;
+		}
 	}
 }

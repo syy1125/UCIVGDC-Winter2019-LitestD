@@ -1,10 +1,7 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
-using Unity.Collections;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using Random = UnityEngine.Random;
 
 public class TurretAttack : MonoBehaviour
 {
@@ -18,36 +15,41 @@ public class TurretAttack : MonoBehaviour
 	public float MinPitch;
 	public float MaxPitch;
 
-	private Tilemap _enemyTilemap;
-	private Tilemap _buildingTilemap;
+	private TilemapRegistry _tilemaps;
 	private AudioSource _audio;
 
 	private void Start()
 	{
-		_enemyTilemap = GetComponentInParent<TilemapRegistry>().Enemies;
-		_buildingTilemap = GetComponentInParent<Tilemap>();
+		_tilemaps = GetComponentInParent<TilemapRegistry>();
 		_audio = GetComponent<AudioSource>();
 	}
 
 	private IEnumerator BuildingActionSequence()
 	{
-		Vector3Int turretPosition = _buildingTilemap.WorldToCell(transform.position);
-		var nearbyEnemies = new List<Vector3Int>();
+		Vector3Int[] nearbyEnemies = GetPositionsInRange().Where(_tilemaps.Enemies.HasTile).ToArray();
+
+		if (nearbyEnemies.Length <= 0) yield break;
+		yield return StartCoroutine(AttackEnemy(nearbyEnemies[Random.Range(0, nearbyEnemies.Length)]));
+	}
+
+	public IEnumerable<Vector3Int> GetPositionsInRange()
+	{
+		Vector3Int turretPosition = _tilemaps.Buildings.WorldToCell(transform.position);
+		var locationsInRange = new HashSet<Vector3Int>();
+
 		for (int x = -Range; x <= Range; x++)
 		{
 			for (int y = -Range; y <= Range; y++)
 			{
 				if (Mathf.Abs(x) + Mathf.Abs(y) > Range) continue;
-				var offset = new Vector3Int(x, y, 0);
-				Vector3Int target = turretPosition + offset;
+				Vector3Int target = turretPosition + new Vector3Int(x, y, 0);
+				if (!(_tilemaps.Ground.HasTile(target) || _tilemaps.OuterEdge.HasTile(target))) continue;
 
-				if (!_enemyTilemap.HasTile(target)) continue;
-				nearbyEnemies.Add(target);
+				locationsInRange.Add(target);
 			}
 		}
 
-		if (nearbyEnemies.Count <= 0) yield break;
-		yield return StartCoroutine(AttackEnemy(nearbyEnemies[Random.Range(0, nearbyEnemies.Count)]));
+		return locationsInRange;
 	}
 
 	public void OnBuildingAction()
@@ -57,14 +59,15 @@ public class TurretAttack : MonoBehaviour
 
 	private IEnumerator AttackEnemy(Vector3Int targetPosition)
 	{
-		var enemyHealth = _enemyTilemap.GetInstantiatedObject(targetPosition).GetComponent<HealthPool>();
+		var enemyHealth = _tilemaps.Enemies.GetInstantiatedObject(targetPosition).GetComponent<HealthPool>();
 		Transform projectileTransform = Instantiate(ProjectilePrefab).transform;
 
 		_audio.pitch = Random.Range(MinPitch, MaxPitch);
 		_audio.Play();
 
-		Vector3 startPosition = _buildingTilemap.GetCellCenterWorld(_buildingTilemap.WorldToCell(transform.position));
-		Vector3 enemyPosition = _enemyTilemap.GetCellCenterWorld(targetPosition);
+		Vector3 startPosition =
+			_tilemaps.Buildings.GetCellCenterWorld(_tilemaps.Buildings.WorldToCell(transform.position));
+		Vector3 enemyPosition = _tilemaps.Enemies.GetCellCenterWorld(targetPosition);
 
 		projectileTransform.position = startPosition + Vector3.forward;
 		projectileTransform.rotation =
@@ -90,7 +93,7 @@ public class TurretAttack : MonoBehaviour
 		Destroy(projectileTransform.gameObject);
 
 		enemyHealth.Damage(AttackStrength);
-		
+
 		yield return new WaitForSeconds(AftermathInterval);
 	}
 }
