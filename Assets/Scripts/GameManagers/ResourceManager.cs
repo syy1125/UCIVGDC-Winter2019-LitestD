@@ -27,7 +27,7 @@ public class ResourceManager : MonoBehaviour
 	public TextMeshProUGUI GeneratorDisplay;
 	public TextMeshProUGUI FarmDisplay;
 
-	[Space]
+	[Header("Buttons")]
 	public Button AssignGeneratorButton;
 	public Button UnassignGeneratorButton;
 	public Button AssignFarmButton;

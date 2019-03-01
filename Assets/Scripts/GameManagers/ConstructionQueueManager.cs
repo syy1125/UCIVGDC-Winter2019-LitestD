@@ -1,5 +1,6 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
@@ -8,18 +9,23 @@ public class ConstructionQueueManager : MonoBehaviour
 {
 	public TilemapRegistry Tilemaps;
 
+	[Header("Prefabs")]
 	public GameObject ConstructionQueueGrid;
 	public GameObject QueueItemPrefab;
 	public TileBase BulldozeTile;
 
+	[Header("Rendering")]
 	public GameEvent UpdateUIEvent;
 	[FormerlySerializedAs("OutlineTile")]
 	[FormerlySerializedAs("HighlightFrameTile")]
 	public TileBase HighlightTile;
+	public TextMeshProUGUI ConstructionProgressText;
+	public TextMeshProUGUI ConstructionPowerText;
 
 	private readonly List<Tuple<Vector3Int, TileBase, GameObject>> _buildingQueue =
 		new List<Tuple<Vector3Int, TileBase, GameObject>>();
 	private int _selectedIndex = -1;
+	private int _currentProgress;
 
 	public int QueueLength => _buildingQueue.Count;
 
@@ -120,17 +126,46 @@ public class ConstructionQueueManager : MonoBehaviour
 	public void ExecuteBuildOrder()
 	{
 		if (_buildingQueue.Count <= 0) return;
+		_currentProgress += GameManager.Instance.ResourceManager.PowerProduced;
 
-		(Vector3Int tilePosition, TileBase selectedTile, GameObject queueItem) = _buildingQueue[0];
-		_buildingQueue.RemoveAt(0);
-		Destroy(queueItem);
-		Tilemaps.Buildings.SetTile(tilePosition, selectedTile == BulldozeTile ? null : selectedTile);
-		Tilemaps.ConstructionPlanner.SetTile(tilePosition, null);
+		while (true)
+		{
+			(Vector3Int tilePosition, TileBase selectedTile, GameObject queueItem) = _buildingQueue[0];
+			int buildingCost = Tilemaps.ConstructionPlanner
+				.GetInstantiatedObject(tilePosition)
+				.GetComponent<BuildCost>().Cost;
 
-		for (int index = 0; index < QueueLength; index++)
+			if (_currentProgress < buildingCost) break;
+			_currentProgress -= buildingCost;
+
+			_buildingQueue.RemoveAt(0);
+			Destroy(queueItem);
+			Tilemaps.Buildings.SetTile(tilePosition, selectedTile == BulldozeTile ? null : selectedTile);
+			Tilemaps.ConstructionPlanner.SetTile(tilePosition, null);
+		}
+
+		for (var index = 0; index < QueueLength; index++)
 		{
 			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
 		}
+
+		Display();
+	}
+
+	public void Display()
+	{
+		if (_buildingQueue.Count > 0)
+		{
+			(Vector3Int tilePosition, TileBase selectedTile, GameObject queueItem) = _buildingQueue[0];
+			ConstructionProgressText.text =
+				$"Progress:\n{_currentProgress} / {Tilemaps.ConstructionPlanner.GetInstantiatedObject(tilePosition).GetComponent<BuildCost>().Cost}";
+		}
+		else
+		{
+			ConstructionProgressText.text = "Progress:\nIdle";
+		}
+
+		ConstructionPowerText.text = $"Build Speed:\n+{GameManager.Instance.ResourceManager.PowerProduced} / turn";
 	}
 
 	private void OnDisable()
