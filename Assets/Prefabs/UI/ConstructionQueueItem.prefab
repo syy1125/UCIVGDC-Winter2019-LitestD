@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3636450277169219276}
   - component: {fileID: 3636450277169219279}
   - component: {fileID: 3636450277169219277}
+  - component: {fileID: 4944713798910280033}
   - component: {fileID: 3031289236467270335}
   - component: {fileID: 7868921211036947105}
   m_Layer: 5
@@ -139,6 +140,19 @@ MonoBehaviour:
   ShiftRightButton: {fileID: 2434260760275099960}
   ShiftRightmostButton: {fileID: 2646244980391651472}
   CancelButton: {fileID: 410102993292451120}
+--- !u!114 &4944713798910280033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3636450277169219273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d2f6aa1b4735e74aa9950b33421380b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CurrentProgress: 0
 --- !u!114 &3031289236467270335
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -559,6 +573,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 5886049878332874232, guid: aab69544d9be07148992fe7d1c37aee5,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5886049878332874232, guid: aab69544d9be07148992fe7d1c37aee5,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5886049878332874235, guid: aab69544d9be07148992fe7d1c37aee5,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
@@ -643,16 +667,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_fontSizeBase
       value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 5886049878332874232, guid: aab69544d9be07148992fe7d1c37aee5,
-        type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5886049878332874232, guid: aab69544d9be07148992fe7d1c37aee5,
-        type: 3}
-      propertyPath: m_Color.b
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aab69544d9be07148992fe7d1c37aee5, type: 3}

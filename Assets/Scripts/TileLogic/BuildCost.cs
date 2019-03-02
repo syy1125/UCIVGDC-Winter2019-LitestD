@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 
 public class BuildCost : MonoBehaviour
 {
-	public int Cost;
+	[FormerlySerializedAs("Cost")]
+	public int RequiredProgress;
 }

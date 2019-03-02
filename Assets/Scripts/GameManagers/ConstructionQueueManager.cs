@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -25,7 +25,6 @@ public class ConstructionQueueManager : MonoBehaviour
 	private readonly List<Tuple<Vector3Int, TileBase, GameObject>> _buildingQueue =
 		new List<Tuple<Vector3Int, TileBase, GameObject>>();
 	private int _selectedIndex = -1;
-	private int _currentProgress;
 
 	public int QueueLength => _buildingQueue.Count;
 
@@ -126,27 +125,24 @@ public class ConstructionQueueManager : MonoBehaviour
 	public void ExecuteBuildOrder()
 	{
 		if (_buildingQueue.Count <= 0) return;
-		_currentProgress += GameManager.Instance.ResourceManager.PowerProduced;
+		int buildUnits = GameManager.Instance.ResourceManager.PowerProduced;
 
 		while (_buildingQueue.Count > 0)
 		{
 			(Vector3Int tilePosition, TileBase selectedTile, GameObject queueItem) = _buildingQueue[0];
-			int buildingCost = Tilemaps.ConstructionPlanner
+			var buildCost = Tilemaps.ConstructionPlanner
 				.GetInstantiatedObject(tilePosition)
-				.GetComponent<BuildCost>().Cost;
+				.GetComponent<BuildCost>();
+			var queueItemProgress = queueItem.GetComponent<ConstructionQueueItemProgress>();
 
-			if (_currentProgress < buildingCost) break;
-			_currentProgress -= buildingCost;
+			queueItemProgress.CurrentProgress += buildUnits;
+			if (queueItemProgress.CurrentProgress < buildCost.RequiredProgress) break;
 
+			buildUnits = queueItemProgress.CurrentProgress - buildCost.RequiredProgress;
 			_buildingQueue.RemoveAt(0);
 			Destroy(queueItem);
 			Tilemaps.Buildings.SetTile(tilePosition, selectedTile == BulldozeTile ? null : selectedTile);
 			Tilemaps.ConstructionPlanner.SetTile(tilePosition, null);
-		}
-
-		if (_buildingQueue.Count <= 0)
-		{
-			_currentProgress = 0;
 		}
 
 		for (var index = 0; index < QueueLength; index++)
@@ -161,9 +157,11 @@ public class ConstructionQueueManager : MonoBehaviour
 	{
 		if (_buildingQueue.Count > 0)
 		{
-			(Vector3Int tilePosition, TileBase selectedTile, GameObject queueItem) = _buildingQueue[0];
+			(Vector3Int tilePosition, TileBase _, GameObject queueItem) = _buildingQueue[0];
+			var buildCost = Tilemaps.ConstructionPlanner.GetInstantiatedObject(tilePosition).GetComponent<BuildCost>();
+			var queueItemProgress = queueItem.GetComponent<ConstructionQueueItemProgress>();
 			ConstructionProgressText.text =
-				$"Progress:\n{_currentProgress} / {Tilemaps.ConstructionPlanner.GetInstantiatedObject(tilePosition).GetComponent<BuildCost>().Cost}";
+				$"Progress:\n{queueItemProgress.CurrentProgress} / {buildCost.RequiredProgress}";
 		}
 		else
 		{
