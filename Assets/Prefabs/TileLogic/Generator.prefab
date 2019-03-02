@@ -68,7 +68,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CapacityRef: {fileID: 11400000, guid: f9aea34743f90404a86940b37494c431, type: 2}
-  CapacityDelta: 1
+  CapacityDelta: 2
 --- !u!114 &6132563802706737936
 MonoBehaviour:
   m_ObjectHideFlags: 0
