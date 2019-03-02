@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -90,6 +90,8 @@ public class ConstructionQueueManager : MonoBehaviour
 		{
 			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
 		}
+
+		UpdateUIEvent.Raise();
 	}
 
 
@@ -103,6 +105,8 @@ public class ConstructionQueueManager : MonoBehaviour
 		{
 			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
 		}
+
+		UpdateUIEvent.Raise();
 	}
 
 	public void SelectIndex(int index)
@@ -150,7 +154,7 @@ public class ConstructionQueueManager : MonoBehaviour
 			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
 		}
 
-		Display();
+		UpdateUIEvent.Raise();
 	}
 
 	public void Display()
