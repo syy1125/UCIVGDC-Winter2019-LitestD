@@ -1766,6 +1766,7 @@ MonoBehaviour:
   TileSelectionManager: {fileID: 1676295723}
   EndTurnManager: {fileID: 1382166862}
   RaiseOnStart:
+  - {fileID: 11400000, guid: 612b4f18acd8f19409d40ae53776a15e, type: 2}
   - {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
 --- !u!4 &1671584265
 Transform:

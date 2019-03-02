@@ -40,10 +40,20 @@ public class ResourceManager : MonoBehaviour
 	public int FoodProduced => FarmWorkerCount * FoodPerFarmer;
 	public int FoodConsumed => Population;
 
+	public void InitializeState()
+	{
+		Population.value = 1;
+	}
+
 	public void ExecuteFinalActions()
 	{
-		Population.value = Mathf.Clamp(Population + 1, 0, HousingCapacity);
+		IncrementPopulation();
 		UpdateUIEvent.Raise();
+	}
+
+	private void IncrementPopulation()
+	{
+		Population.value = Mathf.Clamp(Population + 1, 0, HousingCapacity);
 	}
 
 	public void AssignGenerator()
