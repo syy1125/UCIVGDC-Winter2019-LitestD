@@ -81,6 +81,11 @@ public class ConstructionQueueManager : MonoBehaviour
 
 	public void CancelBuildOrder(int index)
 	{
+		if (_selectedIndex == index)
+		{
+			GameManager.Instance.EnterSelectionMode();
+		}
+		
 		(Vector3Int tilePosition, TileBase selectedTile, GameObject queueItem) = _buildingQueue[index];
 		_buildingQueue.RemoveAt(index);
 		Destroy(queueItem);

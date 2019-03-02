@@ -74,6 +74,8 @@ public class TileSelectionManager : MonoBehaviour
 	{
 		System.Diagnostics.Debug.Assert(Selection != null, nameof(Selection) + " != null");
 		GameObject tileLogic = Tilemaps.Buildings.GetInstantiatedObject(Selection.Value);
+		
+		if (!tileLogic) return;
 
 		var turret = tileLogic.GetComponent<TurretAttack>();
 		if (turret != null)
