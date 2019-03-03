@@ -14,11 +14,8 @@ public class DisplayMessageElements : MonoBehaviour
         }
     }
 
-    public void DisplayStory(bool shouldContinue)
+    public void DisplayStory()
 	{
-        if (shouldContinue)
-            messagePanelEvent.Continue();
-
 		foreach (MessageElement storyElement in messageElements)
 		{
 			if (storyElement.IsConditionMet())

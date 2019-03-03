@@ -83,7 +83,7 @@ public class ConstructionQueueManager : MonoBehaviour
 	{
 		if (_selectedIndex == index)
 		{
-			GameManager.Instance.ResetSelectionMode();
+			GameManager.Instance.EnterSelectionMode();
 		}
 		
 		(Vector3Int tilePosition, TileBase selectedTile, GameObject queueItem) = _buildingQueue[index];

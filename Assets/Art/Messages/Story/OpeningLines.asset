@@ -34,4 +34,4 @@ MonoBehaviour:
       please don't feel free to ask. To build a house, click on [Housing] in the [Build]
       menu and place it on an empty plot of land.
     position: 3
-    disableUI: 0
+    disableUI: 1

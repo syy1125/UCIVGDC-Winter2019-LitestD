@@ -12,7 +12,6 @@ public class MessagePanel : MonoBehaviour
 	public TextMeshProUGUI textField;
 
 	private Queue<Message> messages = new Queue<Message>();
-    private Message currentMessage;
 	private Animator anim;
 	private string visible = "Visible";
 
@@ -56,36 +55,24 @@ public class MessagePanel : MonoBehaviour
 
 	private void ShowPopup()
 	{
-		currentMessage = messages.Dequeue();
+		Message message = messages.Dequeue();
 
-		titleField.text = currentMessage.title;
-		textField.text = currentMessage.text;
-        SetPosition(currentMessage.position);
+		titleField.text = message.title;
+		textField.text = message.text;
+        SetPosition(message.position);
 
 		anim.SetBool(visible, true);
 
-        if (currentMessage.disableUI)
+        if (message.disableUI)
         {
             GameManager.Instance.EnterSpectatorMode();
-        }
-        else
-        {
-            GameManager.Instance.EnterSelectionMode();
         }
 	}
 
 	private void HidePopup()
 	{
 		anim.SetBool(visible, false);
-
-        if (currentMessage.disableUI)
-        {
-            GameManager.Instance.ResetSelectionMode();
-        }
-        else
-        {
-            GameManager.Instance.EnterSelectionMode();
-        }
+		GameManager.Instance.EnterSelectionMode();
 	}
 
     private void SetPosition(Position position)

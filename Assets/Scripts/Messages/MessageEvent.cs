@@ -13,14 +13,6 @@ public class MessageEvent : ScriptableObject
 		}
 	}
 
-    public void Continue()
-    {
-        if (messagePanel != null)
-        {
-            messagePanel.Continue();
-        }
-    }
-
 	public void Register(MessagePanel panel)
 	{
 		messagePanel = panel;

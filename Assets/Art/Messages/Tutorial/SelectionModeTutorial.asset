@@ -16,10 +16,9 @@ MonoBehaviour:
   condition: 0
   value: 1
   maxActivations: 1
-  currentActivations: 1
+  currentActivations: 0
   messages:
   - title: Aaron Buckles
     text: After placing the housing, Press the [Escape] key or [Right-Click] your
-      mouse to enter selection mode.
+      mouse to enter selection
     position: 3
-    disableUI: 0
