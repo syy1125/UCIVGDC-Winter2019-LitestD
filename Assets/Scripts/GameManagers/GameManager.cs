@@ -44,24 +44,29 @@ public class GameManager : MonoBehaviour
 	{
 		if (canEnterSelectionMode && (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)))
 		{
-			EnterSelectionMode();
+			ResetSelectionMode();
 		}
 	}
 
-	public void EnterSelectionMode()
+	public void ResetSelectionMode()
 	{
-        canEnterSelectionMode = true;
-
 		PlanConstructionManager.SelectBuildTile(null);
 		ConstructionQueueManager.SelectIndex(-1);
 		TileSelectionManager.SetSelection(null);
 		EventSystem.current.SetSelectedGameObject(null);
 
-		PlanConstructionManager.enabled = true;
-		ConstructionQueueManager.enabled = true;
-		TileSelectionManager.enabled = true;
-		EndTurnManager.enabled = true;
-	}
+        EnterSelectionMode();
+    }
+
+    public void EnterSelectionMode()
+    {
+        canEnterSelectionMode = true;
+
+        PlanConstructionManager.enabled = true;
+        ConstructionQueueManager.enabled = true;
+        TileSelectionManager.enabled = true;
+        EndTurnManager.enabled = true;
+    }
 
     public void EnterSpectatorMode()
     {
