@@ -498,7 +498,7 @@ RectTransform:
   - {fileID: 1025516403}
   - {fileID: 476325993}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -913,7 +913,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1839735485 &553023664 stripped
 Tilemap:
@@ -1058,7 +1058,7 @@ PrefabInstance:
     - target: {fileID: 7090405000068932638, guid: d3eb8ec25f7346a45a3a5e5c593fdb11,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7090405000068932638, guid: d3eb8ec25f7346a45a3a5e5c593fdb11,
         type: 3}
@@ -1423,7 +1423,7 @@ GameObject:
   - component: {fileID: 1129293077}
   - component: {fileID: 1129293079}
   m_Layer: 0
-  m_Name: StoryManager
+  m_Name: MessageManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1458,7 +1458,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1129293079
 MonoBehaviour:
@@ -1472,7 +1472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f79151e02691024e8b1e1257c3baee0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
+  gameEvent: {fileID: 11400000, guid: a51c5abf6c897214f8929175d40c0690, type: 2}
   response:
     m_PersistentCalls:
       m_Calls:
@@ -1768,6 +1768,7 @@ MonoBehaviour:
   RaiseOnStart:
   - {fileID: 11400000, guid: 612b4f18acd8f19409d40ae53776a15e, type: 2}
   - {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
+  - {fileID: 11400000, guid: a51c5abf6c897214f8929175d40c0690, type: 2}
 --- !u!4 &1671584265
 Transform:
   m_ObjectHideFlags: 0
@@ -1780,7 +1781,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1671584266
 MonoBehaviour:
@@ -2052,7 +2053,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &378346472815732694
 PrefabInstance:

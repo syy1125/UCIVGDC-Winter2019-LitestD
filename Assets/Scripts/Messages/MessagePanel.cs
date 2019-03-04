@@ -65,12 +65,14 @@ public class MessagePanel : MonoBehaviour
 
         if (message.disableUI)
         {
+            print("DISABLE UI");
             GameManager.Instance.EnterSpectatorMode();
         }
 	}
 
 	private void HidePopup()
 	{
+        print("HIDE POPUP");
 		anim.SetBool(visible, false);
 		GameManager.Instance.EnterSelectionMode();
 	}
