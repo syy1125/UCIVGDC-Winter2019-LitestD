@@ -115,7 +115,7 @@ public class PlanConstructionManager : MonoBehaviour
 			GameManager.Instance.SetStatusText(
 				tile == BulldozeTile
 					? "Planning bulldoze jobs"
-					: $"Planning {tile.name} building construction"
+					: $"Planning {((Tile) SelectedTile).gameObject.GetComponent<BuildingDescription>().Name.ToLower()} construction"
 			);
 		}
 
