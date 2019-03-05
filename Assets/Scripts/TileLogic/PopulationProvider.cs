@@ -18,7 +18,7 @@ public class PopulationProvider : MonoBehaviour
 		ConstructionOrder = _constructionCount++;
 	}
 
-	public void RemoveResidents()
+	public void KillResidents()
 	{
 		PopulationRef.value -= Portraits.Count;
 		Portraits.Clear();
