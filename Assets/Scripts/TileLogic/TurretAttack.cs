@@ -1,7 +1,9 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class TurretAttack : MonoBehaviour
 {
@@ -32,9 +34,15 @@ public class TurretAttack : MonoBehaviour
 		yield return StartCoroutine(AttackEnemy(nearbyEnemies[Random.Range(0, nearbyEnemies.Length)]));
 	}
 
-	public IEnumerable<Vector3Int> GetPositionsInRange()
+	private bool CanHaveEnemy(Vector3Int target)
 	{
-		Vector3Int turretPosition = _tilemaps.Buildings.WorldToCell(transform.position);
+		return _tilemaps.Ground.HasTile(target) || _tilemaps.OuterEdge.HasTile(target);
+	}
+
+	public IEnumerable<Vector3Int> GetPositionsInRange(Vector3Int? source = null, Predicate<Vector3Int> isValidTarget = null)
+	{
+		Vector3Int turretPosition = source ?? _tilemaps.Buildings.WorldToCell(transform.position);
+		isValidTarget = isValidTarget ?? CanHaveEnemy;
 		var locationsInRange = new HashSet<Vector3Int>();
 
 		for (int x = -Range; x <= Range; x++)
@@ -43,7 +51,7 @@ public class TurretAttack : MonoBehaviour
 			{
 				if (Mathf.Abs(x) + Mathf.Abs(y) > Range) continue;
 				Vector3Int target = turretPosition + new Vector3Int(x, y, 0);
-				if (!(_tilemaps.Ground.HasTile(target) || _tilemaps.OuterEdge.HasTile(target))) continue;
+				if (!isValidTarget(target)) continue;
 
 				locationsInRange.Add(target);
 			}

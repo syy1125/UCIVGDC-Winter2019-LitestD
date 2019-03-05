@@ -320,8 +320,10 @@ MonoBehaviour:
   Tilemaps: {fileID: 0}
   SelectBuildTileEvent: {fileID: 11400000, guid: ab192d5a7ccda3e4aaab79ba8c3185ec,
     type: 2}
-  BulldozeTile: {fileID: 11400000, guid: 5a0b8d875b778cc4395822d656e574bf, type: 2}
   ButtonGrid: {fileID: 5359818826284772051}
+  BulldozeTile: {fileID: 11400000, guid: 5a0b8d875b778cc4395822d656e574bf, type: 2}
+  TurretTile: {fileID: 11400000, guid: 2a4e85d843a17534c8565e9db5afc615, type: 2}
+  HighlightTile: {fileID: 11400000, guid: edc8b550f37cb05488174d9adbd07abf, type: 2}
 --- !u!114 &5359818826999693917
 MonoBehaviour:
   m_ObjectHideFlags: 0

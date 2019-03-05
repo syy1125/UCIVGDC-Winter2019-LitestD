@@ -7,6 +7,7 @@ public class TilemapRegistry : MonoBehaviour
 	public Tilemap Ground;
 	public Tilemap Buildings;
 	public Tilemap ConstructionPlanner;
+	public Tilemap ConstructionPreview;
 	public Tilemap Enemies;
 	public Tilemap Highlights;
 }
