@@ -3026,6 +3026,11 @@ PrefabInstance:
       propertyPath: EndTurnButton
       value: 
       objectReference: {fileID: 1025516404}
+    - target: {fileID: 9190981436752966890, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
+        type: 3}
+      propertyPath: BuildingMap
+      value: 
+      objectReference: {fileID: 1772983884}
     - target: {fileID: 9190981437078069598, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
         type: 3}
       propertyPath: m_havePropertiesChanged

@@ -435,6 +435,9 @@ MonoBehaviour:
   FreeWorkforceDisplay: {fileID: 9190981437731391812}
   GeneratorDisplay: {fileID: 9190981436429933989}
   FarmDisplay: {fileID: 9190981436328926863}
+  BuildingMap: {fileID: 0}
+  NormalPortraits:
+  - {fileID: 21300000, guid: 2a2dc7ee4296b44428de9894711e7d2a, type: 3}
   AssignGeneratorButton: {fileID: 8293539455775188049}
   UnassignGeneratorButton: {fileID: 8476098010008914125}
   AssignFarmButton: {fileID: 6710810452611434807}

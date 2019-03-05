@@ -2,6 +2,7 @@
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class ResourceManager : MonoBehaviour
@@ -19,13 +20,17 @@ public class ResourceManager : MonoBehaviour
 	public int PowerPerTechnician = 3;
 	public int FoodPerFarmer = 3;
 
-
 	[Header("Overview Rendering")]
 	public GameEvent UpdateUIEvent;
 	public TextMeshProUGUI HousingDisplay;
 	public TextMeshProUGUI FreeWorkforceDisplay;
 	public TextMeshProUGUI GeneratorDisplay;
 	public TextMeshProUGUI FarmDisplay;
+
+	[Header("Housing")]
+	public Tilemap BuildingMap;
+	public Sprite[] NormalPortraits;
+	private Stack<Sprite> _extraPopulation = new Stack<Sprite>();
 
 	[Header("Buttons")]
 	public Button AssignGeneratorButton;
@@ -47,13 +52,82 @@ public class ResourceManager : MonoBehaviour
 
 	public void ExecuteFinalActions()
 	{
-		IncrementPopulation();
+		ResolvePopulationChange();
 		UpdateUIEvent.Raise();
 	}
 
-	private void IncrementPopulation()
+	private void ResolvePopulationChange()
 	{
-		Population.value = Mathf.Clamp(Population + 1, 0, HousingCapacity);
+		if (Population < HousingCapacity)
+		{
+			Population.value += 1;
+			HousePopulation(GeneratePortrait());
+		}
+		else if (Population > HousingCapacity)
+		{
+			Population.value = HousingCapacity;
+			_extraPopulation.Clear();
+			PreventPopulationOverdraft();
+		}
+	}
+
+	public void PreventPopulationOverdraft()
+	{
+		while (IdlePopulation < 0)
+		{
+			if (FarmWorkerCount <= 0)
+			{
+				GeneratorWorkerCount.value += IdlePopulation;
+			}
+			else if (GeneratorWorkerCount <= 0)
+			{
+				FarmWorkerCount.value += IdlePopulation;
+			}
+			else if (Random.value < 0.5f)
+			{
+				GeneratorWorkerCount.value -= 1;
+			}
+			else
+			{
+				FarmWorkerCount.value -= 1;
+			}
+		}
+	}
+
+	public void HousePopulation(Sprite portrait)
+	{
+		PopulationProvider targetHousing = null;
+
+		foreach (Vector3Int position in BuildingMap.cellBounds.allPositionsWithin)
+		{
+			GameObject tileLogic = BuildingMap.GetInstantiatedObject(position);
+			if (tileLogic == null || !tileLogic.activeSelf) continue;
+
+			var populationProvider = tileLogic.GetComponent<PopulationProvider>();
+			if (
+				populationProvider != null
+				&& populationProvider.ResidentCount < populationProvider.Capacity
+				&& (ReferenceEquals(targetHousing, null)
+				    || populationProvider.ConstructionOrder < targetHousing.ConstructionOrder)
+			)
+			{
+				targetHousing = populationProvider;
+			}
+		}
+
+		if (ReferenceEquals(targetHousing, null))
+		{
+			_extraPopulation.Push(portrait);
+		}
+		else
+		{
+			targetHousing.Portraits.Push(portrait);
+		}
+	}
+
+	private Sprite GeneratePortrait()
+	{
+		return NormalPortraits[Random.Range(0, NormalPortraits.Length)];
 	}
 
 	public void AssignGenerator()
@@ -92,7 +166,7 @@ public class ResourceManager : MonoBehaviour
 		AssignFarmButton.interactable = FarmWorkerCount < FarmCapacity && IdlePopulation > 0;
 		UnassignFarmButton.interactable = FarmWorkerCount > 0;
 	}
-	
+
 	private void OnDestroy()
 	{
 		Population.value = 0;
