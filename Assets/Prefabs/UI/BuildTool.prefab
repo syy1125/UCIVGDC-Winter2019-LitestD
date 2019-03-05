@@ -320,6 +320,7 @@ MonoBehaviour:
   Tilemaps: {fileID: 0}
   SelectBuildTileEvent: {fileID: 11400000, guid: ab192d5a7ccda3e4aaab79ba8c3185ec,
     type: 2}
+  BulldozeTile: {fileID: 11400000, guid: 5a0b8d875b778cc4395822d656e574bf, type: 2}
   ButtonGrid: {fileID: 5359818826284772051}
 --- !u!114 &5359818826999693917
 MonoBehaviour:

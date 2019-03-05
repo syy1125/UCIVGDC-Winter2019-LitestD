@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
@@ -7,6 +8,7 @@ public class GameManager : MonoBehaviour
 {
 	public static GameManager Instance;
 
+	[Header("Managers")]
 	public ResourceManager ResourceManager;
 	public EnemyManager EnemyManager;
 	[FormerlySerializedAs("ConstructionManager")]
@@ -15,9 +17,14 @@ public class GameManager : MonoBehaviour
 	public TileSelectionManager TileSelectionManager;
 	public EndTurnManager EndTurnManager;
 
+	[Header("Status")]
+	public GameObject StatusBar;
+	public TextMeshProUGUI StatusText;
+	
+	[Header("Events")]
 	public GameEvent[] RaiseOnStart;
 
-    private bool canEnterSelectionMode = false;
+    private bool _canEnterSelectionMode = false;
 
     private void Awake()
 	{
@@ -34,6 +41,8 @@ public class GameManager : MonoBehaviour
 
 	private void Start()
 	{
+		StatusBar.SetActive(false);
+		
 		foreach (GameEvent gameEvent in RaiseOnStart)
 		{
 			gameEvent.Raise();
@@ -42,7 +51,7 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (canEnterSelectionMode && (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)))
+		if (_canEnterSelectionMode && (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)))
 		{
 			EnterSelectionMode();
 		}
@@ -50,7 +59,7 @@ public class GameManager : MonoBehaviour
 
 	public void EnterSelectionMode()
 	{
-        canEnterSelectionMode = true;
+        _canEnterSelectionMode = true;
 
 		PlanConstructionManager.SelectBuildTile(null);
 		ConstructionQueueManager.SelectIndex(-1);
@@ -61,12 +70,20 @@ public class GameManager : MonoBehaviour
 		ConstructionQueueManager.enabled = true;
 		TileSelectionManager.enabled = true;
 		EndTurnManager.enabled = true;
+		
+		StatusBar.SetActive(false);
 	}
 
     public void EnterSpectatorMode()
     {
-        canEnterSelectionMode = false;
+        _canEnterSelectionMode = false;
         DisableOtherManagers(null);
+    }
+
+    public void SetStatusText(string status)
+    {
+	    StatusBar.SetActive(true);
+	    StatusText.text = status + "\n[ESC] or [RMB] to cancel";
     }
 
 	public void DisableOtherManagers(MonoBehaviour active)

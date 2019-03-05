@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditorInternal;
 using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
@@ -85,7 +86,7 @@ public class ConstructionQueueManager : MonoBehaviour
 		{
 			GameManager.Instance.EnterSelectionMode();
 		}
-		
+
 		(Vector3Int tilePosition, TileBase selectedTile, GameObject queueItem) = _buildingQueue[index];
 		_buildingQueue.RemoveAt(index);
 		Destroy(queueItem);
@@ -125,9 +126,14 @@ public class ConstructionQueueManager : MonoBehaviour
 
 		if (_selectedIndex >= 0)
 		{
-			Tilemaps.Highlights.SetTile(_buildingQueue[_selectedIndex].Item1, HighlightTile);
+			Vector3Int position = _buildingQueue[_selectedIndex].Item1;
+
+			Tilemaps.Highlights.SetTile(position, HighlightTile);
 			_buildingQueue[_selectedIndex].Item3.GetComponent<ConstructionQueueItemPanel>().SelfButton.Select();
 			GameManager.Instance.DisableOtherManagers(this);
+			GameManager.Instance.SetStatusText(
+				$"Previewing construction order #{_selectedIndex + 1} at {(Vector2Int) position}"
+			);
 		}
 	}
 

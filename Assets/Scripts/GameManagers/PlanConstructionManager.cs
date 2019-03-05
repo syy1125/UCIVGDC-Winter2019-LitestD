@@ -13,6 +13,7 @@ public class PlanConstructionManager : MonoBehaviour
 	private static Plane _zPlane = new Plane(Vector3.forward, 0);
 
 	public TileBase SelectedTile { get; private set; }
+	public TileBase BulldozeTile;
 	public GameObject ButtonGrid;
 
 	private void Start()
@@ -56,7 +57,17 @@ public class PlanConstructionManager : MonoBehaviour
 	public void SelectBuildTile(TileBase tile)
 	{
 		SelectedTile = tile;
-		GameManager.Instance.DisableOtherManagers(this);
+
+		if (tile != null)
+		{
+			GameManager.Instance.DisableOtherManagers(this);
+			GameManager.Instance.SetStatusText(
+				tile == BulldozeTile
+					? "Planning bulldoze jobs"
+					: $"Planning {tile.name} building construction"
+			);
+		}
+
 		SelectBuildTileEvent.Raise();
 	}
 }

@@ -64,9 +64,10 @@ public class TileSelectionManager : MonoBehaviour
 			Tilemaps.Ground.SetColor(Selection.Value, SelectedColor);
 
 			DisplayHighlights();
+			GameManager.Instance.DisableOtherManagers(this);
+			GameManager.Instance.SetStatusText($"Viewing building at {(Vector2Int) Selection.Value}");
 		}
 
-		GameManager.Instance.DisableOtherManagers(this);
 		UpdateUIEvent.Raise();
 	}
 
@@ -74,7 +75,7 @@ public class TileSelectionManager : MonoBehaviour
 	{
 		System.Diagnostics.Debug.Assert(Selection != null, nameof(Selection) + " != null");
 		GameObject tileLogic = Tilemaps.Buildings.GetInstantiatedObject(Selection.Value);
-		
+
 		if (!tileLogic) return;
 
 		var turret = tileLogic.GetComponent<TurretAttack>();
