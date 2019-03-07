@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "Events/Game Event")]
+[CreateAssetMenu]
 public class GameEvent : ScriptableObject
 {
 	public bool Debounce;

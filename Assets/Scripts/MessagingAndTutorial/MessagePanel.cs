@@ -57,7 +57,6 @@ public class MessagePanel : MonoBehaviour
             title.text = currentMessage.title;
             SetPosition(currentMessage.position);
             continueButton.gameObject.SetActive(currentMessage.showContinueButton);
-            // Add in functionality to disableUI
 
             Show();
         }
@@ -80,6 +79,11 @@ public class MessagePanel : MonoBehaviour
     {
         if (!visible)
         {
+            if (currentMessage.disableUI)
+            {
+                GameManager.Instance.EnterSpectatorMode();
+            }
+
             visible = true;
             anim.SetBool("visible", true);
         }
@@ -89,6 +93,11 @@ public class MessagePanel : MonoBehaviour
     {
         if (visible)
         {
+            if (currentMessage.disableUI)
+            {
+                GameManager.Instance.EnterSelectionMode();
+            }
+
             visible = false;
             anim.SetBool("visible", false);
             messageInterface.PanelHidden?.Invoke();
