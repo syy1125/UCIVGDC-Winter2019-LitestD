@@ -9,6 +9,7 @@ using UnityEngine.Tilemaps;
 public class ConstructionQueueManager : MonoBehaviour
 {
 	public TilemapRegistry Tilemaps;
+    public GameEvent buildingEnqueuedEvent;
 
 	[Header("Prefabs")]
 	public GameObject ConstructionQueueGrid;
@@ -54,6 +55,7 @@ public class ConstructionQueueManager : MonoBehaviour
 			}
 		}
 
+        buildingEnqueuedEvent.Raise();
 		Tilemaps.ConstructionPlanner.SetTile(tilePosition, selectedTile);
 		GameObject tileLogic = Tilemaps.ConstructionPlanner.GetInstantiatedObject(tilePosition);
 		if (tileLogic)
