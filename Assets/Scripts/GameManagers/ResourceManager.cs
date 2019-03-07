@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
@@ -6,6 +7,7 @@ using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class ResourceManager : MonoBehaviour
 {
@@ -21,6 +23,9 @@ public class ResourceManager : MonoBehaviour
 	[Header("Balancing")]
 	public int PowerPerTechnician = 3;
 	public int FoodPerFarmer = 3;
+	public int FoodRequiredPerPopulation = 5;
+
+	private int _growthProgress;
 
 	[Header("Overview Rendering")]
 	public GameEvent UpdateUIEvent;
@@ -49,7 +54,6 @@ public class ResourceManager : MonoBehaviour
 	private bool _overlayVisible;
 	private Coroutine _hideOverlayCoroutine;
 
-
 	[Header("Housing")]
 	public Tilemap BuildingMap;
 	public Sprite[] NormalPortraits;
@@ -69,7 +73,7 @@ public class ResourceManager : MonoBehaviour
 
 	public void InitializeState()
 	{
-		Population.value = 1;
+		HousePopulation(GeneratePortrait());
 	}
 
 	public void ExecuteFinalActions()
@@ -80,17 +84,38 @@ public class ResourceManager : MonoBehaviour
 
 	private void ResolvePopulationChange()
 	{
-		if (Population < HousingCapacity)
+		if (Population >= HousingCapacity)
 		{
-			Population.value += 1;
+			CapPopulation();
+			return;
+		}
+
+		_growthProgress += FoodProduced - FoodConsumed;
+
+		while (_growthProgress >= FoodRequiredPerPopulation)
+		{
+			_growthProgress -= FoodRequiredPerPopulation;
 			HousePopulation(GeneratePortrait());
 		}
-		else if (Population > HousingCapacity)
+
+		while (_growthProgress <= -FoodRequiredPerPopulation)
 		{
-			Population.value = HousingCapacity;
-			_extraPopulation.Clear();
-			PreventPopulationOverdraft();
+			_growthProgress += FoodRequiredPerPopulation;
+			RemovePopulation();
 		}
+
+		if (Population >= HousingCapacity)
+		{
+			CapPopulation();
+		}
+	}
+
+	private void CapPopulation()
+	{
+		_growthProgress = 0;
+		Population.value = HousingCapacity;
+		_extraPopulation.Clear();
+		PreventPopulationOverdraft();
 	}
 
 	public void PreventPopulationOverdraft()
@@ -118,24 +143,10 @@ public class ResourceManager : MonoBehaviour
 
 	public void HousePopulation(Sprite portrait)
 	{
-		PopulationProvider targetHousing = null;
-
-		foreach (Vector3Int position in BuildingMap.cellBounds.allPositionsWithin)
-		{
-			GameObject tileLogic = BuildingMap.GetInstantiatedObject(position);
-			if (tileLogic == null || !tileLogic.activeSelf) continue;
-
-			var populationProvider = tileLogic.GetComponent<PopulationProvider>();
-			if (
-				populationProvider != null
-				&& populationProvider.ResidentCount < populationProvider.Capacity
-				&& (ReferenceEquals(targetHousing, null)
-				    || populationProvider.ConstructionOrder < targetHousing.ConstructionOrder)
-			)
-			{
-				targetHousing = populationProvider;
-			}
-		}
+		PopulationProvider targetHousing = FindBestHousing(
+			candidate => candidate.ResidentCount < candidate.Capacity,
+			(candidate, current) => candidate.ConstructionOrder < current.ConstructionOrder
+		);
 
 		if (ReferenceEquals(targetHousing, null))
 		{
@@ -145,6 +156,51 @@ public class ResourceManager : MonoBehaviour
 		{
 			targetHousing.Portraits.Push(portrait);
 		}
+
+		Population.value += 1;
+	}
+
+	public void RemovePopulation()
+	{
+		PopulationProvider targetHousing = FindBestHousing(
+			candidate => candidate.ResidentCount > 0,
+			(candidate, current) => candidate.ConstructionOrder > current.ConstructionOrder
+		);
+
+		if (ReferenceEquals(targetHousing, null))
+		{
+			Debug.LogWarning("Can't find population to kill! Are you sure there are still people alive?");
+			return;
+		}
+
+		targetHousing.Portraits.Pop();
+		Population.value -= 1;
+	}
+
+	private PopulationProvider FindBestHousing(
+		Predicate<PopulationProvider> isViable,
+		Func<PopulationProvider, PopulationProvider, bool> isBetter
+	)
+	{
+		PopulationProvider current = null;
+
+		foreach (Vector3Int position in BuildingMap.cellBounds.allPositionsWithin)
+		{
+			GameObject tileLogic = BuildingMap.GetInstantiatedObject(position);
+			if (tileLogic == null || !tileLogic.activeSelf) continue;
+
+			var candidate = tileLogic.GetComponent<PopulationProvider>();
+			if (
+				candidate != null
+				&& isViable(candidate)
+				&& (ReferenceEquals(current, null) || isBetter(candidate, current))
+			)
+			{
+				current = candidate;
+			}
+		}
+
+		return current;
 	}
 
 	private Sprite GeneratePortrait()

@@ -6185,63 +6185,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9190981436429933989, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
         type: 3}
-      propertyPath: m_text
-      value: +0 / turn
-      objectReference: {fileID: 0}
-    - target: {fileID: 9190981436429933989, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
-        type: 3}
       propertyPath: m_havePropertiesChanged
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9190981436429933989, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
         type: 3}
       propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9190981436429933989, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 9190981436429933989, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9190981436429933989, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 9190981436328926863, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
-        type: 3}
-      propertyPath: m_havePropertiesChanged
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9190981436328926863, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
-        type: 3}
-      propertyPath: m_isInputParsingRequired
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 9190981436328926863, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
-        type: 3}
-      propertyPath: m_text
-      value: +0 / turn
-      objectReference: {fileID: 0}
-    - target: {fileID: 9190981436328926863, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 9190981436328926863, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
-        type: 3}
-      propertyPath: m_textInfo.spaceCount
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 9190981436328926863, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6184853493612418761, guid: ea2d2ee7a1b9a9d4b93428faf47e7e04,
         type: 3}
