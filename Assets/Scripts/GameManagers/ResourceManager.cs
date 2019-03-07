@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
@@ -36,6 +37,7 @@ public class ResourceManager : MonoBehaviour
 	public TextMeshProUGUI PopulationDetail;
 	public TextMeshProUGUI GeneratorDetail;
 	public TextMeshProUGUI FarmDetail;
+	[FormerlySerializedAs("UnassignedDetail")] public TextMeshProUGUI IdleDetail;
 	public Button AssignGeneratorButton;
 	public Button UnassignGeneratorButton;
 	public Button AssignFarmButton;
@@ -49,9 +51,6 @@ public class ResourceManager : MonoBehaviour
 	public Tilemap BuildingMap;
 	public Sprite[] NormalPortraits;
 	private Stack<Sprite> _extraPopulation = new Stack<Sprite>();
-
-	public Button EndTurnButton;
-
 
 	public int IdlePopulation => Population - GeneratorWorkerCount - FarmWorkerCount;
 	public int PowerProduced => GeneratorWorkerCount * PowerPerTechnician;
@@ -226,6 +225,7 @@ public class ResourceManager : MonoBehaviour
 		                  + (FoodConsumed > FoodProduced
 			                  ? $"<color=red>(Net: {FoodProduced - FoodConsumed} / turn)</color>"
 			                  : $"(Net: +{FoodProduced - FoodConsumed} / turn)");
+		IdleDetail.text = $"Idle workers: {IdlePopulation}";
 
 		AssignGeneratorButton.interactable = GeneratorWorkerCount < GeneratorCapacity && IdlePopulation > 0;
 		UnassignGeneratorButton.interactable = GeneratorWorkerCount > 0;
