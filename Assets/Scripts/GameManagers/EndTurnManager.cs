@@ -37,8 +37,6 @@ public class EndTurnManager : MonoBehaviour
 			}
 		}
 
-		GameManager.Instance.EnterSelectionMode();
-
 		updateUIEvent.Raise();
 	}
 

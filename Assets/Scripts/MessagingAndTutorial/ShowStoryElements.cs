@@ -11,7 +11,7 @@ public class ShowStoryElements : MonoBehaviour
 
     private void Awake()
     {
-        showStoryEvent.AddListener(Show);
+        showStoryEvent.AddListener(Show, true);
         messageInterface.PanelHidden += ShowTutorial;
         // Make sure to show story even if there aren't any story elements
 
