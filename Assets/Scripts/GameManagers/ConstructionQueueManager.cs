@@ -183,6 +183,12 @@ public class ConstructionQueueManager : MonoBehaviour
 			ConstructionProgressText.text = "Progress:\nIdle";
 		}
 
+		var gridTransform = ConstructionQueueGrid.GetComponent<RectTransform>();
+		gridTransform.offsetMax = new Vector2(
+			_buildingQueue.Count * (QueueItemPrefab.GetComponent<ConstructionQueueItemPanel>().Spacing
+			                        + QueueItemPrefab.GetComponent<RectTransform>().rect.width),
+			0
+		);
 		ConstructionPowerText.text = $"Build Speed:\n+{GameManager.Instance.ResourceManager.PowerProduced} / turn";
 	}
 
