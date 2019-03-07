@@ -9,15 +9,18 @@ using UnityEngine.Tilemaps;
 public class ConstructionQueueManager : MonoBehaviour
 {
 	public TilemapRegistry Tilemaps;
-    public GameEvent buildingEnqueuedEvent;
 
 	[Header("Prefabs")]
 	public GameObject ConstructionQueueGrid;
 	public GameObject QueueItemPrefab;
 	public TileBase BulldozeTile;
 
-	[Header("Rendering")]
-	public GameEvent UpdateUIEvent;
+    [Header("Events")]
+    public GameEvent buildingEnqueuedEvent;
+    public GameEvent updateUIEvent;
+    public GameEvent executeEvent;
+
+    [Header("Rendering")]
 	[FormerlySerializedAs("OutlineTile")]
 	[FormerlySerializedAs("HighlightFrameTile")]
 	public TileBase HighlightTile;
@@ -32,6 +35,9 @@ public class ConstructionQueueManager : MonoBehaviour
 
 	private void OnEnable()
 	{
+        updateUIEvent.AddListener(Display);
+        executeEvent.AddListener(ExecuteBuildOrder);
+
 		foreach (Tuple<Vector3Int, TileBase, GameObject> queueItem in _buildingQueue)
 		{
 			queueItem.Item3.GetComponent<ConstructionQueueItemPanel>().SetButtonInteractable(true);
@@ -55,7 +61,6 @@ public class ConstructionQueueManager : MonoBehaviour
 			}
 		}
 
-        buildingEnqueuedEvent.Raise();
 		Tilemaps.ConstructionPlanner.SetTile(tilePosition, selectedTile);
 		GameObject tileLogic = Tilemaps.ConstructionPlanner.GetInstantiatedObject(tilePosition);
 		if (tileLogic)
@@ -79,7 +84,9 @@ public class ConstructionQueueManager : MonoBehaviour
 				tilePosition, selectedTile, queueItem
 			)
 		);
-		UpdateUIEvent.Raise();
+
+        buildingEnqueuedEvent.Raise();
+        updateUIEvent.Raise();
 	}
 
 	public void CancelBuildOrder(int index)
@@ -99,7 +106,7 @@ public class ConstructionQueueManager : MonoBehaviour
 			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
 		}
 
-		UpdateUIEvent.Raise();
+		updateUIEvent.Raise();
 	}
 
 
@@ -114,7 +121,7 @@ public class ConstructionQueueManager : MonoBehaviour
 			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
 		}
 
-		UpdateUIEvent.Raise();
+		updateUIEvent.Raise();
 	}
 
 	public void SelectIndex(int index)
@@ -167,7 +174,7 @@ public class ConstructionQueueManager : MonoBehaviour
 			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
 		}
 
-		UpdateUIEvent.Raise();
+		updateUIEvent.Raise();
 	}
 
 	public void Display()
@@ -196,6 +203,9 @@ public class ConstructionQueueManager : MonoBehaviour
 
 	private void OnDisable()
 	{
+        updateUIEvent.RemoveListener(Display);
+        executeEvent.RemoveListener(ExecuteBuildOrder);
+
 		foreach (Tuple<Vector3Int, TileBase, GameObject> queueItem in _buildingQueue)
 		{
 			queueItem.Item3.GetComponent<ConstructionQueueItemPanel>().SetButtonInteractable(false);

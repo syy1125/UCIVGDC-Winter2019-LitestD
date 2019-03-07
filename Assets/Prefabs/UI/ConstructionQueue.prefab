@@ -12,8 +12,6 @@ GameObject:
   - component: {fileID: 1558391923609401194}
   - component: {fileID: 1558391923609401195}
   - component: {fileID: 1558391923609401109}
-  - component: {fileID: 1558391923609401108}
-  - component: {fileID: 7266314515343559614}
   m_Layer: 5
   m_Name: ConstructionQueue
   m_TagString: Untagged
@@ -97,68 +95,13 @@ MonoBehaviour:
   QueueItemPrefab: {fileID: 3636450277169219273, guid: 0cd2e42d0c0d4e842ad672c728722501,
     type: 3}
   BulldozeTile: {fileID: 11400000, guid: 5a0b8d875b778cc4395822d656e574bf, type: 2}
-  UpdateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
+  buildingEnqueuedEvent: {fileID: 11400000, guid: 717a8d27ed9cde045bba81af34cd286e,
+    type: 2}
+  updateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
+  executeEvent: {fileID: 11400000, guid: dc6ceac355280c14fb879cfa8dee2e5d, type: 2}
   HighlightTile: {fileID: 11400000, guid: edc8b550f37cb05488174d9adbd07abf, type: 2}
   ConstructionProgressText: {fileID: 4181827669469056497}
   ConstructionPowerText: {fileID: 3956737411642127479}
---- !u!114 &1558391923609401108
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558391923609401193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f79151e02691024e8b1e1257c3baee0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: dc6ceac355280c14fb879cfa8dee2e5d, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1558391923609401109}
-        m_MethodName: ExecuteBuildOrder
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
---- !u!114 &7266314515343559614
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558391923609401193}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f79151e02691024e8b1e1257c3baee0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1558391923609401109}
-        m_MethodName: Display
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1558391923777885161
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +231,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -20, y: -10}
+  m_SizeDelta: {x: -8, y: -8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1558391924676069975
 CanvasRenderer:
@@ -803,7 +746,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0.000030517578, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!1 &7664181412670709399
