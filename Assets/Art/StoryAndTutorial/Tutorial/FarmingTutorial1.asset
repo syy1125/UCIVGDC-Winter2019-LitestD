@@ -18,6 +18,8 @@ MonoBehaviour:
     conditionType: 0
     value: 2
   hideEvent: {fileID: 11400000, guid: 23748bd4ebdb68c459e23a641d14b71b, type: 2}
+  triggerNextTutorial: {fileID: 11400000, guid: 24ee001257ba33a40807fadd06eec40d,
+    type: 2}
   message:
     title: Aaron Buckles
     text: Click on the [Farming] button under the [Build] menu.

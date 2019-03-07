@@ -18,6 +18,8 @@ MonoBehaviour:
     conditionType: 0
     value: 1
   hideEvent: {fileID: 11400000, guid: 717a8d27ed9cde045bba81af34cd286e, type: 2}
+  triggerNextTutorial: {fileID: 11400000, guid: 24ee001257ba33a40807fadd06eec40d,
+    type: 2}
   message:
     title: Aaron Buckles
     text: Now place the housing on an empty plot of land. You'll see that it gets

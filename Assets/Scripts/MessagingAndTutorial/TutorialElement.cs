@@ -11,6 +11,7 @@ public class TutorialElement : ScriptableObject
 
     [Header("Hiding")]
     public GameEvent hideEvent;
+    public GameEvent triggerNextTutorial;
 
     [Header("Tutorial Message")]
     public Message message;
@@ -53,6 +54,7 @@ public class TutorialElement : ScriptableObject
             tutorialArrowInterface.Hide();
             messageInterface.Continue();
             hideEvent.RemoveListener(Hide);
+            triggerNextTutorial.Raise();
         }
     }
 }

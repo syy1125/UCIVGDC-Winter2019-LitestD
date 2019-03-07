@@ -10,23 +10,22 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86f2bab59b3046d409b9c8202c36aca0, type: 3}
-  m_Name: SelectionModeTutorial
+  m_Name: EndTurnTutorial
   m_EditorClassIdentifier: 
-  showEvent: {fileID: 11400000, guid: 717a8d27ed9cde045bba81af34cd286e, type: 2}
+  showEvent: {fileID: 11400000, guid: 5a7cd621b69854d418daef9c970cb41d, type: 2}
   condition:
     intReference: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
     conditionType: 0
     value: 1
-  hideEvent: {fileID: 11400000, guid: e59a175886b7a90448320064df71b841, type: 2}
-  triggerNextTutorial: {fileID: 11400000, guid: 5a7cd621b69854d418daef9c970cb41d,
+  hideEvent: {fileID: 11400000, guid: 812d6b39235e804449ce497ca8c51d9c, type: 2}
+  triggerNextTutorial: {fileID: 11400000, guid: 24ee001257ba33a40807fadd06eec40d,
     type: 2}
   message:
     title: Aaron Buckles
-    text: Now press [Escape] or [Right-Click] your mouse to get back into [Selection
-      Mode].
+    text: Click [End Turn] to process the changes you have made.
     maxTimesShown: 1
-    position: 3
+    position: 4
     showContinueButton: 0
     disableUI: 0
-  position: {x: 1000, y: 1000, z: 0}
-  rotation: -60
+  position: {x: 290, y: 110, z: 0}
+  rotation: 70
