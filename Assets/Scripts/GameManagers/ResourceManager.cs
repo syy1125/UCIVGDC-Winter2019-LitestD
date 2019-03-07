@@ -57,7 +57,7 @@ public class ResourceManager : MonoBehaviour
 	public int FoodProduced => FarmWorkerCount * FoodPerFarmer;
 	public int FoodConsumed => Population;
 
-	private static readonly int VisibleKey = Animator.StringToHash("Visible");
+	private static readonly int VisibleKey = Animator.StringToHash("visible");
 
 	private void OnEnable()
 	{
