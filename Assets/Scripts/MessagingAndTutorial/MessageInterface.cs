@@ -7,6 +7,7 @@ using UnityEngine;
 public class MessageInterface : ScriptableObject
 {
     [HideInInspector] public Action ContinueMade;
+    [HideInInspector] public Action PanelHidden;
 
     private MessagePanel messagePanel;
 

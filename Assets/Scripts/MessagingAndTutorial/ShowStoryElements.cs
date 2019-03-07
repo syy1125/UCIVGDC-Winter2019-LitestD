@@ -2,15 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShowMessageElements : MonoBehaviour
+public class ShowStoryElements : MonoBehaviour
 {
     public MessageInterface messageInterface;
-    public GameEvent gameEvent;
+    public GameEvent showStoryEvent;
+    public GameEvent showTutorialEvent;
     public List<StoryElement> messageElements = new List<StoryElement>();
 
     private void Awake()
     {
-        gameEvent.AddListener(Show);
+        showStoryEvent.AddListener(Show);
+        messageInterface.PanelHidden += ShowTutorial;
+        // Make sure to show story even if there aren't any story elements
 
         foreach (StoryElement messageElement in messageElements)
         {
@@ -25,7 +28,7 @@ public class ShowMessageElements : MonoBehaviour
     {
         foreach (StoryElement messageElement in messageElements)
         {
-            if (messageElement.condition.IsConditionMet())
+            if (messageElement.condition.IsMet())
             {
                 foreach (Message message in messageElement.messages)
                 {
@@ -33,5 +36,10 @@ public class ShowMessageElements : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void ShowTutorial()
+    {
+        showTutorialEvent.Raise();
     }
 }

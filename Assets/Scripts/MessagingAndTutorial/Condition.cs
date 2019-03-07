@@ -15,7 +15,7 @@ public class Condition
     public ConditionType conditionType;
     public int value;
 
-    public bool IsConditionMet()
+    public bool IsMet()
     {
         switch (conditionType)
         {

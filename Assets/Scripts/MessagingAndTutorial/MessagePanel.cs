@@ -91,6 +91,7 @@ public class MessagePanel : MonoBehaviour
         {
             visible = false;
             anim.SetBool("visible", false);
+            messageInterface.PanelHidden?.Invoke();
         }
     }
 
