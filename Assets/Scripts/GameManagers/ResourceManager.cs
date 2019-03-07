@@ -26,8 +26,10 @@ public class ResourceManager : MonoBehaviour
 	public GameEvent UpdateUIEvent;
 	public TextMeshProUGUI HousingDisplay;
 	public TextMeshProUGUI FreeWorkforceDisplay;
-	public TextMeshProUGUI GeneratorDisplay;
-	public TextMeshProUGUI FarmDisplay;
+	[FormerlySerializedAs("GeneratorDisplay")]
+	public TextMeshProUGUI PowerDisplay;
+	[FormerlySerializedAs("FarmDisplay")]
+	public TextMeshProUGUI FoodDisplay;
 	public Button OpenOverlayButton;
 
 	[Header("Popup Rendering")]
@@ -37,7 +39,8 @@ public class ResourceManager : MonoBehaviour
 	public TextMeshProUGUI PopulationDetail;
 	public TextMeshProUGUI GeneratorDetail;
 	public TextMeshProUGUI FarmDetail;
-	[FormerlySerializedAs("UnassignedDetail")] public TextMeshProUGUI IdleDetail;
+	[FormerlySerializedAs("UnassignedDetail")]
+	public TextMeshProUGUI IdleDetail;
 	public Button AssignGeneratorButton;
 	public Button UnassignGeneratorButton;
 	public Button AssignFarmButton;
@@ -210,8 +213,18 @@ public class ResourceManager : MonoBehaviour
 		HousingDisplay.text = $"Housing {Population} / {HousingCapacity} ({HousingCapacity - Population} available)";
 		HousingDisplay.color = Population > HousingCapacity ? Color.red : Color.white;
 		FreeWorkforceDisplay.text = $"Idle: {IdlePopulation}";
-		GeneratorDisplay.text = $"Generator: {GeneratorWorkerCount} / {GeneratorCapacity}";
-		FarmDisplay.text = $"Farm: {FarmWorkerCount} / {FarmCapacity.value}";
+		PowerDisplay.text = $"+{PowerProduced} / turn";
+		string farmText = $"{FoodProduced - FoodConsumed} / turn";
+		if (FoodProduced >= FoodConsumed)
+		{
+			FoodDisplay.text = "+" + farmText;
+			FoodDisplay.color = Color.white;
+		}
+		else
+		{
+			FoodDisplay.text = farmText;
+			FoodDisplay.color = Color.red;
+		}
 
 		PopulationDetail.text = $"Population {Population} / {HousingCapacity} Housing\n"
 		                        + (Population > HousingCapacity
