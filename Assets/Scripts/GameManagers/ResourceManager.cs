@@ -42,6 +42,7 @@ public class ResourceManager : MonoBehaviour
 	public Animator PopupAnimator;
 	public string HideAnimationName;
 	public TextMeshProUGUI PopulationDetail;
+	public TextMeshProUGUI GrowthDetail;
 	public TextMeshProUGUI GeneratorDetail;
 	public TextMeshProUGUI FarmDetail;
 	[FormerlySerializedAs("UnassignedDetail")]
@@ -288,6 +289,26 @@ public class ResourceManager : MonoBehaviour
 			                        : $"({HousingCapacity - Population} space available)");
 		GeneratorDetail.text = $"Gen. worker {GeneratorWorkerCount} / {GeneratorCapacity} Capacity\n"
 		                       + $"(Effect: +{PowerProduced} build speed)";
+		if (Population >= HousingCapacity)
+		{
+			GrowthDetail.text = "Population at capacity";
+		}
+		else if (FoodProduced < FoodConsumed)
+		{
+			GrowthDetail.text = "Population: <color=red>Declining</color>\n"
+			                    + $"({-_growthProgress} / {FoodRequiredPerPopulation} progress, +{FoodConsumed - FoodProduced} / turn)";
+		}
+		else if (FoodProduced > FoodConsumed)
+		{
+			GrowthDetail.text = "Population: <color=green>Growing</color>\n"
+			                    + $"({_growthProgress} / {FoodRequiredPerPopulation} progress, +{FoodProduced - FoodConsumed} / turn)";
+		}
+		else
+		{
+			GrowthDetail.text = "Population: Stable\n"
+			                    + $"(Growth stockpile: {_growthProgress})";
+		}
+
 		FarmDetail.text = $"Farm worker {FarmWorkerCount} / {FarmCapacity} Capacity\n"
 		                  + $"(Effect: +{FoodProduced} food produced)\n"
 		                  + $"Population consumes {FoodConsumed} food\n"
