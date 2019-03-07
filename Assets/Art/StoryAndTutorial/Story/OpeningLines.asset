@@ -17,8 +17,17 @@ MonoBehaviour:
     conditionType: 0
     value: 1
   messages:
-  - title: John Cena
-    text: This is just a test.
+  - title: Jack Sun
+    text: "It seems we\u2019ve finally arrived. The recent apocalypse has left many
+      displaced people in desperate need of shelter and food. We need to get them
+      settled in quickly."
+    maxTimesShown: 1
+    position: 1
+    showContinueButton: 1
+    disableUI: 1
+  - title: Jack Sun
+    text: Luckily there seems to be a house already. However, we will need more if
+      we want to house everyone.
     maxTimesShown: 1
     position: 1
     showContinueButton: 1
