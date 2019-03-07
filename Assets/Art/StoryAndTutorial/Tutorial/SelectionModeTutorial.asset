@@ -17,14 +17,14 @@ MonoBehaviour:
     intReference: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
     conditionType: 0
     value: 1
-  hideEvent: {fileID: 11400000, guid: 812d6b39235e804449ce497ca8c51d9c, type: 2}
+  hideEvent: {fileID: 11400000, guid: e59a175886b7a90448320064df71b841, type: 2}
   message:
     title: Aaron Buckles
     text: Now press [Escape] or [Right-Click] your mouse to get back into [Selection
       Mode].
     maxTimesShown: 1
     position: 3
-    showContinueButton: 1
+    showContinueButton: 0
     disableUI: 0
   position: {x: 1000, y: 1000, z: 0}
   rotation: -60

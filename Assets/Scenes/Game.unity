@@ -4202,7 +4202,6 @@ GameObject:
   - component: {fileID: 1671584265}
   - component: {fileID: 1671584264}
   - component: {fileID: 1671584266}
-  - component: {fileID: 1671584267}
   - component: {fileID: 1671584268}
   - component: {fileID: 1671584269}
   m_Layer: 0
@@ -4232,6 +4231,10 @@ MonoBehaviour:
   EndTurnManager: {fileID: 1382166862}
   StatusBar: {fileID: 920315380}
   StatusText: {fileID: 1201746967}
+  beginningOfTurnEvent: {fileID: 11400000, guid: a51c5abf6c897214f8929175d40c0690,
+    type: 2}
+  enterSelectionModeEvent: {fileID: 11400000, guid: e59a175886b7a90448320064df71b841,
+    type: 2}
   RaiseOnStart:
   - {fileID: 11400000, guid: 612b4f18acd8f19409d40ae53776a15e, type: 2}
   - {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
@@ -4264,35 +4267,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameEvent: {fileID: 11400000, guid: a01f6341bb39f434f84db876f1d86a1e, type: 2}
   turnCountRef: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
---- !u!114 &1671584267
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1671584263}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f79151e02691024e8b1e1257c3baee0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: a51c5abf6c897214f8929175d40c0690, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1671584264}
-        m_MethodName: EnterSelectionMode
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!114 &1671584268
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4989,7 +4963,7 @@ PrefabInstance:
     - target: {fileID: 7700010663233001784, guid: b19f1037ec047e344907e7cdcdd1e70b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000030517578
+      value: 0.000030511772
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19f1037ec047e344907e7cdcdd1e70b, type: 3}

@@ -21,7 +21,9 @@ public class GameManager : MonoBehaviour
 	public GameObject StatusBar;
 	public TextMeshProUGUI StatusText;
 
-	[Header("Events")]
+    [Header("Events")]
+    public GameEvent beginningOfTurnEvent;
+    public GameEvent enterSelectionModeEvent;
 	public GameEvent[] RaiseOnStart;
 
 	private bool _canEnterSelectionMode = false;
@@ -31,7 +33,8 @@ public class GameManager : MonoBehaviour
 		if (Instance == null)
 		{
 			Instance = this;
-		}
+            beginningOfTurnEvent.AddListener(EnterSelectionMode);
+        }
 		else
 		{
 			Debug.LogWarning("A duplicate instance of GameManager is attempting to initialize. Destroying it.");
@@ -74,6 +77,8 @@ public class GameManager : MonoBehaviour
 		ResourceManager.enabled = true;
 
 		StatusBar.SetActive(false);
+
+        enterSelectionModeEvent.Raise();
 	}
 
 	public void EnterSpectatorMode()
