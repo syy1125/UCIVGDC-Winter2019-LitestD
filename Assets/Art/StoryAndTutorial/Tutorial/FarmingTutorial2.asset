@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86f2bab59b3046d409b9c8202c36aca0, type: 3}
-  m_Name: HousingTutorial2
+  m_Name: FarmingTutorial2
   m_EditorClassIdentifier: 
-  showEvent: {fileID: 11400000, guid: 11813beb17446a544b22d1cbc91d8fee, type: 2}
+  showEvent: {fileID: 11400000, guid: 23748bd4ebdb68c459e23a641d14b71b, type: 2}
   condition:
     intReference: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
     conditionType: 0
-    value: 1
+    value: 2
   hideEvent: {fileID: 11400000, guid: 717a8d27ed9cde045bba81af34cd286e, type: 2}
   triggerNextTutorial: {fileID: 11400000, guid: 24ee001257ba33a40807fadd06eec40d,
     type: 2}
   message:
     title: Aaron Buckles
-    text: Now place the housing on an empty plot of land. You'll see that it gets
-      placed in the [Build Queue]. Housing increases your settlements population capacity.
+    text: Now place the farm on an empty plot of land. Food allows your populatoin
+      to grow.
     maxTimesShown: 1
     position: 3
     showContinueButton: 0
     disableUI: 0
-  position: {x: -15, y: 60, z: 0}
-  rotation: -60
+  position: {x: 0, y: -50, z: 0}
+  rotation: 20
