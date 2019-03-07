@@ -6,13 +6,13 @@ public class ShowMessageElements : MonoBehaviour
 {
     public MessageInterface messageInterface;
     public GameEvent gameEvent;
-    public List<MessageElement> messageElements = new List<MessageElement>();
+    public List<StoryElement> messageElements = new List<StoryElement>();
 
     private void Awake()
     {
         gameEvent.AddListener(Show);
 
-        foreach (MessageElement messageElement in messageElements)
+        foreach (StoryElement messageElement in messageElements)
         {
             foreach (Message message in messageElement.messages)
             {
@@ -23,9 +23,9 @@ public class ShowMessageElements : MonoBehaviour
 
     public void Show()
     {
-        foreach (MessageElement messageElement in messageElements)
+        foreach (StoryElement messageElement in messageElements)
         {
-            if (messageElement.IsConditionMet())
+            if (messageElement.condition.IsConditionMet())
             {
                 foreach (Message message in messageElement.messages)
                 {

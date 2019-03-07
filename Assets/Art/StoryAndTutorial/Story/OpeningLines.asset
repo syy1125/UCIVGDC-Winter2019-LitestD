@@ -12,9 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c6bc0bfd29c6f145bb5f64960f100e5, type: 3}
   m_Name: OpeningLines
   m_EditorClassIdentifier: 
-  intReference: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
-  condition: 0
-  value: 1
+  condition:
+    intReference: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
+    conditionType: 0
+    value: 1
   messages:
   - title: John Cena
     text: This is just a test.
