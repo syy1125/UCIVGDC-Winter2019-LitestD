@@ -169,7 +169,7 @@ public class ResourceManager : MonoBehaviour
 		else
 		{
 			PopupAnimator.SetBool(VisibleKey, false);
-			GameManager.Instance.StartCoroutine(DelayedHideOverlay());
+			_hideOverlayCoroutine = GameManager.Instance.StartCoroutine(DelayedHideOverlay());
 		}
 	}
 
