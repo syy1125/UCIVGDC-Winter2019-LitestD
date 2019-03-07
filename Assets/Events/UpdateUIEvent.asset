@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09a4a643347f364389ded1e01de11d7, type: 3}
   m_Name: UpdateUIEvent
   m_EditorClassIdentifier: 
+  Debounce: 1
