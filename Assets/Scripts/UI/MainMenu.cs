@@ -6,11 +6,6 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-
-    public Button newGameButton;
-
-    public Button exitGameButton;
-
     public string newGameSceneName;
 
     public void PlayGame()
@@ -21,7 +16,6 @@ public class MainMenu : MonoBehaviour
 
     public void QuitGame()
     {
-        Debug.Log("QUIT!");
         Application.Quit();
     }
 
