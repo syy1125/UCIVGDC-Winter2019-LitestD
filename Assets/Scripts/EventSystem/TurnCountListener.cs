@@ -1,9 +1,13 @@
-﻿public class TurnCountListener : GameEventListener
+﻿using UnityEngine;
+
+public class TurnCountListener : MonoBehaviour
 {
+    public GameEvent gameEvent;
 	public IntReference turnCountRef;
 
 	private void Awake()
 	{
+        gameEvent.AddListener(IncrementTurnCount);
 		LoadTurnCount();
 	}
 
