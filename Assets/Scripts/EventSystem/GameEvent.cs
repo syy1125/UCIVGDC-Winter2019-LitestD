@@ -4,6 +4,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Events/GameEvent")]
 public class GameEvent : ScriptableObject
 {
+	public bool Debounce;
+	
     private Action OnEventRaised;
 
 	public void Raise()
