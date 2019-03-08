@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.Serialization;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class GameManager : MonoBehaviour
 	public TileSelectionManager TileSelectionManager;
 	public EndTurnManager EndTurnManager;
 
+    [Header("Pausing")]
+    public GameObject pauseMenu;
+
 	[Header("Status")]
 	public GameObject StatusBar;
 	public TextMeshProUGUI StatusText;
@@ -27,6 +31,8 @@ public class GameManager : MonoBehaviour
 	public GameEvent[] RaiseOnStart;
 
 	private bool _canEnterSelectionMode = false;
+    private bool inSelectionMode = false;
+    private bool isPaused = false;
 
 	private void Awake()
 	{
@@ -34,6 +40,7 @@ public class GameManager : MonoBehaviour
 		{
 			Instance = this;
             beginningOfTurnEvent.AddListener(EnterSelectionMode);
+            pauseMenu.SetActive(false);
         }
 		else
 		{
@@ -54,15 +61,44 @@ public class GameManager : MonoBehaviour
 
 	private void Update()
 	{
-		if (_canEnterSelectionMode && (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1)))
-		{
-			EnterSelectionMode();
-		}
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetMouseButtonDown(1))
+        {
+            if (isPaused)
+            {
+                ResumeGame();
+            }
+            else if (!inSelectionMode && _canEnterSelectionMode)
+            {
+                EnterSelectionMode();
+            }
+            else if (inSelectionMode)
+            {
+                PauseGame();
+            }
+        }
 	}
+
+    public void PauseGame()
+    {
+        isPaused = true;
+        pauseMenu.SetActive(true);
+    }
+
+    public void ResumeGame()
+    {
+        isPaused = false;
+        pauseMenu.SetActive(false);
+    }
+
+    public void QuitToMainMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
 
 	public void EnterSelectionMode()
 	{
 		_canEnterSelectionMode = true;
+        inSelectionMode = true;
 
 		PlanConstructionManager.SelectBuildTile(null);
 		ConstructionQueueManager.SelectIndex(-1);
@@ -95,6 +131,7 @@ public class GameManager : MonoBehaviour
 
 	public void DisableOtherManagers(MonoBehaviour active)
 	{
+        inSelectionMode = false;
 		foreach (MonoBehaviour manager in new MonoBehaviour[]
 			{PlanConstructionManager, ConstructionQueueManager, TileSelectionManager, ResourceManager, EndTurnManager})
 		{
