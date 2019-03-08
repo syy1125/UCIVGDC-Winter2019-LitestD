@@ -32,11 +32,14 @@ public class ConstructionQueueManager : MonoBehaviour
 
 	public int QueueLength => _buildingQueue.Count;
 
-	private void OnEnable()
+	private void Awake()
 	{
         updateUIEvent.AddListener(Display);
         executeEvent.AddListener(ExecuteBuildOrder);
+	}
 
+	private void OnEnable()
+	{
 		foreach (Tuple<Vector3Int, TileBase, GameObject> queueItem in _buildingQueue)
 		{
 			queueItem.Item3.GetComponent<ConstructionQueueItemPanel>().SetButtonInteractable(true);
@@ -202,12 +205,15 @@ public class ConstructionQueueManager : MonoBehaviour
 
 	private void OnDisable()
 	{
-        updateUIEvent.RemoveListener(Display);
-        executeEvent.RemoveListener(ExecuteBuildOrder);
-
 		foreach (Tuple<Vector3Int, TileBase, GameObject> queueItem in _buildingQueue)
 		{
 			queueItem.Item3.GetComponent<ConstructionQueueItemPanel>().SetButtonInteractable(false);
 		}
+	}
+
+	private void OnDestroy()
+	{
+		updateUIEvent.RemoveListener(Display);
+		executeEvent.RemoveListener(ExecuteBuildOrder);
 	}
 }
