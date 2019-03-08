@@ -4120,6 +4120,7 @@ MonoBehaviour:
   ConstructionQueueManager: {fileID: 1082909248}
   TileSelectionManager: {fileID: 1676295723}
   EndTurnManager: {fileID: 1382166862}
+  FlytextManager: {fileID: 1411094692}
   pauseMenu: {fileID: 297654158}
   StatusBar: {fileID: 920315380}
   StatusText: {fileID: 1201746967}
@@ -4860,7 +4861,7 @@ PrefabInstance:
     - target: {fileID: 7700010663233001784, guid: b19f1037ec047e344907e7cdcdd1e70b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000015125402
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19f1037ec047e344907e7cdcdd1e70b, type: 3}

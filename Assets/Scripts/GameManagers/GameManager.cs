@@ -17,6 +17,7 @@ public class GameManager : MonoBehaviour
 	public ConstructionQueueManager ConstructionQueueManager;
 	public TileSelectionManager TileSelectionManager;
 	public EndTurnManager EndTurnManager;
+	public FlytextManager FlytextManager;
 
     [Header("Pausing")]
     public GameObject pauseMenu;

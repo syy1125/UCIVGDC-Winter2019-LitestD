@@ -42,7 +42,6 @@ public class FlytextManager : MonoBehaviour
 		GameObject flytextObject = Instantiate(FlytextPrefab, transform);
 		var flytext = flytextObject.GetComponent<TextMeshProUGUI>();
 		flytext.text = message;
-		flytext.color = new Color(1, 1, 1, 0);
 		flytext.CrossFadeAlpha(1, FadeInTime, false);
 
 		flytextObject.transform.position = startPosition;
@@ -69,6 +68,7 @@ public class FlytextManager : MonoBehaviour
 				endPosition,
 				(Time.time - startTime) / FadeOutTime
 			);
+			yield return null;
 		}
 
 		Destroy(flytextObject);

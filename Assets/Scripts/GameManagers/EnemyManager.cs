@@ -22,8 +22,8 @@ public class EnemyManager : MonoBehaviour
 	[Header("Effects and Timing")]
 	public float AttackAftermathInterval;
 	public float MovementAftermathInterval;
-    //public int turnOfFirstAttack = 5;
-    public EnemySpawning enemySpawning;
+	//public int turnOfFirstAttack = 5;
+	public EnemySpawning enemySpawning;
 
 	[Header("Debug")]
 	public GameObject DebugParent;
@@ -101,13 +101,13 @@ public class EnemyManager : MonoBehaviour
 
 	public void ExecuteEnemySpawns()
 	{
-        // QUESTION: Do we want to be able to pass in the current amount of enemies,
-        // so that we don't have too many enemies at once?
-        int enemiesToSpawn = enemySpawning.HowManyEnemiesToSpawn(TurnCountRef);
-        for (int i = 0; i < enemiesToSpawn; i++)
-        {
-            SpawnRandomEnemy();
-        }
+		// QUESTION: Do we want to be able to pass in the current amount of enemies,
+		// so that we don't have too many enemies at once?
+		int enemiesToSpawn = enemySpawning.HowManyEnemiesToSpawn(TurnCountRef);
+		for (int i = 0; i < enemiesToSpawn; i++)
+		{
+			SpawnRandomEnemy();
+		}
 	}
 
 	public void ExecuteGroundEnemyActions()
@@ -194,6 +194,10 @@ public class EnemyManager : MonoBehaviour
 		if (Tilemaps.ConstructionPlanner.HasTile(to))
 		{
 			GameManager.Instance.ConstructionQueueManager.CancelConstructionAtPosition(to);
+			GameManager.Instance.FlytextManager.SpawnFlytextWorldPosition(
+				Tilemaps.ConstructionPlanner.GetCellCenterWorld(to),
+				"Cancelled by enemy occupation!"
+			);
 		}
 
 		yield return new WaitForSeconds(MovementAftermathInterval);
