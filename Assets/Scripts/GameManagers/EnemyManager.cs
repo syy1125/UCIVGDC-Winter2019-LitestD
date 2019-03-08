@@ -22,8 +22,13 @@ public class EnemyManager : MonoBehaviour
 	[Header("Effects and Timing")]
 	public float AttackAftermathInterval;
 	public float MovementAftermathInterval;
+	public AnimationCurve SpeedupFactorCurve;
+	public int SpeedupCurveMin;
+	public int SpeedupCurveMax;
 	//public int turnOfFirstAttack = 5;
 	public EnemySpawning enemySpawning;
+
+	private float _speedupFactor;
 
 	[Header("Debug")]
 	public GameObject DebugParent;
@@ -123,6 +128,12 @@ public class EnemyManager : MonoBehaviour
 			children.Enqueue(child);
 		}
 
+		_speedupFactor = SpeedupFactorCurve.Evaluate(
+			Mathf.Clamp01(
+				(float) (children.Count - SpeedupCurveMin) / (SpeedupCurveMax - SpeedupCurveMin)
+			)
+		);
+
 		EndTurnManager.actions.Enqueue(GroundEnemyActionsCoroutine(children, attractionMap));
 	}
 
@@ -171,7 +182,7 @@ public class EnemyManager : MonoBehaviour
 			.Damage(attackStrength);
 		attack.PlayAttackSound();
 
-		yield return new WaitForSeconds(AttackAftermathInterval);
+		yield return new WaitForSeconds(AttackAftermathInterval * _speedupFactor);
 	}
 
 	private IEnumerator MoveEnemyCoroutine(Vector3Int from, Vector3Int to)
@@ -201,6 +212,6 @@ public class EnemyManager : MonoBehaviour
 			);
 		}
 
-		yield return new WaitForSeconds(MovementAftermathInterval);
+		yield return new WaitForSeconds(MovementAftermathInterval * _speedupFactor);
 	}
 }

@@ -1900,7 +1900,42 @@ MonoBehaviour:
     type: 2}
   AttackAftermathInterval: 0.5
   MovementAftermathInterval: 0.2
-  enemySpawning: {fileID: 0}
+  SpeedupFactorCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -4.4625015
+      outSlope: -4.4625015
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.09297521
+    - serializedVersion: 3
+      time: 0.37002522
+      value: 0.18562622
+      inSlope: -0.25475594
+      outSlope: -0.25475594
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.11294302
+    - serializedVersion: 3
+      time: 1
+      value: 0.1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  SpeedupCurveMin: 3
+  SpeedupCurveMax: 20
+  enemySpawning: {fileID: 11400000, guid: cce34a81853a5ca43990c8e6f90f9e8d, type: 2}
   DebugParent: {fileID: 0}
   TextPrefab: {fileID: 218482175293547138, guid: ddb65b8c2ee5cc34596a7ca96b5e502a,
     type: 3}
@@ -1956,7 +1991,7 @@ GameObject:
   - component: {fileID: 7090405000068932637}
   - component: {fileID: 7090405000068932639}
   m_Layer: 0
-  m_Name: Map Grid
+  m_Name: MapGrid
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
