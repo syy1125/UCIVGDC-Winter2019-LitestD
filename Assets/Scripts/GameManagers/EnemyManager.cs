@@ -196,7 +196,8 @@ public class EnemyManager : MonoBehaviour
 			GameManager.Instance.ConstructionQueueManager.CancelConstructionAtPosition(to);
 			GameManager.Instance.FlytextManager.SpawnFlytextWorldPosition(
 				Tilemaps.ConstructionPlanner.GetCellCenterWorld(to),
-				"Cancelled by enemy occupation!"
+				"Cancelled by enemy occupation!",
+				0, 0, 2
 			);
 		}
 
