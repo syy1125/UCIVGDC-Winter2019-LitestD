@@ -48,20 +48,7 @@ public class ConstructionQueueManager : MonoBehaviour
 
 	public void QueueConstruction(Vector3Int tilePosition, TileBase selectedTile)
 	{
-		if (Tilemaps.ConstructionPlanner.HasTile(tilePosition))
-		{
-			for (var i = 0; i < QueueLength;)
-			{
-				if (_buildingQueue[i].Item1 == tilePosition)
-				{
-					CancelBuildOrder(i);
-				}
-				else
-				{
-					i++;
-				}
-			}
-		}
+		CancelConstructionAtPosition(tilePosition);
 
 		Tilemaps.ConstructionPlanner.SetTile(tilePosition, selectedTile);
 		GameObject tileLogic = Tilemaps.ConstructionPlanner.GetInstantiatedObject(tilePosition);
@@ -89,6 +76,23 @@ public class ConstructionQueueManager : MonoBehaviour
 
         buildingEnqueuedEvent.Raise();
         updateUIEvent.Raise();
+	}
+
+	public void CancelConstructionAtPosition(Vector3Int tilePosition)
+	{
+		if (!Tilemaps.ConstructionPlanner.HasTile(tilePosition)) return;
+		
+		for (var i = 0; i < QueueLength;)
+		{
+			if (_buildingQueue[i].Item1 == tilePosition)
+			{
+				CancelBuildOrder(i);
+			}
+			else
+			{
+				i++;
+			}
+		}
 	}
 
 	public void CancelBuildOrder(int index)

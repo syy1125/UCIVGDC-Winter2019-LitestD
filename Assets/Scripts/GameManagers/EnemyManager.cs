@@ -191,6 +191,11 @@ public class EnemyManager : MonoBehaviour
 
 		Tilemaps.Enemies.SetTile(from, null);
 
+		if (Tilemaps.ConstructionPlanner.HasTile(to))
+		{
+			GameManager.Instance.ConstructionQueueManager.CancelConstructionAtPosition(to);
+		}
+
 		yield return new WaitForSeconds(MovementAftermathInterval);
 	}
 }
