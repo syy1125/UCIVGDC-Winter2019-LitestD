@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -26,6 +26,7 @@ public class TileSelectionManager : MonoBehaviour
 	public TextMeshProUGUI FlavourText;
 	public TextMeshProUGUI ToggleButtonText;
 	public GameObject ToggleButton;
+	public GameObject ExplosiveShotButton;
 
 	[Space]
 	public string GroundName;
@@ -81,12 +82,11 @@ public class TileSelectionManager : MonoBehaviour
 		if (!tileLogic) return;
 
 		var turret = tileLogic.GetComponent<TurretAttack>();
-		if (turret != null)
+		if (turret == null) return;
+		
+		foreach (Vector3Int position in turret.GetPositionsInRange())
 		{
-			foreach (Vector3Int position in turret.GetPositionsInRange())
-			{
-				Tilemaps.Highlights.SetTile(position, HighlightTile);
-			}
+			Tilemaps.Highlights.SetTile(position, HighlightTile);
 		}
 	}
 
@@ -140,6 +140,16 @@ public class TileSelectionManager : MonoBehaviour
 		ToggleButtonText.text = Tilemaps.Buildings.GetInstantiatedObject(selectedTile).activeSelf
 			? "Turn Off"
 			: "Turn On";
+
+		var turret = buildingLogic.GetComponent<TurretAttack>();
+		if (turret == null)
+		{
+			ExplosiveShotButton.SetActive(false);
+		}
+		else
+		{
+			ExplosiveShotButton.SetActive(true);
+		}
 	}
 
 	private void DisplayEnemyInfo(Vector3Int selectedTile)
@@ -161,6 +171,11 @@ public class TileSelectionManager : MonoBehaviour
 		ToggleButton.SetActive(false);
 	}
 
+	public void PlanExplosiveShot()
+	{
+		
+	}
+	
 	public void ToggleBuilding()
 	{
 		Debug.Assert(Selection != null, nameof(Selection) + " != null");
