@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -127,11 +127,14 @@ public class TileSelectionManager : MonoBehaviour
 
 	private void DisplayBuildingInfo(Vector3Int selectedTile)
 	{
-		var description =
-			Tilemaps.Buildings.GetInstantiatedObject(selectedTile).GetComponent<BuildingDescription>();
+		GameObject buildingLogic = Tilemaps.Buildings.GetInstantiatedObject(selectedTile);
+		var description = buildingLogic.GetComponent<BuildingDescription>();
+		var health = buildingLogic.GetComponent<HealthPool>();
 
 		NameText.text = description.Name;
-		FlavourText.text = description.FlavourText;
+		FlavourText.text = $"{description.FlavourText}\n"
+		                   + $"\n"
+		                   + $"Health: {health.Health} / {health.MaxHealth}";
 
 		ToggleButton.SetActive(true);
 		ToggleButtonText.text = Tilemaps.Buildings.GetInstantiatedObject(selectedTile).activeSelf
