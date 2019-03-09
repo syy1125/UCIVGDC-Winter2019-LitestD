@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e5226bbdd73e3242ae1b7075c9a1ac5, type: 3}
+  m_Name: Ground Enemy
+  m_EditorClassIdentifier: 
+  TileConditions:
+  - Name: SW
+    Sprite: {fileID: 21300000, guid: b238614cde82bda4e82cb6c167ca422e, type: 3}
+  - Name: SE
+    Sprite: {fileID: 21300000, guid: 5a9b4b1477561764db11f317a20f0938, type: 3}
+  - Name: NW
+    Sprite: {fileID: 21300000, guid: ef6ac1a2198945e489ac6c723641bcca, type: 3}
+  - Name: NE
+    Sprite: {fileID: 21300000, guid: c2b5ad72d32f5074aac10c0b54b8f402, type: 3}
+  State: 
+  LogicObject: {fileID: 7162318674730543221, guid: 32140e58f78d5c74b9ec1e8773eecd84,
+    type: 3}

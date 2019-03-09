@@ -1895,7 +1895,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Tilemaps: {fileID: 7090405000068932639}
   TurnCountRef: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
-  GroundEnemyTile: {fileID: 11400000, guid: 395d7d6188ade9e49b54e91ea521f91f, type: 2}
+  GroundEnemyTile: {fileID: 11400000, guid: 4c6a5cb2620988c409bee458b8afd98b, type: 2}
   GroundEnemyPathfinding: {fileID: 11400000, guid: 45107c276ab8175429b528c88a794544,
     type: 2}
   AttackAftermathInterval: 0.5

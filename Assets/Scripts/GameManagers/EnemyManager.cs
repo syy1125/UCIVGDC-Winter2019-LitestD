@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Xml.Linq;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -174,12 +175,25 @@ public class EnemyManager : MonoBehaviour
 
 	private IEnumerator AttackBuildingCoroutine(Vector3Int enemyPosition, Vector3Int targetPosition)
 	{
-		var attack = Tilemaps.Enemies.GetInstantiatedObject(enemyPosition).GetComponent<EnemyAttack>();
-		int attackStrength = attack.AttackStrength;
+		GameObject oldEnemy = Tilemaps.Enemies.GetInstantiatedObject(enemyPosition);
+		var oldAttack = oldEnemy.GetComponent<EnemyAttack>();
+		var oldHealth = oldEnemy.GetComponent<HealthPool>();
+
+		var tile = Tilemaps.Enemies.GetTile<ConditionalTile>(enemyPosition);
+		Vector3Int direction = targetPosition - enemyPosition;
+		tile.State = GetStateFromDirection(direction);
+		Tilemaps.Enemies.RefreshTile(enemyPosition);
+
+		GameObject newEnemy = Tilemaps.Enemies.GetInstantiatedObject(enemyPosition);
+		PersistEnemyAttack(oldAttack, newEnemy.GetComponent<EnemyAttack>());
+		PersistEnemyHealth(oldHealth, newEnemy.GetComponent<HealthPool>());
+
+		var attack = newEnemy.GetComponent<EnemyAttack>();
+
 		Tilemaps.Buildings
 			.GetInstantiatedObject(targetPosition)
 			.GetComponent<HealthPool>()
-			.Damage(attackStrength);
+			.Damage(attack.AttackStrength);
 		attack.PlayAttackSound();
 
 		yield return new WaitForSeconds(AttackAftermathInterval * _speedupFactor);
@@ -190,15 +204,13 @@ public class EnemyManager : MonoBehaviour
 		TileBase enemyTile = Tilemaps.Enemies.GetTile(from);
 		Tilemaps.Enemies.SetTile(to, enemyTile);
 
+		Tilemaps.Enemies.GetTile<ConditionalTile>(to).State = GetStateFromDirection(to - from);
+		Tilemaps.Enemies.RefreshTile(to);
+
 		GameObject oldEnemy = Tilemaps.Enemies.GetInstantiatedObject(from);
 		GameObject newEnemy = Tilemaps.Enemies.GetInstantiatedObject(to);
-		newEnemy.GetComponent<EnemyAttack>().AttackStrength =
-			oldEnemy.GetComponent<EnemyAttack>().AttackStrength;
-		var oldEnemyHealth = oldEnemy.GetComponent<HealthPool>();
-		if (oldEnemyHealth.Health < oldEnemyHealth.MaxHealth)
-		{
-			newEnemy.GetComponent<HealthPool>().Damage(oldEnemyHealth.MaxHealth - oldEnemyHealth.Health);
-		}
+		PersistEnemyAttack(oldEnemy.GetComponent<EnemyAttack>(), newEnemy.GetComponent<EnemyAttack>());
+		PersistEnemyHealth(oldEnemy.GetComponent<HealthPool>(), newEnemy.GetComponent<HealthPool>());
 
 		Tilemaps.Enemies.SetTile(from, null);
 
@@ -213,5 +225,33 @@ public class EnemyManager : MonoBehaviour
 		}
 
 		yield return new WaitForSeconds(MovementAftermathInterval * _speedupFactor);
+	}
+
+	private static void PersistEnemyAttack(EnemyAttack oldAttack, EnemyAttack newAttack)
+	{
+		newAttack.AttackStrength = oldAttack.AttackStrength;
+	}
+
+	private static void PersistEnemyHealth(HealthPool oldHealth, HealthPool newHealth)
+	{
+		if (oldHealth.Health < oldHealth.MaxHealth)
+		{
+			newHealth.Damage(oldHealth.MaxHealth - oldHealth.Health);
+		}
+	}
+
+	private string GetStateFromDirection(Vector3Int direction)
+	{
+		if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+		{
+			return direction.x > 0 ? "NE" : "SW";
+		}
+
+		if (Mathf.Abs(direction.x) < Mathf.Abs(direction.y))
+		{
+			return direction.y > 0 ? "NW" : "SE";
+		}
+
+		return null;
 	}
 }
