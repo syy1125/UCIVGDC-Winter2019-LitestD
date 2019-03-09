@@ -157,7 +157,8 @@ public class ConstructionQueueManager : MonoBehaviour
 			_buildingQueue[_selectedIndex].Item3.GetComponent<ConstructionQueueItemPanel>().SelfButton.Select();
 			GameManager.Instance.DisableOtherManagers(this);
 			GameManager.Instance.SetStatusText(
-				$"Previewing construction order #{_selectedIndex + 1} at {(Vector2Int) position}"
+				$"Previewing construction order #{_selectedIndex + 1}\n"
+				+ $"at {(Vector2Int) position}"
 			);
 		}
 	}
