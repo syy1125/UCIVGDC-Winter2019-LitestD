@@ -14,12 +14,12 @@ public class ConstructionQueueManager : MonoBehaviour
 	public GameObject QueueItemPrefab;
 	public TileBase BulldozeTile;
 
-    [Header("Events")]
-    public GameEvent buildingEnqueuedEvent;
-    public GameEvent updateUIEvent;
-    public GameEvent executeEvent;
+	[Header("Events")]
+	public GameEvent buildingEnqueuedEvent;
+	public GameEvent updateUIEvent;
+	public GameEvent executeEvent;
 
-    [Header("Rendering")]
+	[Header("Rendering")]
 	[FormerlySerializedAs("OutlineTile")]
 	[FormerlySerializedAs("HighlightFrameTile")]
 	public TileBase HighlightTile;
@@ -34,8 +34,8 @@ public class ConstructionQueueManager : MonoBehaviour
 
 	private void Awake()
 	{
-        updateUIEvent.AddListener(Display);
-        executeEvent.AddListener(ExecuteBuildOrder);
+		updateUIEvent.AddListener(Display);
+		executeEvent.AddListener(ExecuteBuildOrder);
 	}
 
 	private void OnEnable()
@@ -48,6 +48,16 @@ public class ConstructionQueueManager : MonoBehaviour
 
 	public void QueueConstruction(Vector3Int tilePosition, TileBase selectedTile)
 	{
+		if (Tilemaps.Enemies.HasTile(tilePosition))
+		{
+			GameManager.Instance.FlytextManager.SpawnFlytextWorldPosition(
+				Tilemaps.ConstructionPlanner.GetCellCenterWorld(tilePosition),
+				"Occupied by enemy!",
+				0, 0, 2
+			);
+			return;
+		}
+
 		CancelConstructionAtPosition(tilePosition);
 
 		Tilemaps.ConstructionPlanner.SetTile(tilePosition, selectedTile);
@@ -74,14 +84,14 @@ public class ConstructionQueueManager : MonoBehaviour
 			)
 		);
 
-        buildingEnqueuedEvent.Raise();
-        updateUIEvent.Raise();
+		buildingEnqueuedEvent.Raise();
+		updateUIEvent.Raise();
 	}
 
 	public void CancelConstructionAtPosition(Vector3Int tilePosition)
 	{
 		if (!Tilemaps.ConstructionPlanner.HasTile(tilePosition)) return;
-		
+
 		for (var i = 0; i < QueueLength;)
 		{
 			if (_buildingQueue[i].Item1 == tilePosition)
