@@ -20,8 +20,10 @@ public class TileSelectionManager : MonoBehaviour
 
 	[Header("Rendering")]
 	public GameEvent UpdateUIEvent;
-	public TextMeshProUGUI BuildingNameText;
-	public TextMeshProUGUI BuildingFlavourText;
+	[FormerlySerializedAs("BuildingNameText")]
+	public TextMeshProUGUI NameText;
+	[FormerlySerializedAs("BuildingFlavourText")]
+	public TextMeshProUGUI FlavourText;
 	public TextMeshProUGUI ToggleButtonText;
 	public GameObject ToggleButton;
 
@@ -108,31 +110,52 @@ public class TileSelectionManager : MonoBehaviour
 				child.gameObject.SetActive(true);
 			}
 
-			DisplayBuildingInfo(selectedTile);
+			if (Tilemaps.Buildings.HasTile(selectedTile))
+			{
+				DisplayBuildingInfo(selectedTile);
+			}
+			else if (Tilemaps.Enemies.HasTile(selectedTile))
+			{
+				DisplayEnemyInfo(selectedTile);
+			}
+			else
+			{
+				DisplayGroundInfo();
+			}
 		}
 	}
 
 	private void DisplayBuildingInfo(Vector3Int selectedTile)
 	{
-		if (Tilemaps.Buildings.HasTile(selectedTile))
-		{
-			var description =
-				Tilemaps.Buildings.GetInstantiatedObject(selectedTile).GetComponent<BuildingDescription>();
+		var description =
+			Tilemaps.Buildings.GetInstantiatedObject(selectedTile).GetComponent<BuildingDescription>();
 
-			BuildingNameText.text = description.Name;
-			BuildingFlavourText.text = description.FlavourText;
+		NameText.text = description.Name;
+		FlavourText.text = description.FlavourText;
 
-			ToggleButton.SetActive(true);
-			ToggleButtonText.text = Tilemaps.Buildings.GetInstantiatedObject(selectedTile).activeSelf
-				? "Turn Off"
-				: "Turn On";
-		}
-		else
-		{
-			BuildingNameText.text = GroundName;
-			BuildingFlavourText.text = GroundFlavourText;
-			ToggleButton.SetActive(false);
-		}
+		ToggleButton.SetActive(true);
+		ToggleButtonText.text = Tilemaps.Buildings.GetInstantiatedObject(selectedTile).activeSelf
+			? "Turn Off"
+			: "Turn On";
+	}
+
+	private void DisplayEnemyInfo(Vector3Int selectedTile)
+	{
+		GameObject enemyLogic = Tilemaps.Enemies.GetInstantiatedObject(selectedTile);
+		var attack = enemyLogic.GetComponent<EnemyAttack>();
+		var health = enemyLogic.GetComponent<HealthPool>();
+
+		NameText.text = "Enemy";
+		FlavourText.text = $"Health: {health.Health} / {health.MaxHealth}\n"
+		                   + $"Attack strength: {attack.AttackStrength}";
+		ToggleButton.SetActive(false);
+	}
+
+	private void DisplayGroundInfo()
+	{
+		NameText.text = GroundName;
+		FlavourText.text = GroundFlavourText;
+		ToggleButton.SetActive(false);
 	}
 
 	public void ToggleBuilding()
