@@ -183,8 +183,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -64.00001}
-  m_SizeDelta: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 15, y: -64.00001}
+  m_SizeDelta: {x: -30, y: 20}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &9190981436328926848
 CanvasRenderer:
@@ -345,8 +345,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -44.000008}
-  m_SizeDelta: {x: 0, y: 20}
+  m_AnchoredPosition: {x: 15, y: -44.000008}
+  m_SizeDelta: {x: -30, y: 20}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &9190981436429933990
 CanvasRenderer:
@@ -517,7 +517,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 250, y: 90}
+  m_SizeDelta: {x: 200, y: 90}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &9190981436752966889
 CanvasRenderer:
@@ -577,16 +577,18 @@ MonoBehaviour:
   FarmWorkerCount: {fileID: 11400000, guid: 037f982f36282e348aed033d05908d30, type: 2}
   PowerPerTechnician: 1
   FoodPerFarmer: 3
+  FoodRequiredPerPopulation: 5
   UpdateUIEvent: {fileID: 11400000, guid: 594138d07b31ab44b8da4110d8ed28e1, type: 2}
   HousingDisplay: {fileID: 9190981437078069598}
   FreeWorkforceDisplay: {fileID: 9190981437731391812}
-  GeneratorDisplay: {fileID: 9190981436429933989}
-  FarmDisplay: {fileID: 9190981436328926863}
+  PowerDisplay: {fileID: 9190981436429933989}
+  FoodDisplay: {fileID: 9190981436328926863}
   OpenOverlayButton: {fileID: 3338145159818230779}
   OverlayRoot: {fileID: 0}
   PopupAnimator: {fileID: 0}
   HideAnimationName: PopupPanelAnimation
   PopulationDetail: {fileID: 0}
+  GrowthDetail: {fileID: 0}
   GeneratorDetail: {fileID: 0}
   FarmDetail: {fileID: 0}
   IdleDetail: {fileID: 0}
@@ -764,7 +766,7 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_text: 'Housing: 0 / 0 (0 free)'
+  m_text: 'Housing: 0 / 0'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 9c7352fbbe1a76547bbcfb14613e859a, type: 2}
   m_sharedMaterial: {fileID: 21248592982872670, guid: 9c7352fbbe1a76547bbcfb14613e859a,
@@ -834,10 +836,10 @@ MonoBehaviour:
   m_margin: {x: 10, y: 0, z: 10, w: 0}
   m_textInfo:
     textComponent: {fileID: 9190981437078069598}
-    characterCount: 23
+    characterCount: 14
     spriteCount: 0
-    spaceCount: 5
-    wordCount: 5
+    spaceCount: 3
+    wordCount: 3
     linkCount: 0
     lineCount: 1
     pageCount: 1

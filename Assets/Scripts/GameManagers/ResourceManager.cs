@@ -274,7 +274,7 @@ public class ResourceManager : MonoBehaviour
 
 	public void Display()
 	{
-		HousingDisplay.text = $"Housing {Population} / {HousingCapacity} ({HousingCapacity - Population} available)";
+		HousingDisplay.text = $"Housing {Population} / {HousingCapacity}";
 		HousingDisplay.color = Population > HousingCapacity ? Color.red : Color.white;
 		FreeWorkforceDisplay.text = $"Idle: {IdlePopulation}";
 		PowerDisplay.text = $"+{PowerProduced} / turn";
