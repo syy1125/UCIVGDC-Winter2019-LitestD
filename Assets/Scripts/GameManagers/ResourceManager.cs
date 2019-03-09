@@ -75,6 +75,13 @@ public class ResourceManager : MonoBehaviour
 	public void InitializeState()
 	{
 		HousePopulation(GeneratePortrait());
+		HousePopulation(GeneratePortrait());
+		HousePopulation(GeneratePortrait());
+		
+		AssignFarm();
+		
+		AssignGenerator();
+		AssignGenerator();
 	}
 
 	public void ExecuteFinalActions()
