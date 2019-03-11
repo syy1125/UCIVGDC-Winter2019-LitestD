@@ -9,6 +9,7 @@ public class TurretAttack : MonoBehaviour
 {
 	public int AttackStrength;
 	public int Range;
+	public int ExplosiveAttackStrength;
 
 	[Header("Effects and Timing")]
 	public GameObject ProjectilePrefab;
@@ -16,6 +17,11 @@ public class TurretAttack : MonoBehaviour
 	public float AftermathInterval;
 	public float MinPitch;
 	public float MaxPitch;
+
+	public static Vector3Int ExplosiveShotTarget;
+	public static bool ExplosiveShotPlanned;
+	[HideInInspector]
+	public bool WillFireExplosiveShot;
 
 	private TilemapRegistry _tilemaps;
 	private AudioSource _audio;
@@ -28,6 +34,12 @@ public class TurretAttack : MonoBehaviour
 
 	private IEnumerator BuildingActionSequence()
 	{
+		if (WillFireExplosiveShot)
+		{
+			yield return StartCoroutine(AttackEnemy(ExplosiveShotTarget));
+			yield break;
+		}
+
 		Vector3Int[] nearbyEnemies = GetPositionsInRange().Where(_tilemaps.Enemies.HasTile).ToArray();
 
 		if (nearbyEnemies.Length <= 0) yield break;
@@ -39,7 +51,10 @@ public class TurretAttack : MonoBehaviour
 		return _tilemaps.Ground.HasTile(target) || _tilemaps.OuterEdge.HasTile(target);
 	}
 
-	public IEnumerable<Vector3Int> GetPositionsInRange(Vector3Int? source = null, Predicate<Vector3Int> isValidTarget = null)
+	public IEnumerable<Vector3Int> GetPositionsInRange(
+		Vector3Int? source = null,
+		Predicate<Vector3Int> isValidTarget = null
+	)
 	{
 		Vector3Int turretPosition = source ?? _tilemaps.Buildings.WorldToCell(transform.position);
 		isValidTarget = isValidTarget ?? CanHaveEnemy;
@@ -67,7 +82,6 @@ public class TurretAttack : MonoBehaviour
 
 	private IEnumerator AttackEnemy(Vector3Int targetPosition)
 	{
-		var enemyHealth = _tilemaps.Enemies.GetInstantiatedObject(targetPosition).GetComponent<HealthPool>();
 		Transform projectileTransform = Instantiate(ProjectilePrefab).transform;
 
 		_audio.pitch = Random.Range(MinPitch, MaxPitch);
@@ -89,7 +103,7 @@ public class TurretAttack : MonoBehaviour
 
 		float startTime = Time.time;
 
-		while ((Time.time - startTime) < ProjectileLifetime)
+		while (Time.time - startTime < ProjectileLifetime)
 		{
 			projectileTransform.position = Vector3.Lerp(
 				                               startPosition, enemyPosition,
@@ -100,8 +114,40 @@ public class TurretAttack : MonoBehaviour
 
 		Destroy(projectileTransform.gameObject);
 
-		enemyHealth.Damage(AttackStrength);
+		if (WillFireExplosiveShot)
+		{
+			WillFireExplosiveShot = false;
+			ExplosiveShotPlanned = false;
 
-		yield return new WaitForSeconds(AftermathInterval);
+			for (int dx = -1; dx <= 1; dx++)
+			{
+				for (int dy = -1; dy <= 1; dy++)
+				{
+					Vector3Int target = targetPosition + new Vector3Int(dx, dy, 0);
+					if (_tilemaps.Buildings.HasTile(target))
+					{
+						_tilemaps.Buildings
+							.GetInstantiatedObject(target)
+							.GetComponent<HealthPool>()
+							.Damage(ExplosiveAttackStrength);
+					}
+
+					if (_tilemaps.Enemies.HasTile(target))
+					{
+						_tilemaps.Enemies
+							.GetInstantiatedObject(target)
+							.GetComponent<HealthPool>()
+							.Damage(ExplosiveAttackStrength);
+					}
+				}
+			}
+		}
+		else
+		{
+			var enemyHealth = _tilemaps.Enemies.GetInstantiatedObject(targetPosition).GetComponent<HealthPool>();
+			enemyHealth.Damage(AttackStrength);
+
+			yield return new WaitForSeconds(AftermathInterval);
+		}
 	}
 }

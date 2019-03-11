@@ -38,7 +38,7 @@ public class PlanConstructionManager : MonoBehaviour
 	{
 		if (ReferenceEquals(SelectedTile, null)) return;
 
-		if (!GetHoverPosition(out Vector3Int tilePosition))
+		if (!GetHoverPosition(out Vector3Int tilePosition, Tilemaps.Ground.HasTile))
 		{
 			if (_lastHoverTile == null) return;
 			Tilemaps.ConstructionPreview.ClearAllTiles();
@@ -82,7 +82,10 @@ public class PlanConstructionManager : MonoBehaviour
 		}
 	}
 
-	private bool GetHoverPosition(out Vector3Int tilePosition)
+	public bool GetHoverPosition(
+		out Vector3Int tilePosition,
+		Predicate<Vector3Int> isValid
+	)
 	{
 		Ray mouseRay = _mainCamera.ScreenPointToRay(Input.mousePosition);
 		if (!_zPlane.Raycast(mouseRay, out float distance))
@@ -93,7 +96,7 @@ public class PlanConstructionManager : MonoBehaviour
 		}
 
 		tilePosition = Tilemaps.Ground.WorldToCell(mouseRay.GetPoint(distance));
-		return Tilemaps.Ground.HasTile(tilePosition);
+		return isValid(tilePosition);
 	}
 
 	private void OnDisable()

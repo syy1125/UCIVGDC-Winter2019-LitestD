@@ -2,6 +2,7 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Experimental.PlayerLoop;
 using UnityEngine.Serialization;
 using UnityEngine.Tilemaps;
 using UnityEngine.UI;
@@ -27,6 +28,10 @@ public class TileSelectionManager : MonoBehaviour
 	public TextMeshProUGUI ToggleButtonText;
 	public GameObject ToggleButton;
 	public GameObject ExplosiveShotButton;
+	public TextMeshProUGUI ExplosiveShotText;
+
+	public bool IsPlanningExplosiveShot { get; private set; }
+	private Vector3Int? _lastHoverTile;
 
 	[Space]
 	public string GroundName;
@@ -48,7 +53,14 @@ public class TileSelectionManager : MonoBehaviour
 
 		if (!Tilemaps.Ground.HasTile(tilePosition)) return;
 
-		SetSelection(tilePosition);
+		if (IsPlanningExplosiveShot)
+		{
+			FinishPlanningExplosiveShot(tilePosition);
+		}
+		else
+		{
+			SetSelection(tilePosition);
+		}
 	}
 
 	public void SetSelection(Vector3Int? target)
@@ -66,7 +78,6 @@ public class TileSelectionManager : MonoBehaviour
 			Tilemaps.Ground.SetTileFlags(Selection.Value, TileFlags.None);
 			Tilemaps.Ground.SetColor(Selection.Value, SelectedColor);
 
-			DisplayHighlights();
 			GameManager.Instance.DisableOtherManagers(this);
 			GameManager.Instance.SetStatusText($"Viewing building at {(Vector2Int) Selection.Value}");
 		}
@@ -74,19 +85,39 @@ public class TileSelectionManager : MonoBehaviour
 		UpdateUIEvent.Raise();
 	}
 
-	private void DisplayHighlights()
+	private void Update()
 	{
-		System.Diagnostics.Debug.Assert(Selection != null, nameof(Selection) + " != null");
-		GameObject tileLogic = Tilemaps.Buildings.GetInstantiatedObject(Selection.Value);
+		if (!IsPlanningExplosiveShot) return;
 
-		if (!tileLogic) return;
-
-		var turret = tileLogic.GetComponent<TurretAttack>();
-		if (turret == null) return;
-		
-		foreach (Vector3Int position in turret.GetPositionsInRange())
+		if (!GameManager.Instance.PlanConstructionManager.GetHoverPosition(
+			out Vector3Int tilePosition,
+			target => Tilemaps.Ground.HasTile(target) || Tilemaps.OuterEdge.HasTile(target)
+		))
 		{
-			Tilemaps.Highlights.SetTile(position, HighlightTile);
+			if (_lastHoverTile == null) return;
+			Tilemaps.Highlights.ClearAllTiles();
+			_lastHoverTile = null;
+			return;
+		}
+
+		if (tilePosition != _lastHoverTile)
+		{
+			_lastHoverTile = tilePosition;
+
+			Tilemaps.Highlights.ClearAllTiles();
+
+			DisplayExplosiveShotArea(tilePosition);
+		}
+	}
+
+	private void DisplayExplosiveShotArea(Vector3Int tilePosition)
+	{
+		for (int dx = -1; dx <= 1; dx++)
+		{
+			for (int dy = -1; dy <= 1; dy++)
+			{
+				Tilemaps.Highlights.SetTile(tilePosition + new Vector3Int(dx, dy, 0), HighlightTile);
+			}
 		}
 	}
 
@@ -148,7 +179,49 @@ public class TileSelectionManager : MonoBehaviour
 		}
 		else
 		{
+			DisplayHighlights();
+
 			ExplosiveShotButton.SetActive(true);
+			if (!TurretAttack.ExplosiveShotPlanned)
+			{
+				ExplosiveShotButton.GetComponent<Button>().interactable = true;
+				ExplosiveShotText.text = "Explosive Shot";
+			}
+			else if (turret.WillFireExplosiveShot)
+			{
+				ExplosiveShotButton.GetComponent<Button>().interactable = true;
+				ExplosiveShotText.text = "Cancel Shot";
+			}
+			else
+			{
+				ExplosiveShotButton.GetComponent<Button>().interactable = false;
+				ExplosiveShotText.text = "Shot Planned Elsewhere";
+			}
+		}
+	}
+
+	private void DisplayHighlights()
+	{
+		System.Diagnostics.Debug.Assert(Selection != null, nameof(Selection) + " != null");
+		GameObject tileLogic = Tilemaps.Buildings.GetInstantiatedObject(Selection.Value);
+
+		if (!tileLogic) return;
+
+		var turret = tileLogic.GetComponent<TurretAttack>();
+		if (turret == null) return;
+
+		if (IsPlanningExplosiveShot) return;
+
+		if (turret.WillFireExplosiveShot)
+		{
+			DisplayExplosiveShotArea(TurretAttack.ExplosiveShotTarget);
+		}
+		else
+		{
+			foreach (Vector3Int position in turret.GetPositionsInRange())
+			{
+				Tilemaps.Highlights.SetTile(position, HighlightTile);
+			}
 		}
 	}
 
@@ -162,6 +235,7 @@ public class TileSelectionManager : MonoBehaviour
 		FlavourText.text = $"Health: {health.Health} / {health.MaxHealth}\n"
 		                   + $"Attack strength: {attack.AttackStrength}";
 		ToggleButton.SetActive(false);
+		ExplosiveShotButton.SetActive(false);
 	}
 
 	private void DisplayGroundInfo()
@@ -169,13 +243,51 @@ public class TileSelectionManager : MonoBehaviour
 		NameText.text = GroundName;
 		FlavourText.text = GroundFlavourText;
 		ToggleButton.SetActive(false);
+		ExplosiveShotButton.SetActive(false);
 	}
 
-	public void PlanExplosiveShot()
+	public void OnExplosiveShotClick()
 	{
-		
+		System.Diagnostics.Debug.Assert(Selection != null, nameof(Selection) + " != null");
+		var turret = Tilemaps.Buildings.GetInstantiatedObject(Selection.Value).GetComponent<TurretAttack>();
+
+		if (turret.WillFireExplosiveShot)
+		{
+			CancelExplosiveShot(turret);
+		}
+		else
+		{
+			StartPlanningExplosiveShot();
+		}
 	}
-	
+
+	private static void CancelExplosiveShot(TurretAttack turret)
+	{
+		turret.WillFireExplosiveShot = false;
+		TurretAttack.ExplosiveShotPlanned = false;
+	}
+
+	private void StartPlanningExplosiveShot()
+	{
+		Tilemaps.Highlights.ClearAllTiles();
+		IsPlanningExplosiveShot = true;
+		ExplosiveShotButton.GetComponent<Button>().Select();
+	}
+
+	private void FinishPlanningExplosiveShot(Vector3Int target)
+	{
+		System.Diagnostics.Debug.Assert(Selection != null, nameof(Selection) + " != null");
+		var turret = Tilemaps.Buildings.GetInstantiatedObject(Selection.Value).GetComponent<TurretAttack>();
+
+		EventSystem.current.SetSelectedGameObject(null);
+		turret.WillFireExplosiveShot = true;
+		TurretAttack.ExplosiveShotPlanned = true;
+		TurretAttack.ExplosiveShotTarget = target;
+		IsPlanningExplosiveShot = false;
+
+		UpdateUIEvent.Raise();
+	}
+
 	public void ToggleBuilding()
 	{
 		Debug.Assert(Selection != null, nameof(Selection) + " != null");
@@ -195,5 +307,7 @@ public class TileSelectionManager : MonoBehaviour
 		{
 			GroundClickAdaptor.enabled = false;
 		}
+
+		IsPlanningExplosiveShot = false;
 	}
 }
