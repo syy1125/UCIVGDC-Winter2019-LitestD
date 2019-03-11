@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -25,6 +26,7 @@ public class ConstructionQueueManager : MonoBehaviour
 	public TileBase HighlightTile;
 	public TextMeshProUGUI ConstructionProgressText;
 	public TextMeshProUGUI ConstructionPowerText;
+	public float BuildActionInterval;
 
 	private readonly List<Tuple<Vector3Int, TileBase, GameObject>> _buildingQueue =
 		new List<Tuple<Vector3Int, TileBase, GameObject>>();
@@ -165,7 +167,12 @@ public class ConstructionQueueManager : MonoBehaviour
 
 	public void ExecuteBuildOrder()
 	{
-		if (_buildingQueue.Count <= 0) return;
+		EndTurnManager.actions.Enqueue(ExecuteBuildOrderCoroutine());
+	}
+
+	private IEnumerator ExecuteBuildOrderCoroutine()
+	{
+		if (_buildingQueue.Count <= 0) yield break;
 		int buildUnits = GameManager.Instance.ResourceManager.PowerProduced;
 
 		while (_buildingQueue.Count > 0)
@@ -177,21 +184,40 @@ public class ConstructionQueueManager : MonoBehaviour
 			var queueItemProgress = queueItem.GetComponent<ConstructionQueueItemProgress>();
 
 			queueItemProgress.CurrentProgress += buildUnits;
-			if (queueItemProgress.CurrentProgress < buildCost.RequiredProgress) break;
+			if (queueItemProgress.CurrentProgress < buildCost.RequiredProgress)
+			{
+				GameManager.Instance.FlytextManager.SpawnFlytextWorldPosition(
+					Tilemaps.ConstructionPlanner.GetCellCenterWorld(tilePosition),
+					$"+{buildUnits} progress\n"
+					+ $"({queueItemProgress.CurrentProgress}/{buildCost.RequiredProgress})",
+					0.2f, 0.2f, 0.5f
+				);
+				yield return new WaitForSeconds(BuildActionInterval);
+
+				break;
+			}
 
 			buildUnits = queueItemProgress.CurrentProgress - buildCost.RequiredProgress;
 			_buildingQueue.RemoveAt(0);
 			Destroy(queueItem);
 			Tilemaps.Buildings.SetTile(tilePosition, selectedTile == BulldozeTile ? null : selectedTile);
 			Tilemaps.ConstructionPlanner.SetTile(tilePosition, null);
-		}
 
-		for (var index = 0; index < QueueLength; index++)
-		{
-			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
-		}
+			GameManager.Instance.FlytextManager.SpawnFlytextWorldPosition(
+				Tilemaps.ConstructionPlanner.GetCellCenterWorld(tilePosition),
+				"Construction finished!",
+				0.2f, 0.2f, 0.5f
+			);
 
-		updateUIEvent.Raise();
+			for (var index = 0; index < QueueLength; index++)
+			{
+				_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
+			}
+
+			updateUIEvent.Raise();
+
+			yield return new WaitForSeconds(BuildActionInterval);
+		}
 	}
 
 	public void Display()
