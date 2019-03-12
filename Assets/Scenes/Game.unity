@@ -4253,6 +4253,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: acf10896f35728e468c69615316bcf21, type: 2}
   - {fileID: 11400000, guid: a5254d0f0b1fd584a845326b938f68b8, type: 2}
   - {fileID: 11400000, guid: 7e16bf47874f30e4ebe6c755859d887e, type: 2}
+  - {fileID: 11400000, guid: 693a7b100697290469bfa8f200498259, type: 2}
 --- !u!114 &1671584269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4949,7 +4950,7 @@ PrefabInstance:
     - target: {fileID: 7700010663233001784, guid: b19f1037ec047e344907e7cdcdd1e70b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.00004773066
+      value: 0.000023300889
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19f1037ec047e344907e7cdcdd1e70b, type: 3}
