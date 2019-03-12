@@ -10,22 +10,24 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86f2bab59b3046d409b9c8202c36aca0, type: 3}
-  m_Name: HousingTutorial1
+  m_Name: SelectionModeTutorial
   m_EditorClassIdentifier: 
-  showEvent: {fileID: 11400000, guid: e9a064de7b3d34e49a342d1018181e8e, type: 2}
+  hasShowEvent: 0
+  showEvent: {fileID: 11400000, guid: cf551d6cb126ec94986e7d3c0a22fe0b, type: 2}
   condition:
     intReference: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
     conditionType: 0
     value: 1
-  hideEvent: {fileID: 11400000, guid: 11813beb17446a544b22d1cbc91d8fee, type: 2}
-  triggerNextTutorial: {fileID: 11400000, guid: 24ee001257ba33a40807fadd06eec40d,
-    type: 2}
+  hideEvent: {fileID: 11400000, guid: e59a175886b7a90448320064df71b841, type: 2}
+  hasNextTutorial: 1
+  nextTutorial: {fileID: 11400000, guid: 751cd0739066f8b45a01bfab1fa1149d, type: 2}
   message:
     title: Aaron Buckles
-    text: Click on the [Housing] button under the [Build] menu.
+    text: Now press [Escape] or [Right-Click] your mouse to get back into [Selection
+      Mode].
     maxTimesShown: 1
     position: 3
     showContinueButton: 0
     disableUI: 0
-  position: {x: -350, y: -150, z: 0}
-  rotation: -100
+  position: {x: 1000, y: 1000, z: 0}
+  rotation: -60

@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86f2bab59b3046d409b9c8202c36aca0, type: 3}
   m_Name: HousingTutorial2
   m_EditorClassIdentifier: 
-  showEvent: {fileID: 11400000, guid: 11813beb17446a544b22d1cbc91d8fee, type: 2}
+  hasShowEvent: 0
+  showEvent: {fileID: 11400000, guid: cf551d6cb126ec94986e7d3c0a22fe0b, type: 2}
   condition:
     intReference: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
     conditionType: 0
     value: 1
   hideEvent: {fileID: 11400000, guid: 717a8d27ed9cde045bba81af34cd286e, type: 2}
-  triggerNextTutorial: {fileID: 11400000, guid: 24ee001257ba33a40807fadd06eec40d,
-    type: 2}
+  hasNextTutorial: 1
+  nextTutorial: {fileID: 11400000, guid: e854fbd0aeb84e64fa6ed4a085e1975b, type: 2}
   message:
     title: Aaron Buckles
     text: Now place the housing on an empty plot of land. You'll see that it gets

@@ -10,22 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86f2bab59b3046d409b9c8202c36aca0, type: 3}
-  m_Name: EndTurnTutorial
+  m_Name: HousingTutorial1
   m_EditorClassIdentifier: 
-  showEvent: {fileID: 11400000, guid: 5a7cd621b69854d418daef9c970cb41d, type: 2}
+  hasShowEvent: 1
+  showEvent: {fileID: 11400000, guid: e9a064de7b3d34e49a342d1018181e8e, type: 2}
   condition:
     intReference: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
     conditionType: 0
     value: 1
-  hideEvent: {fileID: 11400000, guid: 812d6b39235e804449ce497ca8c51d9c, type: 2}
-  triggerNextTutorial: {fileID: 11400000, guid: 24ee001257ba33a40807fadd06eec40d,
-    type: 2}
+  hideEvent: {fileID: 11400000, guid: 11813beb17446a544b22d1cbc91d8fee, type: 2}
+  hasNextTutorial: 1
+  nextTutorial: {fileID: 11400000, guid: e545a78f4521a944b927435e76c66fa6, type: 2}
   message:
     title: Aaron Buckles
-    text: Click [End Turn] to process the changes you have made.
+    text: Click on the [Housing] button under the [Build] menu.
     maxTimesShown: 1
-    position: 4
+    position: 3
     showContinueButton: 0
     disableUI: 0
-  position: {x: 290, y: 110, z: 0}
-  rotation: 70
+  position: {x: -350, y: -150, z: 0}
+  rotation: -100

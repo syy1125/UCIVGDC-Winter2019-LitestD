@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 86f2bab59b3046d409b9c8202c36aca0, type: 3}
-  m_Name: FarmingTutorial2
+  m_Name: FarmingTutorial1
   m_EditorClassIdentifier: 
-  showEvent: {fileID: 11400000, guid: 23748bd4ebdb68c459e23a641d14b71b, type: 2}
+  hasShowEvent: 1
+  showEvent: {fileID: 11400000, guid: e9a064de7b3d34e49a342d1018181e8e, type: 2}
   condition:
     intReference: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
     conditionType: 0
     value: 2
-  hideEvent: {fileID: 11400000, guid: 717a8d27ed9cde045bba81af34cd286e, type: 2}
-  triggerNextTutorial: {fileID: 11400000, guid: 24ee001257ba33a40807fadd06eec40d,
-    type: 2}
+  hideEvent: {fileID: 11400000, guid: 23748bd4ebdb68c459e23a641d14b71b, type: 2}
+  hasNextTutorial: 1
+  nextTutorial: {fileID: 11400000, guid: 454f1f1b52a9f304191e799e226fdb19, type: 2}
   message:
     title: Aaron Buckles
-    text: Now place the farm on an empty plot of land. Food allows your populatoin
-      to grow.
+    text: Click on the [Farming] button under the [Build] menu.
     maxTimesShown: 1
     position: 3
     showContinueButton: 0
     disableUI: 0
-  position: {x: 0, y: -50, z: 0}
-  rotation: 20
+  position: {x: -190, y: -150, z: 0}
+  rotation: -100

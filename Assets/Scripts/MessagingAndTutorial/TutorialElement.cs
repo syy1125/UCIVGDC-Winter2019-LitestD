@@ -4,14 +4,16 @@ using UnityEngine;
 
 [CreateAssetMenu(menuName = "Conditional Elements/Tutorial Element")]
 public class TutorialElement : ScriptableObject
-{ 
+{
     [Header("Showing")]
+    public bool hasShowEvent;
     public GameEvent showEvent;
     public Condition condition;
 
     [Header("Hiding")]
     public GameEvent hideEvent;
-    public GameEvent triggerNextTutorial;
+    public bool hasNextTutorial;
+    public TutorialElement nextTutorial;
 
     [Header("Tutorial Message")]
     public Message message;
@@ -32,14 +34,21 @@ public class TutorialElement : ScriptableObject
         messageInterface = mi;
         tutorialArrowInterface = tai;
 
-        showEvent.AddListener(Show, true);
+        if (hasShowEvent)
+        {
+            showEvent.AddListener(Show, true);
+        }
     }
 
     public void Show()
     {
         if (canShow && condition.IsMet())
         {
-            showEvent.RemoveListener(Show, true);
+            if (hasShowEvent)
+            {
+                showEvent.RemoveListener(Show, true);
+            }
+
             hideEvent.AddListener(Hide);
             tutorialArrowInterface.Show(position, rotation);
             messageInterface.Enqueue(message);
@@ -54,7 +63,11 @@ public class TutorialElement : ScriptableObject
             tutorialArrowInterface.Hide();
             messageInterface.Continue();
             hideEvent.RemoveListener(Hide);
-            triggerNextTutorial.Raise();
+
+            if (hasNextTutorial)
+            {
+                nextTutorial.Show();
+            }
         }
     }
 }
