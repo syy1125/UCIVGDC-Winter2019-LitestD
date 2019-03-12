@@ -18,62 +18,53 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0.02076265
-      outSlope: 0.02076265
+      inSlope: 0
+      outSlope: 0
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.10158266
-      value: 0.0021091253
-      inSlope: 0.0516888
-      outSlope: 0.0516888
+      time: 0.05
+      value: 0
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 1
+      inWeight: 0.32231802
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.11240204
-      value: 0.11741376
-      inSlope: 1
-      outSlope: 1
+      time: 0.06
+      value: 0.1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.2877839
-      value: 0.62080216
-      inSlope: 5.025505
-      outSlope: 5.025505
-      tangentMode: 0
-      weightedMode: 0
-      inWeight: 0.33333334
-      outWeight: 0.27136603
-    - serializedVersion: 3
-      time: 0.37016523
-      value: 0.46983945
-      inSlope: 0.76046413
-      outSlope: 0.76046413
+      time: 0.45
+      value: 0.35
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.67982125
-      value: 0.96636647
-      inSlope: 2.5036685
-      outSlope: 2.5036685
+      time: 0.5
+      value: 0.1
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
-      outWeight: 0.6444547
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.7531117
-      value: 0.81587434
-      inSlope: 0.31483674
-      outSlope: 0.31483674
+      time: 0.76597023
+      value: 0.2999789
+      inSlope: 1.8832371
+      outSlope: 1.8832371
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -81,8 +72,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 0.74578536
-      outSlope: 0.74578536
+      inSlope: 2.9911625
+      outSlope: 2.9911625
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -90,5 +81,5 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  maxTurn: 100
+  maxTurn: 200
   maxEnemiesToSpawn: 6
