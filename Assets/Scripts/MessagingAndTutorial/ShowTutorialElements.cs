@@ -12,9 +12,12 @@ public class ShowTutorialElements : MonoBehaviour
 
     private void Awake()
     {
-        foreach (TutorialElement tutorialElement in tutorialElements)
+        if (PlayerPrefs.HasKey("ShowTutorial") && PlayerPrefs.GetInt("ShowTutorial") == 1)
         {
-            tutorialElement.Setup(messageInterface, tutorialArrowInterface);
+            foreach (TutorialElement tutorialElement in tutorialElements)
+            {
+                tutorialElement.Setup(messageInterface, tutorialArrowInterface);
+            }
         }
     }
 }
