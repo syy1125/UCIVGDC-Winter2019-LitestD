@@ -26,6 +26,7 @@ public class ShowStoryElements : MonoBehaviour
 
     public void Show()
     {
+        bool messagesShown = false;
         foreach (StoryElement messageElement in messageElements)
         {
             if (messageElement.condition.IsMet())
@@ -33,8 +34,14 @@ public class ShowStoryElements : MonoBehaviour
                 foreach (Message message in messageElement.messages)
                 {
                     messageInterface.Enqueue(message);
+                    messagesShown = true;
                 }
             }
+        }
+
+        if (!messagesShown)
+        {
+            ShowTutorial();
         }
     }
 

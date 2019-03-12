@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86f2bab59b3046d409b9c8202c36aca0, type: 3}
+  m_Name: ManageTutorial1
+  m_EditorClassIdentifier: 
+  hasShowEvent: 1
+  showEvent: {fileID: 11400000, guid: e9a064de7b3d34e49a342d1018181e8e, type: 2}
+  condition:
+    intReference: {fileID: 11400000, guid: 33569c55e72b6394a81dfc6646d5d87d, type: 2}
+    conditionType: 0
+    value: 3
+  hideEvent: {fileID: 11400000, guid: 0cc418ec1474ed642b35f3f074f127f7, type: 2}
+  hasNextTutorial: 1
+  nextTutorial: {fileID: 11400000, guid: 9ec7c0a5580c33c4881d351d47318cc0, type: 2}
+  message:
+    title: Aaron Buckles
+    text: Click on [Manage] to assign and unassign workers to generators and farms.
+    maxTimesShown: 1
+    position: 3
+    showContinueButton: 0
+    disableUI: 0
+  position: {x: -230, y: 100, z: 0}
+  rotation: 115
