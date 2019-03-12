@@ -13,7 +13,7 @@ public class MessagePanel : MonoBehaviour
     public MessageInterface messageInterface;
 
     [Header("Style")]
-    public float margin = 30f;
+    public float margin = 10f;
     public float titleHeight = 20f;
 
     private Queue<Message> messages = new Queue<Message>();

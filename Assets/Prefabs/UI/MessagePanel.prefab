@@ -508,7 +508,7 @@ MonoBehaviour:
   text: {fileID: 96164357173014905}
   continueButton: {fileID: 5835213576797916072}
   messageInterface: {fileID: 11400000, guid: 9b1b52524e99fa74cbd1eac4af5355d4, type: 2}
-  margin: 30
+  margin: 10
   titleHeight: 20
 --- !u!95 &96164358376475262
 Animator:
