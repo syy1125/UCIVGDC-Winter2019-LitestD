@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -201,7 +201,7 @@ public class ResourceManager : MonoBehaviour
 		}
 
 		targetHousing.Portraits.Pop();
-		Population.value -= 1;
+		Population.value--;
 	}
 
 	private PopulationProvider FindBestHousing(
@@ -260,7 +260,6 @@ public class ResourceManager : MonoBehaviour
 
 	private IEnumerator DelayedHideOverlay()
 	{
-		Debug.Log(PopupAnimator.GetNextAnimatorStateInfo(0).IsName(HideAnimationName));
 		yield return new WaitWhile(
 			() => PopupAnimator.GetCurrentAnimatorStateInfo(0).IsName(HideAnimationName)
 		);
@@ -269,25 +268,25 @@ public class ResourceManager : MonoBehaviour
 
 	public void AssignGenerator()
 	{
-		GeneratorWorkerCount.value += 1;
+		GeneratorWorkerCount.value++;
 		UpdateUIEvent.Raise();
 	}
 
 	public void UnassignGenerator()
 	{
-		GeneratorWorkerCount.value -= 1;
+		GeneratorWorkerCount.value--;
 		UpdateUIEvent.Raise();
 	}
 
 	public void AssignFarm()
 	{
-		FarmWorkerCount.value += 1;
+		FarmWorkerCount.value++;
 		UpdateUIEvent.Raise();
 	}
 
 	public void UnassignFarm()
 	{
-		FarmWorkerCount.value -= 1;
+		FarmWorkerCount.value--;
 		UpdateUIEvent.Raise();
 	}
 
