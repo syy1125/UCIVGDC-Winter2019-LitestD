@@ -61,20 +61,10 @@ public class MusicManager : MonoBehaviour
 
 		_audio.volume = targetVolume;
 	}
-
-	public void TransitionToMenu()
+	
+	public void TransitionToTrack(AudioClip newTrack)
 	{
-		ReplaceCoroutine(ref _trackTransition, TransitionTrackCoroutine(MenuMusic));
-	}
-
-	public void TransitionToPeaceful()
-	{
-		ReplaceCoroutine(ref _trackTransition, TransitionTrackCoroutine(PeacefulMusic));
-	}
-
-	public void TransitionToInvasion()
-	{
-		ReplaceCoroutine(ref _trackTransition, TransitionTrackCoroutine(InvasionMusic));
+		ReplaceCoroutine(ref _trackTransition, TransitionTrackCoroutine(newTrack));
 	}
 
 	private IEnumerator TransitionTrackCoroutine(AudioClip newTrack)
