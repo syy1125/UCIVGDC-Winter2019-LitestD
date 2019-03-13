@@ -31,6 +31,8 @@ public class EnemyManager : MonoBehaviour
 
 	private float _speedupFactor;
 
+	private bool _hasEnemySpawned;
+
 	[Header("Debug")]
 	public GameObject DebugParent;
 	public GameObject TextPrefab;
@@ -107,12 +109,16 @@ public class EnemyManager : MonoBehaviour
 
 	public void ExecuteEnemySpawns()
 	{
-		// QUESTION: Do we want to be able to pass in the current amount of enemies,
-		// so that we don't have too many enemies at once?
 		int enemiesToSpawn = enemySpawning.HowManyEnemiesToSpawn(TurnCountRef);
-		for (int i = 0; i < enemiesToSpawn; i++)
+		for (var i = 0; i < enemiesToSpawn; i++)
 		{
 			SpawnRandomEnemy();
+		}
+
+		if (enemiesToSpawn > 0 && !_hasEnemySpawned)
+		{
+			_hasEnemySpawned = true;
+			MusicManager.Instance.TransitionToTrack(MusicManager.Instance.InvasionMusic);
 		}
 	}
 
@@ -240,7 +246,7 @@ public class EnemyManager : MonoBehaviour
 		}
 	}
 
-	private string GetStateFromDirection(Vector3Int direction)
+	private static string GetStateFromDirection(Vector3Int direction)
 	{
 		if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
 		{
