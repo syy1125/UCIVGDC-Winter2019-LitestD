@@ -4,20 +4,34 @@ using UnityEngine.UI;
 
 public class OptionsMenu : MonoBehaviour
 {
+	[Header("Components")]
 	[FormerlySerializedAs("tutorialToggle")]
 	public Toggle TutorialToggle;
 	public Slider MusicVolumeSlider;
 	public Slider EffectsVolumeSlider;
 
-	private const string SHOW_TUTORIAL_KEY = "ShowTutorial";
-	private const string MUSIC_VOLUME_KEY = "MusicVolume";
-	private const string EFFECTS_VOLUME_KEY = "EffectsVolume";
+	[Header("Events")]
+	public GameEvent EffectsVolumeChangedEvent;
+
+	public const string SHOW_TUTORIAL_KEY = "ShowTutorial";
+	public const string MUSIC_VOLUME_KEY = "MusicVolume";
+	public const string EFFECTS_VOLUME_KEY = "EffectsVolume";
 
 	private void Awake()
 	{
 		ToggleTutorial(PlayerPrefs.GetInt(SHOW_TUTORIAL_KEY, 1) == 1);
-		SetMusicVolume(PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, 1));
-		SetEffectsVolume(PlayerPrefs.GetFloat(EFFECTS_VOLUME_KEY, 1));
+		SetMusicVolume(GetMusicVolume());
+		SetEffectsVolume(GetEffectsVolume());
+	}
+
+	public static float GetMusicVolume()
+	{
+		return PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, 1);
+	}
+
+	public static float GetEffectsVolume()
+	{
+		return PlayerPrefs.GetFloat(EFFECTS_VOLUME_KEY, 1);
 	}
 
 	public void ToggleTutorial(bool isOn)
@@ -37,5 +51,6 @@ public class OptionsMenu : MonoBehaviour
 	{
 		PlayerPrefs.SetFloat(EFFECTS_VOLUME_KEY, volume);
 		EffectsVolumeSlider.value = volume;
+		EffectsVolumeChangedEvent.Raise();
 	}
 }
