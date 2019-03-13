@@ -4938,7 +4938,7 @@ PrefabInstance:
     - target: {fileID: 7700010663233001784, guid: b19f1037ec047e344907e7cdcdd1e70b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0.000015258789
+      value: -0.000015212522
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19f1037ec047e344907e7cdcdd1e70b, type: 3}
@@ -5131,42 +5131,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7fcd58970f9da6247b941df926e0599d, type: 3}
---- !u!1 &3182372285112969630 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3182372285112969630, guid: b032f4148080aa84eb9877c1cd181676,
-    type: 3}
-  m_PrefabInstance: {fileID: 7273807916165101391}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &3182372285112969631
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3182372285112969630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0f79151e02691024e8b1e1257c3baee0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  gameEvent: {fileID: 11400000, guid: 612b4f18acd8f19409d40ae53776a15e, type: 2}
-  response:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 8932193778246608915}
-        m_MethodName: TransitionToTrack
-        m_Mode: 2
-        m_Arguments:
-          m_ObjectArgument: {fileID: 8300000, guid: ecc3b7c71cbd5de43b211297a23c288d,
-            type: 3}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.AudioClip, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1001 &5359818826525141231
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5928,18 +5892,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b032f4148080aa84eb9877c1cd181676, type: 3}
---- !u!114 &8932193778246608915 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8932193778246608915, guid: b032f4148080aa84eb9877c1cd181676,
-    type: 3}
-  m_PrefabInstance: {fileID: 7273807916165101391}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3182372285112969630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 26ea30927a8e9b243bcfd959b2420169, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &9190981436059901928
 PrefabInstance:
   m_ObjectHideFlags: 0
