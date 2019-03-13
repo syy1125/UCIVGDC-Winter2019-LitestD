@@ -61,7 +61,7 @@ public class MusicManager : MonoBehaviour
 
 		_audio.volume = targetVolume;
 	}
-	
+
 	public void TransitionToTrack(AudioClip newTrack)
 	{
 		ReplaceCoroutine(ref _trackTransition, TransitionTrackCoroutine(newTrack));
@@ -71,6 +71,7 @@ public class MusicManager : MonoBehaviour
 	{
 		yield return TransitionToVolume(0);
 		_audio.clip = newTrack;
+		_audio.Play();
 		yield return TransitionToVolume(1);
 	}
 }
