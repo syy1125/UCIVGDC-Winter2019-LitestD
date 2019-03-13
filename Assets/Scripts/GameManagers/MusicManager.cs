@@ -38,10 +38,15 @@ public class MusicManager : MonoBehaviour
 		TransitionToVolume(1);
 	}
 
+	private Coroutine ReplaceCoroutine(ref Coroutine coroutine, IEnumerator enumerator)
+	{
+		if (coroutine != null) StopCoroutine(coroutine);
+		return coroutine = StartCoroutine(enumerator);
+	}
+
 	private Coroutine TransitionToVolume(float targetVolume)
 	{
-		StopCoroutine(_volumeTransition);
-		return _volumeTransition = StartCoroutine(VolumeTransitionCoroutine(targetVolume));
+		return ReplaceCoroutine(ref _volumeTransition, VolumeTransitionCoroutine(targetVolume));
 	}
 
 	private IEnumerator VolumeTransitionCoroutine(float targetVolume)
@@ -60,20 +65,17 @@ public class MusicManager : MonoBehaviour
 
 	public void TransitionToMenu()
 	{
-		StopCoroutine(_trackTransition);
-		_trackTransition = StartCoroutine(TransitionTrackCoroutine(MenuMusic));
+		ReplaceCoroutine(ref _trackTransition, TransitionTrackCoroutine(MenuMusic));
 	}
 
 	public void TransitionToPeaceful()
 	{
-		StopCoroutine(_trackTransition);
-		_trackTransition = StartCoroutine(TransitionTrackCoroutine(PeacefulMusic));
+		ReplaceCoroutine(ref _trackTransition, TransitionTrackCoroutine(PeacefulMusic));
 	}
 
 	public void TransitionToInvasion()
 	{
-		StopCoroutine(_trackTransition);
-		_trackTransition = StartCoroutine(TransitionTrackCoroutine(InvasionMusic));
+		ReplaceCoroutine(ref _trackTransition, TransitionTrackCoroutine(InvasionMusic));
 	}
 
 	private IEnumerator TransitionTrackCoroutine(AudioClip newTrack)
