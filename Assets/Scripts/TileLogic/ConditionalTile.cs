@@ -40,9 +40,6 @@ public class ConditionalTile : TileBase
 
 	public override void GetTileData(Vector3Int position, ITilemap tilemap, ref TileData tileData)
 	{
-		Debug.Log($"GetTileData called at {position}");
-		Debug.Log(tileData.gameObject);
-		
 		base.GetTileData(position, tilemap, ref tileData);
 		tileData.sprite = _rules.TryGetValue(State, out Sprite sprite) ? sprite : TileConditions[0].Sprite;
 		tileData.gameObject = LogicObject;
