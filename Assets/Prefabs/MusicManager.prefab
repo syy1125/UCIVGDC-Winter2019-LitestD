@@ -48,7 +48,7 @@ MonoBehaviour:
   MenuMusic: {fileID: 8300000, guid: bb37d043093042d4a873fe8f2acee92f, type: 3}
   PeacefulMusic: {fileID: 8300000, guid: ecc3b7c71cbd5de43b211297a23c288d, type: 3}
   InvasionMusic: {fileID: 8300000, guid: 9eb869f17de586344a03b31c707b5885, type: 3}
-  TransitionDuration: 0.5
+  TransitionDuration: 2
 --- !u!82 &1203091385468122417
 AudioSource:
   m_ObjectHideFlags: 0
