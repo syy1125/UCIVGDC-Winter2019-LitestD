@@ -139,6 +139,11 @@ public class ConstructionQueueManager : MonoBehaviour
 			_buildingQueue[index].Item3.GetComponent<ConstructionQueueItemPanel>().SetQueueIndex(index);
 		}
 
+		if (_selectedIndex == from)
+		{
+			SelectIndex(to);
+		}
+
 		updateUIEvent.Raise();
 	}
 
