@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -77,33 +77,50 @@ public class ResourceManager : MonoBehaviour
 		HousePopulation(GeneratePortrait());
 		HousePopulation(GeneratePortrait());
 		HousePopulation(GeneratePortrait());
-		
+
 		AssignFarm();
-		
+
 		AssignGenerator();
 		AssignGenerator();
 	}
 
 	public void ExecuteFinalActions()
 	{
-		ResolvePopulationChange();
+		EndTurnManager.actions.Enqueue(ResolvePopulationChange());
 		UpdateUIEvent.Raise();
 	}
 
-	private void ResolvePopulationChange()
+	private IEnumerator ResolvePopulationChange()
 	{
 		if (Population >= HousingCapacity)
 		{
 			CapPopulation();
-			return;
+			yield break;
 		}
 
 		_growthProgress += FoodProduced - FoodConsumed;
 
+		var growthMap = new Dictionary<Vector3Int, int>();
+
 		while (_growthProgress >= FoodRequiredPerPopulation)
 		{
 			_growthProgress -= FoodRequiredPerPopulation;
-			HousePopulation(GeneratePortrait());
+			GameObject target = HousePopulation(GeneratePortrait());
+
+			if (target == null) continue;
+
+			Vector3Int buildingPosition =
+				BuildingMap.WorldToCell(target.transform.position);
+			growthMap[buildingPosition] =
+				growthMap.TryGetValue(buildingPosition, out int original) ? original + 1 : 1;
+		}
+
+		foreach (KeyValuePair<Vector3Int, int> entry in growthMap)
+		{
+			GameManager.Instance.FlytextManager.SpawnFlytextWorldPosition(
+				BuildingMap.GetCellCenterWorld(entry.Key),
+				$"+{entry.Value} population"
+			);
 		}
 
 		while (_growthProgress <= -FoodRequiredPerPopulation)
@@ -149,7 +166,7 @@ public class ResourceManager : MonoBehaviour
 		}
 	}
 
-	public void HousePopulation(Sprite portrait)
+	public GameObject HousePopulation(Sprite portrait)
 	{
 		PopulationProvider targetHousing = FindBestHousing(
 			candidate => candidate.ResidentCount < candidate.Capacity,
@@ -159,13 +176,15 @@ public class ResourceManager : MonoBehaviour
 		if (ReferenceEquals(targetHousing, null))
 		{
 			_extraPopulation.Push(portrait);
-		}
-		else
-		{
-			targetHousing.Portraits.Push(portrait);
+			Population.value++;
+			return null;
 		}
 
-		Population.value += 1;
+		targetHousing.Portraits.Push(portrait);
+
+		Population.value++;
+
+		return targetHousing.gameObject;
 	}
 
 	public void RemovePopulation()
