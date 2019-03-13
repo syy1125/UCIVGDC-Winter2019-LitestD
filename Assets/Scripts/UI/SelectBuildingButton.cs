@@ -9,28 +9,29 @@ public class SelectBuildingButton : MonoBehaviour
 	public PlanConstructionManager PlanConstructionManager;
 	public TileBase Tile;
 
-    private Animator _anim;
-    private AudioSource _audio;
+	private Animator _anim;
+	private AudioSource _audio;
 
-    private void Awake()
-    {
-        _anim = GetComponent<Animator>();
-        _audio = GetComponent<AudioSource>();
-    }
+	private void Awake()
+	{
+		_anim = GetComponent<Animator>();
+		_audio = GetComponent<AudioSource>();
+	}
 
-    private void Reset()
+	private void Reset()
 	{
 		PlanConstructionManager = GetComponentInParent<PlanConstructionManager>();
 	}
 
 	public void OnClick()
 	{
+		_audio.volume = OptionsMenu.GetEffectsVolume();
 		_audio.Play();
 		PlanConstructionManager.SelectBuildTile(Tile);
 	}
 
 	public void OnBuildingSelectionChange()
 	{
-        _anim.SetBool("Selected", PlanConstructionManager.SelectedTile == Tile);
+		_anim.SetBool("Selected", PlanConstructionManager.SelectedTile == Tile);
 	}
 }

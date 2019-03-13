@@ -14,6 +14,7 @@ public class EnemyAttack : MonoBehaviour
 	public void PlayAttackSound()
 	{
 		Audio.pitch = Random.Range(MinPitch, MaxPitch);
+		Audio.volume = OptionsMenu.GetEffectsVolume();
 		Audio.Play();
 	}
 }

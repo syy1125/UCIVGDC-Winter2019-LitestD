@@ -85,6 +85,7 @@ public class TurretAttack : MonoBehaviour
 		Transform projectileTransform = Instantiate(ProjectilePrefab).transform;
 
 		_audio.pitch = Random.Range(MinPitch, MaxPitch);
+		_audio.volume = OptionsMenu.GetEffectsVolume();
 		_audio.Play();
 
 		Vector3 startPosition =
