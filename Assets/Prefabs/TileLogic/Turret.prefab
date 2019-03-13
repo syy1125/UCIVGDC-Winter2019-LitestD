@@ -85,12 +85,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   AttackStrength: 2
   Range: 3
+  ExplosiveAttackStrength: 1
   ProjectilePrefab: {fileID: 3424278304916881456, guid: e54e48623846eee4489af5d64e73cf97,
     type: 3}
-  ProjectileLifetime: 0.5
-  AftermathInterval: 0.2
+  WarmUpInterval: 0.1
+  ProjectileLifetime: 0.4
+  AftermathInterval: 0.1
   MinPitch: 0.7
   MaxPitch: 1.3
+  HighlightTile: {fileID: 11400000, guid: edc8b550f37cb05488174d9adbd07abf, type: 2}
+  WillFireExplosiveShot: 0
 --- !u!114 &3175269546298699547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c94618f8ed329a74ebc96df7193a9d55, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cost: 6
+  RequiredProgress: 6
 --- !u!82 &5088388607521902232
 AudioSource:
   m_ObjectHideFlags: 0

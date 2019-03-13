@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using Random = UnityEngine.Random;
 
 public class TurretAttack : MonoBehaviour
@@ -13,10 +14,13 @@ public class TurretAttack : MonoBehaviour
 
 	[Header("Effects and Timing")]
 	public GameObject ProjectilePrefab;
+	public float WarmUpInterval;
 	public float ProjectileLifetime;
 	public float AftermathInterval;
 	public float MinPitch;
 	public float MaxPitch;
+
+	public TileBase HighlightTile;
 
 	public static Vector3Int ExplosiveShotTarget;
 	public static bool ExplosiveShotPlanned;
@@ -83,10 +87,29 @@ public class TurretAttack : MonoBehaviour
 	private IEnumerator AttackEnemy(Vector3Int targetPosition)
 	{
 		Transform projectileTransform = Instantiate(ProjectilePrefab).transform;
+		projectileTransform.position += Vector3.back;
 
 		_audio.pitch = Random.Range(MinPitch, MaxPitch);
 		_audio.volume = OptionsMenu.GetEffectsVolume();
 		_audio.Play();
+
+		_tilemaps.Highlights.SetTile(_tilemaps.Buildings.WorldToCell(transform.position), HighlightTile);
+		_tilemaps.Highlights.SetTile(targetPosition, HighlightTile);
+		if (WillFireExplosiveShot)
+		{
+			for (int dx = -1; dx <= 1; dx++)
+			{
+				for (int dy = -1; dy <= 1; dy++)
+				{
+					_tilemaps.Highlights.SetTile(
+						targetPosition + new Vector3Int(dx, dy, 0),
+						HighlightTile
+					);
+				}
+			}
+		}
+
+		yield return new WaitForSeconds(WarmUpInterval);
 
 		Vector3 startPosition =
 			_tilemaps.Buildings.GetCellCenterWorld(_tilemaps.Buildings.WorldToCell(transform.position));
@@ -106,10 +129,11 @@ public class TurretAttack : MonoBehaviour
 
 		while (Time.time - startTime < ProjectileLifetime)
 		{
-			projectileTransform.position = Vector3.Lerp(
-				                               startPosition, enemyPosition,
-				                               (Time.time - startTime) / ProjectileLifetime
-			                               ) + Vector3.forward;
+			projectileTransform.position =
+				Vector3.Lerp(
+					startPosition, enemyPosition,
+					(Time.time - startTime) / ProjectileLifetime
+				) + Vector3.back;
 			yield return null;
 		}
 
@@ -124,7 +148,7 @@ public class TurretAttack : MonoBehaviour
 			{
 				for (int dy = -1; dy <= 1; dy++)
 				{
-					Vector3Int target = targetPosition + new Vector3Int(dx, dy, 0);
+					Vector3Int target = targetPosition + new Vector3Int(dx, dy, -1);
 					if (_tilemaps.Buildings.HasTile(target))
 					{
 						_tilemaps.Buildings
@@ -147,8 +171,9 @@ public class TurretAttack : MonoBehaviour
 		{
 			var enemyHealth = _tilemaps.Enemies.GetInstantiatedObject(targetPosition).GetComponent<HealthPool>();
 			enemyHealth.Damage(AttackStrength);
-
-			yield return new WaitForSeconds(AftermathInterval);
 		}
+
+		_tilemaps.Highlights.ClearAllTiles();
+		yield return new WaitForSeconds(AftermathInterval);
 	}
 }
