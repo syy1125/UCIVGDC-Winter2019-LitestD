@@ -33,7 +33,6 @@ public class MusicManager : MonoBehaviour
 	private void Start()
 	{
 		_audio = GetComponent<AudioSource>();
-		_audio.clip = MenuMusic;
 		_audio.volume = 0;
 		TransitionToVolume(1);
 	}
@@ -60,7 +59,7 @@ public class MusicManager : MonoBehaviour
 			yield return null;
 		}
 
-		_audio.volume = 0;
+		_audio.volume = targetVolume;
 	}
 
 	public void TransitionToMenu()
