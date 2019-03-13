@@ -21,6 +21,7 @@ public class EnemyManager : MonoBehaviour
 	private List<Vector3Int> _pathfindPositions;
 
 	[Header("Effects and Timing")]
+	public float SpawnInterval;
 	public float AttackAftermathInterval;
 	public float MovementAftermathInterval;
 	public AnimationCurve SpeedupFactorCurve;
@@ -109,16 +110,23 @@ public class EnemyManager : MonoBehaviour
 
 	public void ExecuteEnemySpawns()
 	{
+		EndTurnManager.actions.Enqueue(EnemySpawnsCoroutine());
+	}
+
+	private IEnumerator EnemySpawnsCoroutine()
+	{
 		int enemiesToSpawn = enemySpawning.HowManyEnemiesToSpawn(TurnCountRef);
-		for (var i = 0; i < enemiesToSpawn; i++)
-		{
-			SpawnRandomEnemy();
-		}
 
 		if (enemiesToSpawn > 0 && !_hasEnemySpawned)
 		{
 			_hasEnemySpawned = true;
 			MusicManager.Instance.TransitionToTrack(MusicManager.Instance.InvasionMusic);
+		}
+
+		for (var i = 0; i < enemiesToSpawn; i++)
+		{
+			SpawnRandomEnemy();
+			yield return new WaitForSeconds(SpawnInterval);
 		}
 	}
 
