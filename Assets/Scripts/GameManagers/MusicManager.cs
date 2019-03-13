@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
+	public static MusicManager Instance;
+
 	[Header("Music")]
 	public AudioClip MenuMusic;
 	public AudioClip PeacefulMusic;
@@ -11,7 +14,7 @@ public class MusicManager : MonoBehaviour
 	[Header("Config")]
 	public float TransitionDuration;
 
-	public static MusicManager Instance;
+	private float _musicVolume;
 	private AudioSource _audio;
 
 	private Coroutine _volumeTransition;
@@ -50,16 +53,18 @@ public class MusicManager : MonoBehaviour
 
 	private IEnumerator VolumeTransitionCoroutine(float targetVolume)
 	{
-		float startVolume = _audio.volume;
+		float startVolume = _musicVolume < 1E-10 ? 0 : _audio.volume / _musicVolume;
 		float startTime = Time.time;
 
 		while (Time.time - startTime < TransitionDuration)
 		{
-			_audio.volume = Mathf.Lerp(startVolume, targetVolume, (Time.time - startTime) / TransitionDuration);
+			_audio.volume =
+				Mathf.Lerp(startVolume, targetVolume, (Time.time - startTime) / TransitionDuration)
+				* _musicVolume;
 			yield return null;
 		}
 
-		_audio.volume = targetVolume;
+		_audio.volume = targetVolume * _musicVolume;
 	}
 
 	public void TransitionToTrack(AudioClip newTrack)
@@ -73,5 +78,11 @@ public class MusicManager : MonoBehaviour
 		_audio.clip = newTrack;
 		_audio.Play();
 		yield return TransitionToVolume(1);
+	}
+
+	public void SetMusicVolume(float volume)
+	{
+		_musicVolume = volume;
+		_audio.volume = volume;
 	}
 }

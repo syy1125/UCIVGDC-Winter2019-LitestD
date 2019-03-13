@@ -26,15 +26,16 @@ public class OptionsMenu : MonoBehaviour
 		TutorialToggle.isOn = isOn;
 	}
 
-	public void SetMusicVolume(float musicVolume)
+	public void SetMusicVolume(float volume)
 	{
-		PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, musicVolume);
-		MusicVolumeSlider.value = musicVolume;
+		PlayerPrefs.SetFloat(MUSIC_VOLUME_KEY, volume);
+		MusicVolumeSlider.value = volume;
+		MusicManager.Instance.SetMusicVolume(volume);
 	}
 
-	public void SetEffectsVolume(float effectsVolume)
+	public void SetEffectsVolume(float volume)
 	{
-		PlayerPrefs.SetFloat(EFFECTS_VOLUME_KEY, effectsVolume);
-		EffectsVolumeSlider.value = effectsVolume;
+		PlayerPrefs.SetFloat(EFFECTS_VOLUME_KEY, volume);
+		EffectsVolumeSlider.value = volume;
 	}
 }
