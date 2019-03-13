@@ -119,9 +119,12 @@ public class ResourceManager : MonoBehaviour
 		{
 			GameManager.Instance.FlytextManager.SpawnFlytextWorldPosition(
 				BuildingMap.GetCellCenterWorld(entry.Key),
-				$"+{entry.Value} population"
+				$"+{entry.Value} population",
+				0, 0.2f, 0.3f
 			);
 		}
+
+		yield return new WaitForSeconds(0.5f);
 
 		while (_growthProgress <= -FoodRequiredPerPopulation)
 		{
