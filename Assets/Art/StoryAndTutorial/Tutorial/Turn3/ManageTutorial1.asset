@@ -28,5 +28,5 @@ MonoBehaviour:
     position: 3
     showContinueButton: 0
     disableUI: 0
-  position: {x: -190, y: 113, z: 0}
+  position: {x: -188, y: 93, z: 0}
   rotation: 140
