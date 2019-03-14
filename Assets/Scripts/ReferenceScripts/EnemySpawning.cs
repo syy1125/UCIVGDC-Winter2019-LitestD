@@ -5,14 +5,17 @@ using UnityEngine;
 [CreateAssetMenu]
 public class EnemySpawning : ScriptableObject
 {
-    public AnimationCurve spawnCurve;
-    public int maxTurn = 100;
-    public int maxEnemiesToSpawn = 10;
+    public List<int> enemiesToSpawn;
 
     public int HowManyEnemiesToSpawn(int turnCount)
     {
-        float time = turnCount > maxTurn ? 1 : (float)turnCount / maxTurn;
-        int expectedNumberOfEnemies = Mathf.RoundToInt(maxEnemiesToSpawn * spawnCurve.Evaluate(time));
-        return Mathf.Clamp(expectedNumberOfEnemies, 0, maxEnemiesToSpawn);
+        if (turnCount < enemiesToSpawn.Count)
+        {
+            return enemiesToSpawn[turnCount];
+        }
+        else
+        {
+            return enemiesToSpawn[enemiesToSpawn.Count - 1];
+        }
     }
 }
