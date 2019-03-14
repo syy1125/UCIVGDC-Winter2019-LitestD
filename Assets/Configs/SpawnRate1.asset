@@ -25,17 +25,17 @@ MonoBehaviour:
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.05
+      time: 0.07
       value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.32231802
+      inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.06
-      value: 0.1
+      time: 0.30084732
+      value: 0.30091113
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -43,8 +43,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.45
-      value: 0.35
+      time: 0.40431413
+      value: 0
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -52,8 +52,8 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.5
-      value: 0.1
+      time: 0.6634723
+      value: 0.5708902
       inSlope: 0
       outSlope: 0
       tangentMode: 0
@@ -61,10 +61,10 @@ MonoBehaviour:
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.76597023
-      value: 0.2999789
-      inSlope: 1.8832371
-      outSlope: 1.8832371
+      time: 0.8044616
+      value: 0.19882992
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0.33333334
@@ -72,8 +72,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2.9911625
-      outSlope: 2.9911625
+      inSlope: 4.097252
+      outSlope: 4.097252
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -82,4 +82,4 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   maxTurn: 200
-  maxEnemiesToSpawn: 6
+  maxEnemiesToSpawn: 4
