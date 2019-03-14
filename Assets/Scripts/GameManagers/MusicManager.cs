@@ -26,7 +26,8 @@ public class MusicManager : MonoBehaviour
 		{
 			Instance = this;
 			DontDestroyOnLoad(gameObject);
-		}
+            _audio = GetComponent<AudioSource>();
+        }
 		else if (this != Instance)
 		{
 			Destroy(gameObject);
@@ -34,8 +35,7 @@ public class MusicManager : MonoBehaviour
 	}
 
 	private void Start()
-	{
-		_audio = GetComponent<AudioSource>();
+    { 
 		_audio.volume = 0;
 		TransitionToVolume(1);
 	}

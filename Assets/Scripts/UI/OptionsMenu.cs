@@ -17,14 +17,28 @@ public class OptionsMenu : MonoBehaviour
 	public const string MUSIC_VOLUME_KEY = "MusicVolume";
 	public const string EFFECTS_VOLUME_KEY = "EffectsVolume";
 
+    private Animator anim;
+
 	private void Awake()
 	{
+        anim = GetComponent<Animator>();
+
 		ToggleTutorial(PlayerPrefs.GetInt(SHOW_TUTORIAL_KEY, 1) == 1);
 		SetMusicVolume(GetMusicVolume());
 		SetEffectsVolume(GetEffectsVolume());
 	}
 
-	public static float GetMusicVolume()
+    public void Show()
+    {
+        anim.SetBool("visible", true);
+    }
+
+    public void Hide()
+    {
+        anim.SetBool("visible", false);
+    }
+
+    public static float GetMusicVolume()
 	{
 		return PlayerPrefs.GetFloat(MUSIC_VOLUME_KEY, 1);
 	}
