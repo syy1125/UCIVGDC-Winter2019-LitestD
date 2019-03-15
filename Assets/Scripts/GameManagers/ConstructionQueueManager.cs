@@ -180,7 +180,7 @@ public class ConstructionQueueManager : MonoBehaviour
 		if (_buildingQueue.Count <= 0) yield break;
 		int buildUnits = GameManager.Instance.ResourceManager.PowerProduced;
 
-		while (_buildingQueue.Count > 0)
+		while (_buildingQueue.Count > 0 && buildUnits > 0)
 		{
 			(Vector3Int tilePosition, TileBase selectedTile, GameObject queueItem) = _buildingQueue[0];
 			var buildCost = Tilemaps.ConstructionPlanner
@@ -188,6 +188,7 @@ public class ConstructionQueueManager : MonoBehaviour
 				.GetComponent<BuildCost>();
 			var queueItemProgress = queueItem.GetComponent<ConstructionQueueItemProgress>();
 
+			int buildDeficit = buildCost.RequiredProgress - queueItemProgress.CurrentProgress;
 			queueItemProgress.CurrentProgress += buildUnits;
 			if (queueItemProgress.CurrentProgress < buildCost.RequiredProgress)
 			{
@@ -210,7 +211,7 @@ public class ConstructionQueueManager : MonoBehaviour
 
 			GameManager.Instance.FlytextManager.SpawnFlytextWorldPosition(
 				Tilemaps.ConstructionPlanner.GetCellCenterWorld(tilePosition),
-				"Construction finished!",
+				$"+{buildDeficit} progress\nFinished!",
 				0.2f, 0.2f, 0.5f
 			);
 
