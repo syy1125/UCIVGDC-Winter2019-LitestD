@@ -4720,6 +4720,12 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 3f033d57f4676554ea2d714627db63fd, type: 2}
   - {fileID: 11400000, guid: 2b99d1e9bf545094982f16a91b361456, type: 2}
   - {fileID: 11400000, guid: dee3ba33161573b468b4a51d13b540a3, type: 2}
+  - {fileID: 11400000, guid: 2c53bba9188112c4f8d0ad4e528fb39a, type: 2}
+  - {fileID: 11400000, guid: 64099b5ec8d7f9545a415797d2663039, type: 2}
+  - {fileID: 11400000, guid: 04ca9a1038b611c4f9aae42c2bd15bec, type: 2}
+  - {fileID: 11400000, guid: fa28eb28223952b4baffeeb0a2f13824, type: 2}
+  - {fileID: 11400000, guid: 53fbdd338fdc4b348a7882c87d007d4b, type: 2}
+  - {fileID: 11400000, guid: 6c38334e30a1bc54683e9fea818aed6a, type: 2}
 --- !u!114 &1671584269
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5493,7 +5499,7 @@ PrefabInstance:
     - target: {fileID: 7700010663233001784, guid: b19f1037ec047e344907e7cdcdd1e70b,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -0.000012283362
+      value: 0.000015258587
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b19f1037ec047e344907e7cdcdd1e70b, type: 3}
