@@ -36,6 +36,34 @@ public class TurretAttack : MonoBehaviour
 		_audio = GetComponent<AudioSource>();
 	}
 
+	private int GetTargetValue(Vector3Int targetPosition)
+	{
+		System.Diagnostics.Debug.Assert(_tilemaps.Enemies.HasTile(targetPosition));
+
+		var enemyHealth = _tilemaps.Enemies.GetInstantiatedObject(targetPosition).GetComponent<HealthPool>();
+		var enemyAttack = _tilemaps.Enemies.GetInstantiatedObject(targetPosition).GetComponent<EnemyAttack>();
+
+		int value = enemyHealth.MaxHealth - enemyHealth.Health;
+		foreach (Vector3Int direction in new[]
+		{
+			Vector3Int.up, Vector3Int.left, Vector3Int.down, Vector3Int.right
+		})
+		{
+			Vector3Int adjacentPosition = targetPosition + direction;
+
+			if (!_tilemaps.Buildings.HasTile(adjacentPosition)) continue;
+			value += 1;
+
+			if (
+				_tilemaps.Buildings.GetInstantiatedObject(adjacentPosition).GetComponent<HealthPool>().Health
+				> enemyAttack.AttackStrength
+			) continue;
+			value += 1;
+		}
+
+		return value;
+	}
+
 	private IEnumerator BuildingActionSequence()
 	{
 		if (WillFireExplosiveShot)
@@ -44,10 +72,23 @@ public class TurretAttack : MonoBehaviour
 			yield break;
 		}
 
-		Vector3Int[] nearbyEnemies = GetPositionsInRange().Where(_tilemaps.Enemies.HasTile).ToArray();
+		Vector3Int[] nearbyEnemyPositions = GetPositionsInRange().Where(_tilemaps.Enemies.HasTile).ToArray();
 
-		if (nearbyEnemies.Length <= 0) yield break;
-		yield return StartCoroutine(AttackEnemy(nearbyEnemies[Random.Range(0, nearbyEnemies.Length)]));
+		if (nearbyEnemyPositions.Length <= 0) yield break;
+
+		Vector3Int bestTarget = nearbyEnemyPositions[0];
+		int targetValue = GetTargetValue(bestTarget);
+
+		for (var i = 1; i < nearbyEnemyPositions.Length; i++)
+		{
+			int value = GetTargetValue(nearbyEnemyPositions[i]);
+			if (value <= targetValue) continue;
+
+			bestTarget = nearbyEnemyPositions[i];
+			targetValue = value;
+		}
+
+		yield return StartCoroutine(AttackEnemy(bestTarget));
 	}
 
 	private bool CanHaveEnemy(Vector3Int target)
