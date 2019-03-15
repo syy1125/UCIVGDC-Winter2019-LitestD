@@ -17,8 +17,8 @@ MonoBehaviour:
     conditionType: 0
     value: 47
   messages:
-  - title: Aaron Buckles
-    text: It's quiet. Too quiet.
+  - title: Elizabeth Chen
+    text: Where are the aliens?
     maxTimesShown: 1
     position: 1
     showContinueButton: 1
