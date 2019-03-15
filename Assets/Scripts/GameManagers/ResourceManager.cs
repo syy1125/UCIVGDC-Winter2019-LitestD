@@ -52,6 +52,9 @@ public class ResourceManager : MonoBehaviour
 	public Button AssignFarmButton;
 	public Button UnassignFarmButton;
 
+	[Header("Other Rendering")]
+	public GameObject LosePanel;
+
 	private bool _overlayVisible;
 	private Coroutine _hideOverlayCoroutine;
 
@@ -142,6 +145,13 @@ public class ResourceManager : MonoBehaviour
 	{
 		_growthProgress = 0;
 		Population.value = HousingCapacity;
+
+		if (Population <= 0)
+		{
+			LosePanel.SetActive(true);
+			return;
+		}
+
 		_extraPopulation.Clear();
 		PreventPopulationOverdraft();
 	}
